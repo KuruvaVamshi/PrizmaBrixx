@@ -1594,13 +1594,13 @@ body::before {
         opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Pause sliding when track is hovered */
-.video-carousel-track:hover {
+/* Pause sliding only when a video card is hovered */
+.video-carousel-track:has(.video-grid-card:hover) {
     animation-play-state: paused;
 }
 
-/* Dim other cards on hover */
-.video-carousel-track:hover .video-grid-card:not(:hover) {
+/* Dim other cards only when a video card is hovered */
+.video-carousel-track:has(.video-grid-card:hover) .video-grid-card:not(:hover) {
     opacity: 0.4;
     filter: brightness(0.5) blur(3px);
     transform: scale(0.95);
@@ -1924,7 +1924,7 @@ body::before {
 }
 
 /* Sibling focus dimming */
-.render-advanced-grid:hover .render-grid-card:not(:hover) {
+.render-advanced-grid:has(.render-grid-card:hover) .render-grid-card:not(:hover) {
     filter: brightness(0.55) saturate(0.8) blur(1px);
     opacity: 0.65;
     transform: scale(0.97) translate3d(0,0,0);
@@ -2925,18 +2925,23 @@ body::before {
     position: relative;
     display: inline-block;
     color: transparent;
-    -webkit-text-stroke: 1px var(--text-main);
-    background: linear-gradient(90deg, var(--text-main) 0%, var(--accent) 50%, var(--text-main) 100%);
+    -webkit-text-stroke: 1px var(--text-primary);
+    background: linear-gradient(90deg, var(--text-primary) 0%, var(--accent) 50%, var(--text-primary) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     animation: cyberShine 3s linear infinite;
-    text-shadow: 0 0 15px rgba(255, 165, 0, 0.0);
-    transition: text-shadow 0.5s ease;
+    text-shadow: 0 0 10px rgba(245, 145, 40, 0);
+    transition: text-shadow 0.5s ease, color 0.4s ease;
 }
 
 .futuristic-cyber-text.decoded {
-    text-shadow: 0 0 15px rgba(255, 165, 0, 0.4);
+    color: #ffffff;
+    -webkit-text-stroke: 0px;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    background: none;
+    text-shadow: 0 0 6px rgba(245, 145, 40, 0.5);
 }
 
 @keyframes cyberShine {
@@ -3083,17 +3088,18 @@ body::before {
         /* Keep native cursor visible — reticle is a companion, not a replacement */
 
         /* ── Reticle Container ── */
+        /* ── Reticle Container ── */
         #cursor-reticle {
             position: fixed;
             top: 0;
             left: 0;
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             z-index: 9999;
             pointer-events: none;
             will-change: transform;
-            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                        height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                        height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         #cursor-reticle svg {
@@ -3102,114 +3108,63 @@ body::before {
             overflow: visible;
         }
 
-        /* ── Outer Ring — Rotating segmented arc ── */
+        /* ── Outer Ring — Clean solid circle ── */
         .reticle-ring-outer {
             fill: none;
-            stroke: rgba(245, 145, 40, 0.25);
-            stroke-width: 0.8;
-            stroke-dasharray: 10 8 4 8;
-            stroke-linecap: round;
-            animation: reticleSpinCW 10s linear infinite;
-            transform-origin: 40px 40px;
-            transition: stroke 0.4s ease, stroke-width 0.3s ease;
+            stroke: rgba(245, 145, 40, 0.45);
+            stroke-width: 1.2;
+            transition: stroke 0.3s ease, stroke-width 0.3s ease;
         }
 
-        /* ── Inner Ring — Counter-rotating ── */
-        .reticle-ring-inner {
-            fill: none;
-            stroke: rgba(245, 145, 40, 0.12);
-            stroke-width: 0.5;
-            stroke-dasharray: 5 12;
-            stroke-linecap: round;
-            animation: reticleSpinCCW 7s linear infinite;
-            transform-origin: 40px 40px;
-            transition: stroke 0.4s ease;
-        }
-
-        /* ── Corner Brackets ── */
-        .reticle-bracket {
-            fill: none;
-            stroke: rgba(245, 145, 40, 0.4);
-            stroke-width: 0.9;
-            stroke-linecap: square;
-            transition: stroke 0.4s ease, stroke-width 0.3s ease;
-        }
-
-        /* ── Crosshair Ticks ── */
-        .reticle-tick {
-            stroke: rgba(245, 145, 40, 0.25);
-            stroke-width: 0.7;
-            stroke-linecap: round;
-            transition: stroke 0.4s ease;
-        }
-
-        /* ── Core Dot — pulsing center ── */
+        /* ── Core Dot — center dot ── */
         .reticle-core {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 3px;
-            height: 3px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: #f59128;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 4px 1px rgba(245, 145, 40, 0.5),
-                        0 0 10px 2px rgba(245, 145, 40, 0.15);
-            animation: corePulse 2.5s ease-in-out infinite;
-            transition: background 0.4s ease, box-shadow 0.4s ease, width 0.3s ease, height 0.3s ease;
+            box-shadow: 0 0 6px 1.5px rgba(245, 145, 40, 0.4);
+            transition: background 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
         }
 
         /* ── Hover Label ── */
         .reticle-label {
             position: absolute;
-            bottom: -14px;
+            bottom: -16px;
             left: 50%;
             transform: translateX(-50%) translateY(3px);
             font-family: var(--font-heading);
-            font-size: 0.45rem;
+            font-size: 0.5rem;
             font-weight: 700;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: rgba(100, 255, 218, 0.75);
+            color: #64ffda;
             text-shadow: 0 0 6px rgba(100, 255, 218, 0.35);
             opacity: 0;
             pointer-events: none;
             white-space: nowrap;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
         /* ═══════════════ HOVER STATE ═══════════════ */
         #cursor-reticle.reticle-hover {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
         }
 
         #cursor-reticle.reticle-hover .reticle-ring-outer {
-            stroke: rgba(100, 255, 218, 0.35);
-            stroke-width: 1;
-            animation-duration: 5s;
-        }
-
-        #cursor-reticle.reticle-hover .reticle-ring-inner {
-            stroke: rgba(100, 255, 218, 0.2);
-            animation-duration: 3.5s;
-        }
-
-        #cursor-reticle.reticle-hover .reticle-bracket {
-            stroke: rgba(100, 255, 218, 0.55);
-            stroke-width: 1.1;
-        }
-
-        #cursor-reticle.reticle-hover .reticle-tick {
-            stroke: rgba(100, 255, 218, 0.35);
+            stroke: #64ffda;
+            stroke-width: 1.5;
         }
 
         #cursor-reticle.reticle-hover .reticle-core {
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
             background: #64ffda;
-            box-shadow: 0 0 6px 2px rgba(100, 255, 218, 0.55),
-                        0 0 14px 3px rgba(100, 255, 218, 0.15);
+            box-shadow: 0 0 8px 2px rgba(100, 255, 218, 0.55);
         }
 
         #cursor-reticle.reticle-hover .reticle-label {
@@ -3219,20 +3174,19 @@ body::before {
 
         /* ═══════════════ CLICK STATE ═══════════════ */
         #cursor-reticle.reticle-click {
-            width: 26px;
-            height: 26px;
+            width: 18px;
+            height: 18px;
         }
 
         #cursor-reticle.reticle-click .reticle-core {
             width: 5px;
             height: 5px;
-            box-shadow: 0 0 8px 3px rgba(245, 145, 40, 0.7),
-                        0 0 18px 4px rgba(245, 145, 40, 0.2);
+            box-shadow: 0 0 8px 3px rgba(245, 145, 40, 0.7);
         }
 
         #cursor-reticle.reticle-click .reticle-ring-outer {
-            stroke: rgba(245, 145, 40, 0.45);
-            stroke-width: 1.2;
+            stroke: rgba(245, 145, 40, 0.7);
+            stroke-width: 1.8;
         }
 
         /* ═══════════════ KEYFRAMES ═══════════════ */
@@ -3506,4 +3460,1366 @@ body::before {
                 transform: translateY(50px);
             }
         }
+
+/* ==========================================================================
+   FUTURISTIC HOLOGRAPHIC MOSAIC MATRIX GRID (SERVICE 06)
+   ========================================================================== */
+.vr-matrix-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 600px;
+    margin: 2.5rem auto 0 auto;
+    background-color: var(--bg-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive height for VR matrix */
+@media (max-width: 992px) {
+    .vr-matrix-wrapper {
+        height: 500px;
+    }
+}
+@media (max-width: 576px) {
+    .vr-matrix-wrapper {
+        height: 400px;
+        margin: 1.5rem auto 0 auto;
+    }
+}
+
+/* Grifting neon crosshair divider lines */
+.vr-grid-line {
+    position: absolute;
+    background-color: var(--accent);
+    z-index: 10;
+    pointer-events: none;
+    transition: background-color 0.4s ease;
+}
+.vr-line-x {
+    height: 2px;
+    left: 0;
+    width: 100%;
+    /* Position will be controlled by JS --grid-y */
+    top: var(--grid-y, 50%);
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(245, 145, 40, 0.4);
+}
+.vr-line-y {
+    width: 2px;
+    top: 0;
+    height: 100%;
+    /* Position will be controlled by JS --grid-x */
+    left: var(--grid-x, 50%);
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(245, 145, 40, 0.4);
+}
+
+/* Matrix Cells */
+.vr-matrix-cell {
+    position: absolute;
+    overflow: hidden;
+    transition: border 0.3s ease;
+}
+.vr-cell-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Video display settings and multi-spectrum color tints */
+.vr-cell-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.video-cyan {
+    filter: hue-rotate(140deg) saturate(1.8) brightness(0.65) contrast(1.1);
+}
+.video-gold {
+    filter: hue-rotate(0deg) saturate(1.8) brightness(0.65) contrast(1.1);
+}
+.video-emerald {
+    filter: hue-rotate(75deg) saturate(1.8) brightness(0.65) contrast(1.1);
+}
+.video-magenta {
+    filter: hue-rotate(245deg) saturate(2.0) brightness(0.6) contrast(1.15);
+}
+
+/* Reveal raw colors on hover */
+.vr-cell-inner:hover .vr-cell-video {
+    filter: hue-rotate(0) saturate(1) brightness(0.9) contrast(1);
+    transform: scale(1.03);
+}
+
+/* Cybernetic HUD elements inside cells */
+.vr-cell-hud {
+    position: absolute;
+    inset: 0;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top, rgba(7, 8, 10, 0.9) 0%, rgba(7, 8, 10, 0.2) 50%, transparent 100%);
+    z-index: 5;
+    pointer-events: none;
+    box-sizing: border-box;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+.vr-cell-inner:hover .vr-cell-hud {
+    opacity: 1;
+}
+.cell-hud-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hud-mono {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.45);
+}
+.text-glow-cyan {
+    color: #00f3ff;
+    text-shadow: 0 0 6px rgba(0, 243, 255, 0.5);
+}
+.text-glow-gold {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(245, 145, 40, 0.5);
+}
+.text-glow-emerald {
+    color: #10b981;
+    text-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+.text-glow-magenta {
+    color: #ff00ff;
+    text-shadow: 0 0 6px rgba(255, 0, 255, 0.5);
+}
+.cell-hud-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.cell-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+.hud-coords {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+}
+
+/* Corner bracket frames */
+.cell-hud-corners {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 6;
+}
+.c-bracket {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: rgba(255, 255, 255, 0.15);
+    border-style: solid;
+    transition: all 0.3s ease;
+}
+.c-tl { top: 8px; left: 8px; border-width: 1.5px 0 0 1.5px; }
+.c-tr { top: 8px; right: 8px; border-width: 1.5px 1.5px 0 0; }
+.c-bl { bottom: 8px; left: 8px; border-width: 0 0 1.5px 1.5px; }
+.c-br { bottom: 8px; right: 8px; border-width: 0 1.5px 1.5px 0; }
+
+.vr-cell-inner:hover .c-bracket {
+    border-color: var(--accent);
+}
+.vr-cell-inner:hover .c-tl { top: 12px; left: 12px; }
+.vr-cell-inner:hover .c-tr { top: 12px; right: 12px; }
+.vr-cell-inner:hover .c-bl { bottom: 12px; left: 12px; }
+.vr-cell-inner:hover .c-br { bottom: 12px; right: 12px; }
+
+/* Laser Line Scanning Effect */
+.cell-laser-scanner {
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    box-shadow: 0 0 8px var(--accent);
+    opacity: 0;
+    z-index: 7;
+    pointer-events: none;
+}
+.vr-cell-inner:hover .cell-laser-scanner {
+    animation: cellLaserScan 2.5s linear infinite;
+    opacity: 1;
+}
+@keyframes cellLaserScan {
+    0% { top: -5px; }
+    50% { top: 105%; }
+    100% { top: -5px; }
+}
+
+/* Central Controller Module */
+.vr-central-controller {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    z-index: 20;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ctrl-circle-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px dashed rgba(245, 145, 40, 0.45);
+    border-radius: 50%;
+    animation: rotateCW 20s linear infinite;
+    box-shadow: 0 0 15px rgba(245, 145, 40, 0.1);
+}
+.ctrl-circle-inner {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    background-color: rgba(7, 8, 10, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.vr-shuffle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 8px rgba(245, 145, 40, 0.2);
+}
+.vr-shuffle-btn:hover {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    transform: rotate(180deg) scale(1.05);
+    box-shadow: 0 0 18px var(--accent);
+}
+.vr-shuffle-btn i {
+    font-size: 0.95rem;
+}
+
+@keyframes rotateCW {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Glitch Mosaic Block Transition Layer */
+.vr-matrix-glitch-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    opacity: 0;
+}
+.vr-glitch-block {
+    background-color: var(--bg-primary);
+    border: 0.5px solid rgba(255, 255, 255, 0.02);
+    transform: scale(0);
+}
+
+/* Cyber Telemetry Readout Console */
+.vr-matrix-readout {
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    background-color: rgba(7, 8, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 15;
+    font-family: monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+.readout-title {
+    color: var(--accent);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+}
+.readout-lines {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.55rem;
+    line-height: 1.3;
+}
+
+/* Hide Readout on Small Mobile Screens */
+@media (max-width: 576px) {
+    .vr-matrix-readout {
+        display: none;
+    }
+    .vr-central-controller {
+        width: 70px;
+        height: 70px;
+    }
+    .ctrl-circle-inner {
+        width: 48px;
+        height: 48px;
+    }
+    .vr-shuffle-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .vr-shuffle-btn i {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==========================================================================
+   SERVICE 03 — SECTION HEADER & DIVIDERS
+   ========================================================================== */
+
+.s03-header {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 4rem;
+}
+
+.s03-tag {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.s03-heading {
+    font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+}
+
+.s03-heading span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.s03-para {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+/* ── Sub-section dividers (03.A, 03.B) ── */
+.s03-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.s03-divider-label {
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+}
+
+.s03-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(245, 145, 40, 0.25), transparent);
+}
+
+
+/* ==========================================================================
+   REALISTIC 3D RENDERS & TOWNSHIP PLANNING (SERVICE 03 - ROTATING RINGS)
+   ========================================================================== */
+:root {
+    --photo-radius: 400px;
+    --video-radius: 240px;
+}
+
+@media (max-width: 992px) {
+    :root {
+        --photo-radius: 300px;
+        --video-radius: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --photo-radius: 180px;
+        --video-radius: 120px;
+    }
+}
+
+.renders-showcase-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2.5rem auto 0 auto;
+    position: relative;
+}
+
+.block-header-cyber {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.6rem;
+    margin-bottom: 2rem;
+    font-family: monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+}
+
+.cyber-num {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.cyber-lbl {
+    text-transform: uppercase;
+}
+
+/* 3D Scene Wrapper */
+.ring-scene-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 576px) {
+    .ring-scene-wrapper {
+        height: 280px;
+    }
+}
+
+/* 3D Container */
+.ring-3d-scene {
+    width: 260px;
+    height: 170px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-6deg);
+    transition: transform 0.5s ease;
+}
+
+@media (max-width: 576px) {
+    .ring-3d-scene {
+        width: 130px;
+        height: 90px;
+        transform: rotateX(-5deg);
+    }
+}
+
+/* Rotating Carousel - Controlled dynamically by JS and GSAP */
+.ring-3d-carousel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* Card Styling inside Ring */
+.ring-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+/* Set radii dynamically using variables */
+#photoCarousel .ring-card {
+    --ring-radius: var(--photo-radius);
+    transform: rotateY(var(--card-rot)) translateZ(var(--ring-radius));
+}
+
+#photoCarousel .ring-card:hover {
+    transform: rotateY(var(--card-rot)) translateZ(calc(var(--ring-radius) + 35px)) scale(1.12);
+    z-index: 50;
+}
+
+/* --- 3D Video Grid Quadrant Styling --- */
+
+.cinematic-deck-window {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 2.5rem auto 0 auto;
+    height: 520px;
+    background-color: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 20px 45px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1500px;
+}
+
+@media (max-width: 992px) {
+    .cinematic-deck-window {
+        height: 420px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cinematic-deck-window {
+        height: 280px;
+    }
+}
+
+.video-deck-scene {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-5deg);
+    transition: transform 0.5s ease;
+}
+
+.video-deck-wrapper {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+}
+
+.deck-video-card {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.8s ease;
+    z-index: 1;
+    padding: 8px; /* Clean gap spacing between quadrants */
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Quadrant positions */
+.deck-video-card.quad-tl {
+    top: 0;
+    left: 0;
+}
+.deck-video-card.quad-tr {
+    top: 0;
+    left: 50%;
+}
+.deck-video-card.quad-bl {
+    top: 50%;
+    left: 0;
+}
+.deck-video-card.quad-br {
+    top: 50%;
+    left: 50%;
+}
+
+/* Staggered slow float animation for quadrants inside their bounds */
+@keyframes floatQuadCard {
+    0% {
+        transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);
+    }
+    33% {
+        transform: translate3d(-5px, 6px, 3px) rotateX(0.8deg) rotateY(-0.8deg);
+    }
+    66% {
+        transform: translate3d(4px, -5px, -3px) rotateX(-0.5deg) rotateY(0.8deg);
+    }
+    100% {
+        transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);
+    }
+}
+
+.deck-video-card .rc-glass-frame {
+    animation: floatQuadCard 9s ease-in-out infinite;
+    animation-delay: calc(var(--card-idx) * -2.2s);
+}
+
+/* Hover Zoom & Centering: Scales up by 1.45 to center-focus on hover without covering the entire deck window */
+.deck-video-card.quad-tl:hover {
+    transform: translate3d(50%, 50%, 120px) scale(1.45);
+    z-index: 100 !important;
+}
+
+.deck-video-card.quad-tr:hover {
+    transform: translate3d(-50%, 50%, 120px) scale(1.45);
+    z-index: 100 !important;
+}
+
+.deck-video-card.quad-bl:hover {
+    transform: translate3d(50%, -50%, 120px) scale(1.45);
+    z-index: 100 !important;
+}
+
+.deck-video-card.quad-br:hover {
+    transform: translate3d(-50%, -50%, 120px) scale(1.45);
+    z-index: 100 !important;
+}
+
+/* Sibling Dimming & Scaling: shrink and fade non-hovered sibling videos in the deck */
+.video-deck-wrapper:has(.deck-video-card:hover) .deck-video-card:not(:hover) {
+    opacity: 0.35;
+    filter: brightness(0.4) blur(3px);
+    transform: scale(0.92);
+}
+
+.deck-video-card:hover .rc-glass-frame {
+    animation-play-state: paused;
+    transform: none !important;
+    border-color: var(--accent);
+    box-shadow: 0 0 35px rgba(245, 145, 40, 0.45);
+}
+
+/* Default video styling with clean natural colors */
+.deck-video-card .rc-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(0.95);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.deck-video-card:hover .rc-video {
+    filter: brightness(1) saturate(1.1);
+    transform: scale(1.02);
+}
+
+/* Base Glass Frame & Image Styles for Photos Carousel */
+.rc-glass-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    background: rgba(7, 8, 10, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Bobbing/Floating animation for photos */
+@keyframes photoCardFloat {
+    0% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotateX(1.5deg) rotateY(-1.5deg);
+    }
+    100% {
+        transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+    }
+}
+
+#photoCarousel .rc-glass-frame {
+    animation: photoCardFloat 8s ease-in-out infinite;
+    animation-delay: calc(var(--card-idx) * -1.3s);
+}
+
+.ring-card:hover .rc-glass-frame {
+    animation-play-state: paused;
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(245, 145, 40, 0.45);
+    transform: scale(1.02);
+}
+
+.rc-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.6) saturate(0.85);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.ring-card:hover .rc-image {
+    filter: brightness(0.95) saturate(1.1);
+    transform: scale(1.02);
+}
+
+/* HUD telemetry box */
+.rc-hud-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    z-index: 4;
+    background: linear-gradient(to top, rgba(7, 8, 10, 0.95) 0%, rgba(7, 8, 10, 0.25) 75%, transparent 100%);
+    box-sizing: border-box;
+}
+
+.rc-hud-tag {
+    font-family: monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.rc-hud-title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 576px) {
+    .rc-hud-info {
+        padding: 0.5rem 0.6rem;
+    }
+    .rc-hud-tag {
+        font-size: 0.45rem;
+    }
+    .rc-hud-title {
+        font-size: 0.6rem;
+    }
+}
+
+/* --- Interactive CRM Dashboard Sleek Styles --- */
+.crm-db-channels-box {
+    margin-top: 0.8rem;
+    width: 100%;
+}
+
+.crm-channels-row {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.6rem;
+}
+
+.crm-channel-toggle {
+    flex: 1;
+    min-width: 110px;
+    padding: 0.7rem 0.9rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    user-select: none;
+}
+
+.crm-channel-toggle i {
+    font-size: 0.85rem;
+}
+
+.crm-channel-toggle:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.crm-channel-toggle.active {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(245, 145, 40, 0.2);
+}
+
+/* Laser sweep scanner overlay for CRM SVG chart */
+.crm-svg-chart-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.graph-scanner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    box-shadow: 0 0 8px var(--accent);
+    opacity: 0.5;
+    left: -2px;
+    animation: sweepLaser 4.5s linear infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes sweepLaser {
+    0% { left: 0%; }
+    100% { left: 100%; }
+}
+
+/* Custom premium budget range slider styling */
+.crm-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+.crm-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.crm-range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+    background: #ffffff;
+    box-shadow: 0 0 12px #ffffff;
+}
+
+/* Pulse animation on Live Counter */
+#liveLeadCounter.flash-glow {
+    animation: counterFlash 0.8s ease-out;
+}
+
+@keyframes counterFlash {
+    0% {
+        text-shadow: 0 0 0px var(--accent);
+        transform: scale(1);
+    }
+    40% {
+        text-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent);
+        transform: scale(1.1);
+    }
+    100% {
+        text-shadow: 0 0 0px var(--accent);
+        transform: scale(1);
+    }
+}
+
+/* ==========================================================================
+   CAROUSEL NAVIGATION & LIGHTBOX STYLES
+   ========================================================================== */
+
+/* Navigation Buttons for 3D Photo Carousel */
+.ring-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(7, 8, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none; /* Custom cursor takes over */
+    z-index: 100;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ring-nav-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 18px rgba(245, 145, 40, 0.5);
+    color: #ffffff;
+}
+
+.ring-nav-btn.prev-btn {
+    left: 2rem;
+}
+
+.ring-nav-btn.next-btn {
+    right: 2rem;
+}
+
+@media (max-width: 768px) {
+    .ring-nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .ring-nav-btn.prev-btn {
+        left: 0.8rem;
+    }
+    .ring-nav-btn.next-btn {
+        right: 0.8rem;
+    }
+}
+
+/* Lightbox Modal Structure */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(7, 8, 10, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-caption {
+    margin-top: 1.25rem;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 2.8rem;
+    font-weight: 200;
+    cursor: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    z-index: 100010;
+}
+
+.lightbox-close:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.lightbox-nav {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    margin: 0 2.5rem;
+    z-index: 100010;
+}
+
+.lightbox-nav:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(245, 145, 40, 0.5);
+}
+
+@media (max-width: 768px) {
+    .lightbox-nav {
+        margin: 0 0.5rem;
+        width: 42px;
+        height: 42px;
+    }
+    .lightbox-content {
+        max-width: 90%;
+    }
+    .lightbox-close {
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 2.2rem;
+    }
+}
+
+/* --- Testimonials Gallery Wall Section --- */
+.testimonials-section {
+    position: relative;
+    padding: 8rem 0;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+}
+
+.testimonials-backdrop-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    background: radial-gradient(circle, rgba(245, 145, 40, 0.05) 0%, rgba(7, 8, 10, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gallery-wall-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 3rem auto 0 auto;
+    padding: 3rem 2rem;
+    background: linear-gradient(to bottom, rgba(7, 8, 10, 0.82), rgba(12, 13, 18, 0.9)), url('images/gallery-wall-bg.png') no-repeat center center / cover;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.95), 0 30px 60px rgba(0, 0, 0, 0.7);
+    perspective: 1800px;
+    z-index: 2;
+}
+
+.gallery-wall-scene {
+    width: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(2deg);
+    transition: transform 0.5s ease;
+}
+
+.gallery-wall-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    transform-style: preserve-3d;
+}
+
+@media (max-width: 992px) {
+    .gallery-wall-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .gallery-wall-container {
+        padding: 2rem 1rem;
+    }
+}
+
+.gallery-frame {
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, filter 0.8s ease;
+    z-index: 2;
+}
+
+/* Floating animation for frames to simulate hanging artwork */
+@keyframes floatGalleryFrame {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0.2deg);
+    }
+    50% {
+        transform: translate3d(0, -8px, 15px) rotate(-0.2deg);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) rotate(0.2deg);
+    }
+}
+
+.gallery-frame .frame-canvas {
+    animation: floatGalleryFrame 8s ease-in-out infinite;
+    animation-delay: calc(var(--frame-idx) * -2.6s);
+}
+
+.frame-canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    padding: 2rem;
+    background: rgba(12, 13, 18, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* High-end gold-tinted dark border to look like an artwork frame */
+    border: 8px solid #14151c;
+    border-image: linear-gradient(135deg, #1d1e27 0%, #08090d 50%, #1e1b15 100%) 8;
+    outline: 1px solid rgba(245, 145, 40, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.02);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, outline-color 0.4s ease;
+}
+
+.canvas-art-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(245, 145, 40, 0.05) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.canvas-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.quote-icon {
+    font-size: 1.8rem;
+    color: var(--accent);
+    opacity: 0.6;
+}
+
+.quote-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #e2e8f0;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 1rem;
+}
+
+.author-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    font-family: var(--font-heading);
+}
+
+.author-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.project-tag {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--accent);
+    margin-top: 0.3rem;
+}
+
+.canvas-hud {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.8rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+/* Hover effects */
+.gallery-frame:hover {
+    transform: translateZ(60px);
+    z-index: 100;
+}
+
+.gallery-frame:hover .frame-canvas {
+    animation-play-state: paused;
+    outline-color: var(--accent);
+    border-color: #1a1c24;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.85), 0 0 30px rgba(245, 145, 40, 0.18);
+}
+
+/* Sibling focus dimming */
+.gallery-wall-wrapper:has(.gallery-frame:hover) .gallery-frame:not(:hover) {
+    opacity: 0.35;
+    filter: blur(2px) brightness(0.6);
+    transform: scale(0.93) translateZ(-20px);
+}
+
+/* --- 3D VR Video Carousel Ring --- */
+.vr-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1800px;
+    margin-top: 3rem;
+    z-index: 2;
+}
+
+@media (max-width: 992px) {
+    .vr-carousel-container {
+        height: 380px;
+    }
+}
+@media (max-width: 576px) {
+    .vr-carousel-container {
+        height: 300px;
+    }
+}
+
+.vr-3d-scene {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-8deg);
+    transition: transform 0.5s ease;
+}
+
+.vr-3d-carousel {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vr-ring-card {
+    position: absolute;
+    width: 320px;
+    height: 190px;
+    transform-style: preserve-3d;
+    transform: rotateY(var(--card-rot)) translateZ(280px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease, filter 0.8s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .vr-ring-card {
+        width: 240px;
+        height: 145px;
+        transform: rotateY(var(--card-rot)) translateZ(200px);
+    }
+}
+
+@media (max-width: 480px) {
+    .vr-ring-card {
+        width: 180px;
+        height: 110px;
+        transform: rotateY(var(--card-rot)) translateZ(150px);
+    }
+}
+
+/* Float drift animations to simulate hanging VR telemetry screens */
+@keyframes vrRingCardFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.vr-ring-card .rc-glass-frame {
+    animation: vrRingCardFloat 8s ease-in-out infinite;
+    animation-delay: calc(var(--card-idx) * -2s);
+    border: 1px solid rgba(0, 243, 255, 0.15); /* Holographic cyan border */
+}
+
+/* Hover state: active screen tilts forward, scales up and glows cyan */
+.vr-ring-card:hover {
+    transform: rotateY(var(--card-rot)) translateZ(320px) scale(1.1);
+    z-index: 100 !important;
+}
+
+.vr-ring-card:hover .rc-glass-frame {
+    animation-play-state: paused;
+    border-color: #00f3ff;
+    box-shadow: 0 0 35px rgba(0, 243, 255, 0.4);
+}
+
+/* Sibling cards dim and blur when any screen is focused */
+.vr-3d-carousel:has(.vr-ring-card:hover) .vr-ring-card:not(:hover) {
+    opacity: 0.35;
+    filter: blur(2px) brightness(0.5);
+}
+
 
