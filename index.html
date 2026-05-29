@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prizma Brixx | Premium Architectural Visualization & 3D Design Studio</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Prizma Brixx is a premier architectural visualization, 3D floor planning, and interactive real estate design studio. Explore our portfolio of exterior renders, master layouts, and custom interactive tools.">
+    <meta name="keywords"
+        content="Architectural Visualization, 3D Rendering, Real Estate UI, Floor Plans, Exterior Renders, GK Zenith, MVV Housing, Prizma Brixx">
+    <meta name="author" content="Prizma Brixx">
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GreenSock GSAP & Lenis CDNs for Ultra-Premium Cinematic Motion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+</head>
+
+<body class="loading">
+
+    <!-- ── FUTURISTIC CURSOR SYSTEM ── -->
+    <canvas id="cursor-trail-canvas"></canvas>
+    <div id="cursor-reticle">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer rotating segmented ring -->
+            <circle class="reticle-ring-outer" cx="40" cy="40" r="36" />
+            <!-- Inner counter-rotating ring -->
+            <circle class="reticle-ring-inner" cx="40" cy="40" r="26" />
+            <!-- Corner brackets -->
+            <path class="reticle-bracket" d="M14,26 L14,14 L26,14" />
+            <path class="reticle-bracket" d="M54,14 L66,14 L66,26" />
+            <path class="reticle-bracket" d="M66,54 L66,66 L54,66" />
+            <path class="reticle-bracket" d="M26,66 L14,66 L14,54" />
+            <!-- Crosshair ticks -->
+            <line class="reticle-tick" x1="40" y1="4" x2="40" y2="12" />
+            <line class="reticle-tick" x1="76" y1="40" x2="68" y2="40" />
+            <line class="reticle-tick" x1="40" y1="76" x2="40" y2="68" />
+            <line class="reticle-tick" x1="4" y1="40" x2="12" y2="40" />
+        </svg>
+        <!-- Core dot with pulse -->
+        <div class="reticle-core"></div>
+        <!-- Hover label -->
+        <span class="reticle-label">VIEW</span>
+    </div>
+
+    <!-- ── PORTFOLIO OVERLAY MODAL ── -->
+    <div id="portfolio-modal">
+        <div class="modal-backdrop" id="modal-close-backdrop" style="position: absolute; inset: 0; z-index: 1;"></div>
+        <div class="modal-wrapper" style="z-index: 2;">
+            <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+            <div class="modal-header">
+                <div class="modal-service-tag" id="modal-service-tag">SEC.01 // SYSTEM MODULE</div>
+                <h3 class="modal-service-title" id="modal-service-title">Visualization Hub</h3>
+            </div>
+            <div class="modal-body">
+                <div class="projects-grid" id="modal-projects-grid">
+                    <!-- Dynamic project cards populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PRELOADER ── -->
+    <div id="preloader">
+        <canvas id="preloader-canvas"></canvas>
+        <div class="preloader-content">
+            <img src="logo.png" class="preloader-logo-img" alt="prizmaBrixx">
+            <div class="preloader-tagline">Building Visual Experiences Beyond Imagination</div>
+            <div class="preloader-progress-bar">
+                <div class="preloader-progress-fill"></div>
+            </div>
+            <div class="preloader-counter">0%</div>
+        </div>
+    </div>
+
+    <!-- ── FLOATING GLASS NAVIGATION ── -->
+    <nav class="navbar">
+        <a href="#hero-section" class="nav-logo">
+            <img src="logo.png" alt="PrizmaBrixx" class="nav-logo-img">
+            <span class="nav-logo-text">Prizma<span>Brixx</span></span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="#portfolio" class="nav-link">Projects</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Launch Project</a>
+    </nav>
+
+    <!-- ── HERO SECTION ── -->
+    <section id="hero-section" class="section-container">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-eyebrow">Creative Technology & Architectural Visualization</div>
+            <h1 class="hero-title">
+                Prizma<span>Brixx</span>
+            </h1>
+            <p class="hero-subtitle">
+                We build next-generation immersive visualization platforms, cinematic drone storytelling, and custom
+                digital PropTech ecosystems.
+            </p>
+        </div>
+        <div class="hero-scroll-indicator" onclick="lenis.scrollTo('#v1-section')">
+            <span>Scroll to explore</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Service Section 1: Availability Tool & Walkthrough -->
+    <section class="service-section" id="portfolio" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Service 01</span>
+                <h2>Availability Tool & Walkthrough</h2>
+                <p>Interactive sales layouts and walkthrough renders designed to visualize and track flat bookings and
+                    site designs in real time.</p>
+            </div>
+        </div>
+
+        <div class="expanding-gallery">
+            <!-- Panel 1: Availability Tool UI -->
+            <div class="gallery-panel active">
+                <a href="https://example.com/availability-tool" target="_blank" class="panel-link-wrapper">
+                    <img src="images/avialblity tool.png" alt="Availability Tool Dashboard" class="panel-bg">
+                    <div class="panel-title-vertical">Availability Tool</div>
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-title-mobile-collapsed">Availability Tool</span>
+                            <span class="panel-category">Interactive Dashboard</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="panel-title">Availability Tool UI</h3>
+                            <p class="panel-desc">Interactive dashboard layout visualizing unit-by-unit availability,
+                                booking progress, and status metrics.</p>
+                            <span class="panel-btn">
+                                Launch Live Tool <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Panel 2: MVV Housing Blocks -->
+            <div class="gallery-panel">
+                <a href="https://example.com/mvv-housing-blocks" target="_blank" class="panel-link-wrapper">
+                    <img src="images/Mvv-housing-blocks.png" alt="MVV Housing Blocks Walkthrough" class="panel-bg">
+                    <div class="panel-title-vertical">MVV Housing</div>
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-title-mobile-collapsed">MVV Housing</span>
+                            <span class="panel-category">Exterior Rendering</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="panel-title">MVV Housing Blocks</h3>
+                            <p class="panel-desc">Detailed 3D rendering and exterior walkthrough for a luxury
+                                multi-residential tower.</p>
+                            <span class="panel-btn">
+                                View Walkthrough <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Panel 3: Estate Plots -->
+            <div class="gallery-panel">
+                <a href="https://example.com/farm-plots" target="_blank" class="panel-link-wrapper">
+                    <img src="images/Farm-Plots.png" alt="Farm Plots Layout Map" class="panel-bg">
+                    <div class="panel-title-vertical">Estate Plots</div>
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-title-mobile-collapsed">Estate Plots</span>
+                            <span class="panel-category">Master Layout</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="panel-title">Estate Plots Layout</h3>
+                            <p class="panel-desc">Strategic parcel mapping and agricultural land dividing with premium
+                                master planning layout.</p>
+                            <span class="panel-btn">
+                                Explore Map <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Panel 4: GK Zenith -->
+            <div class="gallery-panel">
+                <a href="https://example.com/gk-zenith" target="_blank" class="panel-link-wrapper">
+                    <img src="images/GK-Zenith.png" alt="GK Zenith Facade Rendering" class="panel-bg">
+                    <div class="panel-title-vertical">GK Zenith</div>
+                    <div class="panel-content">
+                        <div class="panel-header">
+                            <span class="panel-title-mobile-collapsed">GK Zenith</span>
+                            <span class="panel-category">Facade Visual</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="panel-title">GK Zenith Facade</h3>
+                            <p class="panel-desc">High-rise facade rendering with reflections and environmental
+                                landscape mapping.</p>
+                            <span class="panel-btn">
+                                View Facade <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Section 2: Drone Shoot & Route Video -->
+    <section class="service-section" id="drone-shoot" style="background-color: var(--bg-secondary); overflow: hidden;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Service 02</span>
+                <h2>Drone Shoot & Route Video</h2>
+                <p>Cinematic aerial site surveys and key navigation routes visualized through high-definition drone
+                    visuals.</p>
+            </div>
+        </div>
+
+        <!-- Seamless Horizontal Sliding Carousel Container -->
+        <div class="video-carousel-container">
+            <div class="video-carousel-track">
+                <!-- Video Card 1 -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 01</span>
+                        <h4 class="video-title">Aerial Layout Survey</h4>
+                    </div>
+                </a>
+                <!-- Video Card 2 -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 02</span>
+                        <h4 class="video-title">Route Visualization</h4>
+                    </div>
+                </a>
+                <!-- Video Card 3 -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 03</span>
+                        <h4 class="video-title">Perimeter Flyby</h4>
+                    </div>
+                </a>
+                <!-- Video Card 4 -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 04</span>
+                        <h4 class="video-title">Architectural Fly-through</h4>
+                    </div>
+                </a>
+
+                <!-- Duplicate Cards for Infinite Seamless Loop -->
+                <!-- Video Card 1 Duplicate -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 01</span>
+                        <h4 class="video-title">Aerial Layout Survey</h4>
+                    </div>
+                </a>
+                <!-- Video Card 2 Duplicate -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 02</span>
+                        <h4 class="video-title">Route Visualization</h4>
+                    </div>
+                </a>
+                <!-- Video Card 3 Duplicate -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 03</span>
+                        <h4 class="video-title">Perimeter Flyby</h4>
+                    </div>
+                </a>
+                <!-- Video Card 4 Duplicate -->
+                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
+                    class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-play"></i> Drone View 04</span>
+                        <h4 class="video-title">Architectural Fly-through</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Section 3: 3D Exterior Renderings — Interactive Hover Grid -->
+    <section class="service-section render-grid-section" id="renderings" style="background-color: var(--bg-primary);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Service 03</span>
+                <h2>3D Exterior Renderings</h2>
+                <p>Photorealistic 3D rendering designs showcasing spatial depth, premium materials, and contextual environments.</p>
+            </div>
+
+            <!-- Advanced Hover Image Grid -->
+            <div class="render-advanced-grid">
+                <!-- Card 1 -->
+                <div class="render-grid-card">
+                    <!-- Sequential Border Drawing lines -->
+                    <div class="card-border-line card-border-top"></div>
+                    <div class="card-border-line card-border-right"></div>
+                    <div class="card-border-line card-border-bottom"></div>
+                    <div class="card-border-line card-border-left"></div>
+                    
+                    <div class="render-card-img-wrap">
+                        <img src="images/rendors/1_1 - Photo.jpg" alt="Premium Villa Frontage" class="render-card-img">
+                    </div>
+                    <div class="render-card-overlay"></div>
+                    <div class="render-card-content">
+                        <span class="render-card-tag">Exterior Visualization</span>
+                        <h3 class="render-card-title">Premium Villa Frontage</h3>
+                        <div class="render-card-specs">
+                            <div class="rcs-item"><span class="rcs-val">8K</span><span class="rcs-lbl">Resolution</span></div>
+                            <div class="rcs-item"><span class="rcs-val">Corona</span><span class="rcs-lbl">Engine</span></div>
+                            <div class="rcs-item"><span class="rcs-val">V-Ray</span><span class="rcs-lbl">Rendered</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="render-grid-card">
+                    <!-- Sequential Border Drawing lines -->
+                    <div class="card-border-line card-border-top"></div>
+                    <div class="card-border-line card-border-right"></div>
+                    <div class="card-border-line card-border-bottom"></div>
+                    <div class="card-border-line card-border-left"></div>
+                    
+                    <div class="render-card-img-wrap">
+                        <img src="images/renders-gen/villa-interior.png" alt="Luxury Villa Living Room" class="render-card-img">
+                    </div>
+                    <div class="render-card-overlay"></div>
+                    <div class="render-card-content">
+                        <span class="render-card-tag">Interior Visualization</span>
+                        <h3 class="render-card-title">Luxury Villa Living Room</h3>
+                        <div class="render-card-specs">
+                            <div class="rcs-item"><span class="rcs-val">8K</span><span class="rcs-lbl">Resolution</span></div>
+                            <div class="rcs-item"><span class="rcs-val">V-Ray</span><span class="rcs-lbl">Engine</span></div>
+                            <div class="rcs-item"><span class="rcs-val">4.2s</span><span class="rcs-lbl">Render Time</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="render-grid-card">
+                    <!-- Sequential Border Drawing lines -->
+                    <div class="card-border-line card-border-top"></div>
+                    <div class="card-border-line card-border-right"></div>
+                    <div class="card-border-line card-border-bottom"></div>
+                    <div class="card-border-line card-border-left"></div>
+                    
+                    <div class="render-card-img-wrap">
+                        <img src="images/rendors/1_3 - Photo.jpg" alt="Modern Architecture Concept" class="render-card-img">
+                    </div>
+                    <div class="render-card-overlay"></div>
+                    <div class="render-card-content">
+                        <span class="render-card-tag">Conceptual Design</span>
+                        <h3 class="render-card-title">Modern Architectural Concept</h3>
+                        <div class="render-card-specs">
+                            <div class="rcs-item"><span class="rcs-val">8K</span><span class="rcs-lbl">Resolution</span></div>
+                            <div class="rcs-item"><span class="rcs-val">Lumion</span><span class="rcs-lbl">Engine</span></div>
+                            <div class="rcs-item"><span class="rcs-val">Realtime</span><span class="rcs-lbl">Output</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="render-grid-card">
+                    <!-- Sequential Border Drawing lines -->
+                    <div class="card-border-line card-border-top"></div>
+                    <div class="card-border-line card-border-right"></div>
+                    <div class="card-border-line card-border-bottom"></div>
+                    <div class="card-border-line card-border-left"></div>
+                    
+                    <div class="render-card-img-wrap">
+                        <img src="images/renders-gen/tower-exterior.png" alt="Modern High-Rise Tower" class="render-card-img">
+                    </div>
+                    <div class="render-card-overlay"></div>
+                    <div class="render-card-content">
+                        <span class="render-card-tag">Exterior Facade</span>
+                        <h3 class="render-card-title">Modern High-Rise Tower</h3>
+                        <div class="render-card-specs">
+                            <div class="rcs-item"><span class="rcs-val">8K</span><span class="rcs-lbl">Resolution</span></div>
+                            <div class="rcs-item"><span class="rcs-val">Corona</span><span class="rcs-lbl">Engine</span></div>
+                            <div class="rcs-item"><span class="rcs-val">6.1s</span><span class="rcs-lbl">Render Time</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="render-grid-card">
+                    <!-- Sequential Border Drawing lines -->
+                    <div class="card-border-line card-border-top"></div>
+                    <div class="card-border-line card-border-right"></div>
+                    <div class="card-border-line card-border-bottom"></div>
+                    <div class="card-border-line card-border-left"></div>
+                    
+                    <div class="render-card-img-wrap">
+                        <img src="images/rendors/1_4 - Photo.jpg" alt="Modern Penthouse Exterior" class="render-card-img">
+                    </div>
+                    <div class="render-card-overlay"></div>
+                    <div class="render-card-content">
+                        <span class="render-card-tag">Penthouse Design</span>
+                        <h3 class="render-card-title">Modern Penthouse Exterior</h3>
+                        <div class="render-card-specs">
+                            <div class="rcs-item"><span class="rcs-val">8K</span><span class="rcs-lbl">Resolution</span></div>
+                            <div class="rcs-item"><span class="rcs-val">V-Ray</span><span class="rcs-lbl">Engine</span></div>
+                            <div class="rcs-item"><span class="rcs-val">4.8s</span><span class="rcs-lbl">Render Time</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="render-grid-card">
+                    <!-- Sequential Border Drawing lines -->
+                    <div class="card-border-line card-border-top"></div>
+                    <div class="card-border-line card-border-right"></div>
+                    <div class="card-border-line card-border-bottom"></div>
+                    <div class="card-border-line card-border-left"></div>
+                    
+                    <div class="render-card-img-wrap">
+                        <img src="images/renders-gen/resort-pool.png" alt="Infinity Pool & Resort" class="render-card-img">
+                    </div>
+                    <div class="render-card-overlay"></div>
+                    <div class="render-card-content">
+                        <span class="render-card-tag">Resort Design</span>
+                        <h3 class="render-card-title">Infinity Pool & Resort</h3>
+                        <div class="render-card-specs">
+                            <div class="rcs-item"><span class="rcs-val">8K</span><span class="rcs-lbl">Resolution</span></div>
+                            <div class="rcs-item"><span class="rcs-val">V-Ray</span><span class="rcs-lbl">Engine</span></div>
+                            <div class="rcs-item"><span class="rcs-val">5.8s</span><span class="rcs-lbl">Render Time</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Section 4: Brochure, Branding & Digital Collaterals -->
+    <section class="service-section" id="branding" style="background-color: var(--bg-secondary); overflow: hidden;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Service 04</span>
+                <h2>Brochure, Branding & Digital Collaterals</h2>
+                <p>High-end corporate identity kits, print collateral designs, and digital marketing brochures
+                    engineered for target conversions.</p>
+            </div>
+
+            <div class="book-container">
+                <div class="book" id="brochureBook">
+                    <!-- Page 1: Cover (Front) -->
+                    <div class="page cover-front" style="z-index: 10;">
+                        <div class="page-front">
+                            <div class="book-cover-content">
+                                <span class="book-tag">Brochure & Branding</span>
+                                <h3>CITY PRIDE</h3>
+                                <p>Premium Residential & Commercial Landmark</p>
+                                <div class="flip-hint">Click Corner to Open <i class="fa-solid fa-hand-pointer"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page-back">
+                            <div class="book-page-content">
+                                <h4>Introduction</h4>
+                                <p>Welcome to City Pride, a landmark development designed for modern living and
+                                    corporate excellence in Hyderabad.</p>
+                                <img src="images/rendors/1_1 - Photo.jpg" alt="City Pride Aerial View"
+                                    class="book-page-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Page 2: Inside Spread 1 (Amenities & Design) -->
+                    <div class="page" style="z-index: 9;">
+                        <div class="page-front">
+                            <div class="book-page-content">
+                                <h4>Architectural Vision</h4>
+                                <p>Designed by world-class architects, the facade features reflective glass curtain
+                                    walls and sustainable design features.</p>
+                                <img src="images/rendors/1_3 - Photo.jpg" alt="Architectural Facade"
+                                    class="book-page-img">
+                            </div>
+                        </div>
+                        <div class="page-back">
+                            <div class="book-page-content">
+                                <h4>World Class Amenities</h4>
+                                <ul>
+                                    <li>Double-Height Entrance Lobby</li>
+                                    <li>Infinity Swimming Pool</li>
+                                    <li>Equipped Fitness Center</li>
+                                    <li>24/7 Multi-Tier Security</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Page 3: Inside Spread 2 (Floor Plans & Visuals) -->
+                    <div class="page" style="z-index: 8;">
+                        <div class="page-front">
+                            <div class="book-page-content">
+                                <h4>3D Floor Layouts</h4>
+                                <p>Spacious, naturally lit apartments and flexible office layouts engineered to maximize
+                                    space utility.</p>
+                                <img src="images/Mvv-housing-floor.png" alt="Floor Layout Preview"
+                                    class="book-page-img">
+                            </div>
+                        </div>
+                        <div class="page-back">
+                            <div class="book-page-content">
+                                <h4>Strategic Location</h4>
+                                <p>Conveniently situated with seamless access to major highways, business centers, and
+                                    luxury shopping plazas.</p>
+                                <img src="images/Farm-Plots.png" alt="Location Map Layout" class="book-page-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Page 4: Cover (Back) -->
+                    <div class="page cover-back" style="z-index: 7;">
+                        <div class="page-front">
+                            <div class="book-page-content book-back-cover">
+                                <h3>CITY PRIDE</h3>
+                                <p>blueprints & brochure download</p>
+
+                                <a href="city pride digital copy.pdf" target="_blank"
+                                    class="btn btn-primary brochure-download-btn magnetic">
+                                    <i class="fa-solid fa-file-pdf"></i> Download PDF Brochure
+                                </a>
+
+                                <div class="flip-hint-back">Click to Flip Back</div>
+                            </div>
+                        </div>
+                        <div class="page-back">
+                            <div class="book-cover-content">
+                                <h3>PRIZMA BRIXX</h3>
+                                <p>© 2026 Architectural Studio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Section 5: CRM, Digital Marketing & Lead Generation -->
+    <section class="service-section" id="crm-marketing" style="background-color: var(--bg-primary); overflow: hidden;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Service 05</span>
+                <h2>CRM, Digital Marketing & Lead Generation</h2>
+                <p>Data-driven property sales marketing, target lead pipelines, and integrated CRM systems built to
+                    accelerate conversions and track client bookings.</p>
+            </div>
+
+            <div class="crm-grid">
+                <div class="crm-info-column">
+                    <div class="crm-info-card">
+                        <h3>Automated Sales Pipeline</h3>
+                        <p>We deploy high-converting digital advertising campaigns and sync leads automatically with
+                            custom-tailored CRM software designed specifically for real estate developers.</p>
+
+                        <ul class="crm-feature-list">
+                            <li>
+                                <div class="crm-feature-icon"><i class="fa-solid fa-bullseye"></i></div>
+                                <div class="crm-feature-text">
+                                    <h4>Precision Hyper-Targeting</h4>
+                                    <p>Connect with high-intent property buyers using automated demographic filtering
+                                        and pixel-based retargeting.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm-feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                                <div class="crm-feature-text">
+                                    <h4>Automated Lead Routing</h4>
+                                    <p>Deliver leads instantly to your sales executives via automated WhatsApp, SMS, and
+                                        Email notification alerts.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="crm-feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                                <div class="crm-feature-text">
+                                    <h4>ROI Transparency</h4>
+                                    <p>Access full analytics showing Cost Per Lead (CPL), campaign impressions, and
+                                        executive conversion success logs.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="crm-dashboard-column">
+                    <div class="crm-dashboard-card" id="crmDashboard">
+                        <!-- Dashboard Header -->
+                        <div class="crm-db-header">
+                            <div class="crm-db-title">
+                                <span class="crm-pulse-dot"></span>
+                                <h4>PRIZMA CRM v2.8 - LIVE</h4>
+                            </div>
+                            <div class="crm-db-status">
+                                <span class="status-badge">API OK</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini Stats Panel -->
+                        <div class="crm-db-stats-row">
+                            <div class="crm-stat-box">
+                                <span class="stat-lbl">Leads Today</span>
+                                <h5 class="stat-val text-gradient" id="liveLeadCounter">148</h5>
+                            </div>
+                            <div class="crm-stat-box">
+                                <span class="stat-lbl">Active Campaigns</span>
+                                <h5 class="stat-val" style="color: #ffffff;">4 Active</h5>
+                            </div>
+                            <div class="crm-stat-box">
+                                <span class="stat-lbl">Avg. Close Rate</span>
+                                <h5 class="stat-val" style="color: var(--accent);">2.8%</h5>
+                            </div>
+                        </div>
+
+                        <!-- Glowing Mini Performance Graph -->
+                        <div class="crm-db-chart-box">
+                            <span class="chart-title">Lead Generation Trend (Last 6 Months)</span>
+                            <div class="crm-svg-chart-container">
+                                <svg viewBox="0 0 340 100" class="crm-svg-chart">
+                                    <defs>
+                                        <linearGradient id="chartGlow" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35" />
+                                            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Area Fill -->
+                                    <path d="M10,80 Q70,40 130,60 T250,20 T330,30 L330,95 L10,95 Z"
+                                        fill="url(#chartGlow)" />
+                                    <!-- Outline Path -->
+                                    <path d="M10,80 Q70,40 130,60 T250,20 T330,30" fill="none" stroke="var(--accent)"
+                                        stroke-width="2.5" class="chart-line-anim" />
+                                    <!-- Grid Line -->
+                                    <line x1="10" y1="95" x2="330" y2="95" stroke="rgba(255,255,255,0.06)"
+                                        stroke-width="1" />
+                                    <!-- Graph Nodes -->
+                                    <circle cx="10" cy="80" r="3" fill="var(--accent)" />
+                                    <circle cx="70" cy="45" r="3" fill="var(--accent)" />
+                                    <circle cx="130" cy="60" r="3" fill="var(--accent)" />
+                                    <circle cx="190" cy="40" r="3" fill="var(--accent)" />
+                                    <circle cx="250" cy="20" r="3" fill="var(--accent)" />
+                                    <circle cx="330" cy="30" r="3.5" fill="#ffffff" class="chart-node-pulse" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Active Lead Feed -->
+                        <div class="crm-db-feed-box">
+                            <span class="feed-title">Real-Time Lead Feed</span>
+                            <div class="crm-lead-feed-container" id="crmLeadFeed">
+                                <div class="crm-feed-item">
+                                    <div class="feed-item-header">
+                                        <span class="feed-lead-name">Rajesh Kumar</span>
+                                        <span class="feed-lead-time">Just Now</span>
+                                    </div>
+                                    <div class="feed-item-body">
+                                        <span class="feed-lead-interest"><i class="fa-solid fa-building"></i> MVV
+                                            Housing Blocks - 3 BHK</span>
+                                        <span class="feed-lead-source source-fb">Facebook Ads</span>
+                                    </div>
+                                </div>
+                                <div class="crm-feed-item">
+                                    <div class="feed-item-header">
+                                        <span class="feed-lead-name">Sarah D'Souza</span>
+                                        <span class="feed-lead-time">4m ago</span>
+                                    </div>
+                                    <div class="feed-item-body">
+                                        <span class="feed-lead-interest"><i class="fa-solid fa-building"></i> GK Zenith
+                                            Facade - Commercial</span>
+                                        <span class="feed-lead-source source-google">Google Search</span>
+                                    </div>
+                                </div>
+                                <div class="crm-feed-item">
+                                    <div class="feed-item-header">
+                                        <span class="feed-lead-name">Vikram Malhotra</span>
+                                        <span class="feed-lead-time">12m ago</span>
+                                    </div>
+                                    <div class="feed-item-body">
+                                        <span class="feed-lead-interest"><i class="fa-solid fa-tree"></i> Estate Plots
+                                            Layout - Plot #45</span>
+                                        <span class="feed-lead-source source-insta">Instagram</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive ROI Budget Calculator -->
+                        <div class="crm-db-calc-box">
+                            <span class="calc-title">Interactive Campaign ROI Calculator</span>
+
+                            <div class="calc-slider-group">
+                                <div class="slider-header">
+                                    <label for="adBudgetSlider">Monthly Ad Spend Budget:</label>
+                                    <span class="slider-budget-display" id="calcBudgetVal">₹1,50,000</span>
+                                </div>
+                                <input type="range" id="adBudgetSlider" min="20000" max="300000" step="10000"
+                                    value="150000" class="crm-range-slider">
+                            </div>
+
+                            <div class="calc-results-row">
+                                <div class="calc-result-box">
+                                    <span class="result-lbl">Ad Reach</span>
+                                    <span class="result-val" id="calcReachVal">1,20,000</span>
+                                </div>
+                                <div class="calc-result-box">
+                                    <span class="result-lbl">Est. Leads</span>
+                                    <span class="result-val text-gradient" id="calcLeadsVal">250</span>
+                                </div>
+                                <div class="calc-result-box">
+                                    <span class="result-lbl">Projected Bookings</span>
+                                    <span class="result-val" id="calcBookingsVal">7</span>
+                                </div>
+                            </div>
+
+                            <a href="#contact" class="crm-launch-campaign-btn magnetic">
+                                Launch Campaign <i class="fa-solid fa-paper-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Service Section 6: Virtual Reality Experience Centers -->
+    <section class="service-section" id="vr-experience"
+        style="background-color: var(--bg-secondary); overflow: hidden;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Service 06</span>
+                <h2>Virtual Reality Experience Centers</h2>
+                <p>Immersive, interactive 3D property tours and futuristic VR showrooms designed for premium real estate
+                    visualization.</p>
+            </div>
+        </div>
+
+        <!-- Seamless Horizontal Sliding Carousel Container -->
+        <div class="video-carousel-container">
+            <div class="video-carousel-track">
+                <!-- Video Card 1 -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> VR Center Reveal</span>
+                        <h4 class="video-title">Immersive Showroom Walk-In</h4>
+                    </div>
+                </a>
+                <!-- Video Card 2 -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> VR Tour 01</span>
+                        <h4 class="video-title">First-Person Property Walkthrough</h4>
+                    </div>
+                </a>
+                <!-- Video Card 3 -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> Holographic Model</span>
+                        <h4 class="video-title">Interactive 3D Projection</h4>
+                    </div>
+                </a>
+                <!-- Video Card 4 -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> Virtual Balcony</span>
+                        <h4 class="video-title">Panoramic VR Horizon View</h4>
+                    </div>
+                </a>
+
+                <!-- Duplicate Cards for Infinite Seamless Loop -->
+                <!-- Video Card 1 Duplicate -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> VR Center Reveal</span>
+                        <h4 class="video-title">Immersive Showroom Walk-In</h4>
+                    </div>
+                </a>
+                <!-- Video Card 2 Duplicate -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> VR Tour 01</span>
+                        <h4 class="video-title">First-Person Property Walkthrough</h4>
+                    </div>
+                </a>
+                <!-- Video Card 3 Duplicate -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> Holographic Model</span>
+                        <h4 class="video-title">Interactive 3D Projection</h4>
+                    </div>
+                </a>
+                <!-- Video Card 4 Duplicate -->
+                <a href="#" class="video-grid-card">
+                    <video autoplay loop muted playsinline>
+                        <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-card-overlay">
+                        <span class="video-tag"><i class="fa-solid fa-vr-cardboard"></i> Virtual Balcony</span>
+                        <h4 class="video-title">Panoramic VR Horizon View</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-tag">Get in Touch</span>
+                    <h3>Start Your Next Project with Us</h3>
+                    <p>Ready to visualize your next landmark? Get in touch with us to discuss architectural
+                        visualization packages, interactive tools, or formatting requirements.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-method">
+                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="contact-method-text">
+                                <h4>Email Us</h4>
+                                <a href="mailto:hello@prismabix.com">hello@prismabix.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div class="contact-method-text">
+                                <h4>Our Location</h4>
+                                <p>Hyderabad, India (Global Remote Services)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper glass-panel">
+                    <form id="contactForm"
+                        onsubmit="event.preventDefault(); alert('Thank you for contacting Prizma Brixx. We will get back to you shortly!'); this.reset();">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="John Doe"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Project Type</label>
+                            <select id="subject" name="subject" class="form-control" required>
+                                <option value="" disabled selected>Select project type...</option>
+                                <option value="exterior">3D Exterior Renders</option>
+                                <option value="floorplans">3D Floor Plans & Layouts</option>
+                                <option value="interactive">Interactive Availibility Tools</option>
+                                <option value="marketing">CRM & Digital Lead Campaigns</option>
+                                <option value="custom">Other Architectural Solutions</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Project Description</label>
+                            <textarea id="message" name="message" class="form-control"
+                                placeholder="Tell us about your blueprints or scope..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <a href="#home" class="footer-logo">
+                    <img src="logo.png" alt="Prizma Brixx Logo" class="footer-logo-img"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="footer-logo-text" style="display:none;">Prizma <span>Brixx</span></span>
+                </a>
+
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="LinkedIn Profile"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram Profile"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="Behance Portfolio"><i
+                            class="fa-brands fa-behance"></i></a>
+                    <a href="#" class="social-link" aria-label="Dribbble Profile"><i
+                            class="fa-brands fa-dribbble"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Prizma Brixx. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#portfolio">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Navigation & Cinematic Interactions Logic -->
+    <script>
+        // Enforce video autoplay and play state fallback
+        document.addEventListener('DOMContentLoaded', () => {
+            const videos = document.querySelectorAll('.video-grid-card video');
+
+            const startAutoplay = () => {
+                videos.forEach(v => {
+                    v.play().catch(err => {
+                        console.warn("Autoplay block caught, retrying on first interaction.");
+                    });
+                });
+            };
+
+            // Trigger autoplay on load
+            startAutoplay();
+
+            // Fallback for browsers that block autoplay until first click/touch interaction
+            const forcePlay = () => {
+                startAutoplay();
+                document.removeEventListener('click', forcePlay);
+                document.removeEventListener('touchstart', forcePlay);
+            };
+
+            document.addEventListener('click', forcePlay);
+            document.addEventListener('touchstart', forcePlay);
+        });
+
+        // GreenSock ScrollTrigger Registration
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Lenis Smooth Scroll Initialization
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Synchronize ScrollTrigger with Lenis
+        lenis.on('scroll', ScrollTrigger.update);
+
+        // ── PRELOADER DRIFTING PARTICLES CANVAS ──
+        const loaderCanvas = document.getElementById('preloader-canvas');
+        const loaderCtx = loaderCanvas.getContext('2d');
+        let loaderParticles = [];
+
+        function resizeLoaderCanvas() {
+            loaderCanvas.width = window.innerWidth;
+            loaderCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeLoaderCanvas);
+        resizeLoaderCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * loaderCanvas.width;
+                this.y = Math.random() * loaderCanvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > loaderCanvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > loaderCanvas.height) this.speedY *= -1;
+            }
+            draw() {
+                loaderCtx.save();
+                loaderCtx.globalAlpha = this.alpha;
+                loaderCtx.fillStyle = '#d4af37';
+                loaderCtx.beginPath();
+                loaderCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                loaderCtx.fill();
+                loaderCtx.restore();
+            }
+        }
+
+        for (let i = 0; i < 60; i++) {
+            loaderParticles.push(new Particle());
+        }
+
+        function animateLoaderParticles() {
+            loaderCtx.clearRect(0, 0, loaderCanvas.width, loaderCanvas.height);
+            loaderParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateLoaderParticles);
+        }
+        animateLoaderParticles();
+
+        // Preloader Reveal Timeline
+        const preloaderTL = gsap.timeline({
+            onComplete: () => {
+                // Fade and remove preloader
+                gsap.to('#preloader', {
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.inOut',
+                    onComplete: () => {
+                        document.getElementById('preloader').style.display = 'none';
+                        // Trigger Hero Entry Animations
+                        triggerHeroReveal();
+                    }
+                });
+            }
+        });
+
+        // Preloader counting code
+        let percentageCount = { val: 0 };
+        preloaderTL.to(percentageCount, {
+            val: 100,
+            duration: 3,
+            ease: 'power2.inOut',
+            onUpdate: () => {
+                document.querySelector('.preloader-counter').innerText = Math.floor(percentageCount.val) + '%';
+                document.querySelector('.preloader-progress-fill').style.width = percentageCount.val + '%';
+            }
+        });
+
+        // Setup logo and tags reveal in parallel
+        gsap.to('.preloader-logo-img', { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.8, delay: 0.2 });
+        gsap.to('.preloader-tagline', { opacity: 1, y: 0, duration: 1.2, delay: 0.8 });
+        gsap.to('.preloader-counter', { opacity: 1, duration: 0.8, delay: 0.6 });
+
+
+
+        // Navigation Active State highlights based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ── ADVANCED FUTURISTIC CURSOR SYSTEM ──
+        (() => {
+            const reticle = document.getElementById('cursor-reticle');
+            const trailCanvas = document.getElementById('cursor-trail-canvas');
+            const trailCtx = trailCanvas.getContext('2d');
+
+            // State
+            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+            let reticleX = mouseX, reticleY = mouseY;
+            let velX = 0, velY = 0;
+            let isHovering = false;
+            let isClicking = false;
+            let particles = [];
+            let frameCount = 0;
+
+            // Canvas setup
+            function resizeTrailCanvas() {
+                trailCanvas.width = window.innerWidth;
+                trailCanvas.height = window.innerHeight;
+            }
+            resizeTrailCanvas();
+            window.addEventListener('resize', resizeTrailCanvas);
+
+            // Mouse tracking — raw, instant
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            window.addEventListener('mousedown', () => {
+                isClicking = true;
+                reticle.classList.add('reticle-click');
+            });
+            window.addEventListener('mouseup', () => {
+                isClicking = false;
+                reticle.classList.remove('reticle-click');
+            });
+
+            // Particle class
+            class Particle {
+                constructor(x, y, vx, vy) {
+                    this.x = x;
+                    this.y = y;
+                    this.vx = vx * (0.3 + Math.random() * 0.7);
+                    this.vy = vy * (0.3 + Math.random() * 0.7);
+                    this.life = 0.7;
+                    this.decay = 0.025 + Math.random() * 0.035;
+                    this.size = 0.8 + Math.random() * 0.7;
+                    this.hue = isHovering ? 170 : 35;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vx *= 0.96;
+                    this.vy *= 0.96;
+                    this.life -= this.decay;
+                    this.size *= 0.98;
+                }
+                draw(ctx) {
+                    if (this.life <= 0) return;
+                    ctx.save();
+                    ctx.globalAlpha = this.life * 0.35;
+                    ctx.fillStyle = `hsl(${this.hue}, 80%, 60%)`;
+                    ctx.shadowColor = `hsl(${this.hue}, 85%, 55%)`;
+                    ctx.shadowBlur = 4;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            // Main animation loop
+            function animateCursor() {
+                frameCount++;
+
+                // Smooth interpolation (lerp) — reticle follows mouse with elastic feel
+                const ease = 0.15;
+                const prevX = reticleX, prevY = reticleY;
+                reticleX += (mouseX - reticleX) * ease;
+                reticleY += (mouseY - reticleY) * ease;
+                velX = reticleX - prevX;
+                velY = reticleY - prevY;
+
+                // Position the reticle SVG
+                reticle.style.transform = `translate(${reticleX}px, ${reticleY}px) translate(-50%, -50%)`;
+
+                // Spawn trail particles on movement
+                const speed = Math.sqrt(velX * velX + velY * velY);
+                if (speed > 2.5) {
+                    const count = Math.min(Math.floor(speed / 5), 2);
+                    for (let i = 0; i < count; i++) {
+                        particles.push(new Particle(
+                            reticleX + (Math.random() - 0.5) * 4,
+                            reticleY + (Math.random() - 0.5) * 4,
+                            -velX * 0.15 + (Math.random() - 0.5) * 0.8,
+                            -velY * 0.15 + (Math.random() - 0.5) * 0.8
+                        ));
+                    }
+                }
+
+                // Update & draw particles
+                trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+                particles = particles.filter(p => p.life > 0);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw(trailCtx);
+                });
+
+                // Limit particle count for performance
+                if (particles.length > 60) particles.splice(0, particles.length - 60);
+
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Hover detection for interactive elements
+            document.querySelectorAll('a, button, .dash-plot, .township-sector, .gallery-panel, .video-grid-card, .magnetic, input[type=range]').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    reticle.classList.add('reticle-hover');
+                    // Set label text based on element type
+                    const label = reticle.querySelector('.reticle-label');
+                    if (el.tagName === 'A' || el.classList.contains('gallery-panel')) {
+                        label.textContent = 'VIEW';
+                    } else if (el.tagName === 'BUTTON' || el.classList.contains('magnetic')) {
+                        label.textContent = 'CLICK';
+                    } else if (el.tagName === 'INPUT') {
+                        label.textContent = 'DRAG';
+                    } else {
+                        label.textContent = 'EXPLORE';
+                    }
+                });
+                el.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    reticle.classList.remove('reticle-hover');
+                });
+            });
+
+            // Hide on mobile / touch
+            if ('ontouchstart' in window) {
+                reticle.style.display = 'none';
+                trailCanvas.style.display = 'none';
+            }
+        })();
+
+
+        // ── HERO ORBITAL CONSTELLATION CANVAS ──
+        const heroCanvas = document.getElementById('hero-canvas');
+        const heroCtx = heroCanvas.getContext('2d');
+        let heroPoints = [];
+
+        function resizeHeroCanvas() {
+            heroCanvas.width = window.innerWidth;
+            heroCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeHeroCanvas);
+        resizeHeroCanvas();
+
+        class OrbitNode {
+            constructor(angle, radius, speed, size) {
+                this.angle = angle;
+                this.radius = radius;
+                this.speed = speed;
+                this.size = size;
+                this.x = 0;
+                this.y = 0;
+            }
+            update() {
+                this.angle += this.speed;
+                // Isometric/tilted circle calculations
+                const centerX = heroCanvas.width / 2;
+                const centerY = heroCanvas.height / 2;
+                this.x = centerX + Math.cos(this.angle) * this.radius;
+                this.y = centerY + Math.sin(this.angle) * (this.radius * 0.45); // flatten y to create isometric ellipse
+            }
+            draw() {
+                heroCtx.beginPath();
+                heroCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                heroCtx.fillStyle = 'rgba(212, 175, 55, 0.4)';
+                heroCtx.fill();
+            }
+        }
+
+        // Generate concentric orbital rings
+        for (let r = 100; r < 500; r += 80) {
+            const count = Math.floor(r / 15);
+            const speed = (600 - r) * 0.00002;
+            for (let i = 0; i < count; i++) {
+                const angle = (i / count) * Math.PI * 2;
+                heroPoints.push(new OrbitNode(angle, r, speed, Math.random() * 1.5 + 0.5));
+            }
+        }
+
+        function animateHeroConstellation() {
+            heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+            // Draw background glow grid lines intersecting at center
+            heroCtx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+            heroCtx.lineWidth = 1;
+            const cx = heroCanvas.width / 2;
+            const cy = heroCanvas.height / 2;
+
+            heroCtx.beginPath();
+            heroCtx.arc(cx, cy, 320, 0, Math.PI * 2);
+            heroCtx.stroke();
+
+            // Draw particles and faint connect lines
+            heroPoints.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            // Connect neighboring nodes inside the rings occasionally
+            heroCtx.strokeStyle = 'rgba(212, 175, 55, 0.04)';
+            heroCtx.lineWidth = 0.5;
+            heroCtx.beginPath();
+            for (let i = 0; i < heroPoints.length; i += 4) {
+                if (i + 1 < heroPoints.length) {
+                    heroCtx.moveTo(heroPoints[i].x, heroPoints[i].y);
+                    heroCtx.lineTo(heroPoints[i + 1].x, heroPoints[i + 1].y);
+                }
+            }
+            heroCtx.stroke();
+
+            requestAnimationFrame(animateHeroConstellation);
+        }
+        animateHeroConstellation();
+
+        // ── HERO ENTRY SEQUENCE ──
+        function triggerHeroReveal() {
+            const tl = gsap.timeline();
+            tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out' })
+                .to('.hero-title', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.4, ease: 'power4.out' }, '-=0.9')
+                .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=1.0')
+                .from('.navbar', { y: -100, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.2');
+        }
+
+
+        // --- Magnetic Button Pull Effect ---
+        const magnetics = document.querySelectorAll('.magnetic, .social-link, .nav-cta');
+        magnetics.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(el, {
+                    x: x * 0.35,
+                    y: y * 0.35,
+                    duration: 0.3,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            });
+
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1, 0.3)",
+                    overwrite: "auto"
+                });
+            });
+        });
+
+        // --- Expanding Gallery Panel Hover & Click Interactions ---
+        const gallery = document.querySelector('.expanding-gallery');
+        const panels = document.querySelectorAll('.gallery-panel');
+
+        if (panels.length > 0) {
+            panels.forEach(panel => {
+                // Desktop Mouse Enter interaction
+                panel.addEventListener('mouseenter', () => {
+                    panels.forEach(p => p.classList.remove('active'));
+                    panel.classList.add('active');
+                });
+
+                // Touch & Click handler: requires two taps to navigate collapsed panels on mobile
+                const linkWrapper = panel.querySelector('.panel-link-wrapper');
+                if (linkWrapper) {
+                    linkWrapper.addEventListener('click', (e) => {
+                        if (!panel.classList.contains('active')) {
+                            e.preventDefault(); // Stop link navigation
+                            panels.forEach(p => p.classList.remove('active'));
+                            panel.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // --- Premium Section Scroll Transition System (Intro & Outro) ---
+        const sectionsToAnimate = [
+            { id: '#portfolio', header: '.section-header', content: '.expanding-gallery' },
+            { id: '#drone-shoot', header: '.section-header', content: '.video-carousel-container' },
+            { id: '#renderings', header: '.section-header', content: '.render-advanced-grid' },
+            { id: '#branding', header: '.section-header', content: '.book-container' },
+            { id: '#crm-marketing', header: '.section-header', content: '.crm-grid' },
+            { id: '#vr-experience', header: '.section-header', content: '.video-carousel-container' },
+            { id: '#contact', header: '.contact-info', content: '.contact-form-wrapper' }
+        ];
+
+        sectionsToAnimate.forEach(config => {
+            const section = document.querySelector(config.id);
+            if (!section) return;
+
+            const header = section.querySelector(config.header);
+            const content = section.querySelector(config.content);
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    end: "bottom 15%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+
+            if (header) {
+                const headerEls = header.querySelectorAll('.section-tag, h2, h3, p');
+                if (headerEls.length > 0) {
+                    tl.from(headerEls, {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.8,
+                        stagger: 0.12,
+                        ease: "power3.out"
+                    });
+                } else {
+                    tl.from(header, {
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power3.out"
+                    });
+                }
+            }
+
+            if (content) {
+                if (config.id === '#portfolio') {
+                    const panels = content.querySelectorAll('.gallery-panel');
+                    tl.from(content, {
+                        scale: 0.97,
+                        opacity: 0,
+                        duration: 1.0,
+                        ease: "power3.out"
+                    }, "-=0.6");
+
+                    tl.from(panels, {
+                        x: 50,
+                        opacity: 0,
+                        duration: 1.0,
+                        stagger: 0.1,
+                        ease: "power3.out",
+                        onComplete: () => {
+                            ScrollTrigger.refresh();
+                        }
+                    }, "<");
+                } else {
+                    tl.from(content, {
+                        y: 40,
+                        scale: 0.97,
+                        opacity: 0,
+                        duration: 0.9,
+                        ease: "power3.out"
+                    }, "-=0.6");
+                }
+            }
+        });
+
+        // --- 3D Renderings Advanced Hover Grid JS Interactions ---
+        const gridCards = document.querySelectorAll('.render-grid-card');
+        gridCards.forEach(card => {
+            // Dynamically inject the glint element for mouse-following lens flare
+            const glint = document.createElement('div');
+            glint.className = 'render-card-glint';
+            card.appendChild(glint);
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // 1. 3D Tilt Effect
+                const rotateX = ((y / rect.height) - 0.5) * -12;
+                const rotateY = ((x / rect.width) - 0.5) * 12;
+
+                gsap.to(card, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    transformPerspective: 800,
+                    duration: 0.3,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+
+                // 2. Glowing Lens Flare (Glint) Position
+                const px = (x / rect.width) * 100;
+                const py = (y / rect.height) * 100;
+                glint.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(245, 145, 40, 0.15) 0%, transparent 65%)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Reset tilt transform smoothly
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.6,
+                    ease: "power3.out",
+                    overwrite: "auto"
+                });
+            });
+        });
+
+        // --- 3D Parallax Tilt Effect for CRM Dashboard ---
+        const crmDashboard = document.getElementById('crmDashboard');
+        if (crmDashboard) {
+            crmDashboard.addEventListener('mousemove', (e) => {
+                const rect = crmDashboard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Calculate rotation angles (max 8 degrees tilt)
+                const rotateX = ((y / rect.height) - 0.5) * -8;
+                const rotateY = ((x / rect.width) - 0.5) * 8;
+
+                gsap.to(crmDashboard, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    transformPerspective: 1000,
+                    duration: 0.35,
+                    ease: "power2.out",
+                    overwrite: "auto"
+                });
+            });
+
+            crmDashboard.addEventListener('mouseleave', () => {
+                gsap.to(crmDashboard, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    overwrite: "auto"
+                });
+            });
+        }
+
+        // --- 3D Page Flipping Brochure Logic ---
+        const bookPages = document.querySelectorAll('#brochureBook .page');
+        const brochureBook = document.getElementById('brochureBook');
+
+        function updateZIndices() {
+            let anyFlipped = false;
+            bookPages.forEach((page, index) => {
+                if (page.classList.contains('flipped')) {
+                    anyFlipped = true;
+                    // Flipped pages: left side. Stack order ascends with index.
+                    page.style.zIndex = 10 + index;
+                } else {
+                    // Unflipped pages: right side. Stack order descends with index.
+                    page.style.zIndex = 10 - index;
+                }
+            });
+
+            if (anyFlipped) {
+                brochureBook.classList.add('opened');
+            } else {
+                brochureBook.classList.remove('opened');
+            }
+        }
+
+        // Initialize z-indices
+        updateZIndices();
+
+        bookPages.forEach((page, idx) => {
+            page.addEventListener('click', (e) => {
+                // Ignore click if it's on the download button
+                if (e.target.closest('.brochure-download-btn')) {
+                    return;
+                }
+
+                const isFlipped = page.classList.contains('flipped');
+
+                if (isFlipped) {
+                    // Clicking a flipped page (left side) -> we want to unflip it.
+                    // Find the highest index page that is currently flipped (the top-most one).
+                    let highestFlippedIdx = -1;
+                    bookPages.forEach((p, i) => {
+                        if (p.classList.contains('flipped')) {
+                            highestFlippedIdx = i;
+                        }
+                    });
+
+                    // Only allow flipping the top-most page on the left stack
+                    if (idx === highestFlippedIdx) {
+                        page.classList.remove('flipped');
+                        updateZIndices();
+                    }
+                } else {
+                    // Clicking an unflipped page (right side) -> we want to flip it forward.
+                    // Find the lowest index page that is currently unflipped (the top-most one).
+                    let lowestUnflippedIdx = -1;
+                    for (let i = 0; i < bookPages.length; i++) {
+                        if (!bookPages[i].classList.contains('flipped')) {
+                            lowestUnflippedIdx = i;
+                            break;
+                        }
+                    }
+
+                    // Only allow flipping the top-most page on the right stack
+                    if (idx === lowestUnflippedIdx) {
+                        page.classList.add('flipped');
+                        updateZIndices();
+                    }
+                }
+            });
+        });
+
+        // --- Service 05: CRM & Digital Marketing Simulation Logic ---
+        const liveLeadCounter = document.getElementById('liveLeadCounter');
+        const crmLeadFeed = document.getElementById('crmLeadFeed');
+        const adBudgetSlider = document.getElementById('adBudgetSlider');
+
+        const calcBudgetVal = document.getElementById('calcBudgetVal');
+        const calcReachVal = document.getElementById('calcReachVal');
+        const calcLeadsVal = document.getElementById('calcLeadsVal');
+        const calcBookingsVal = document.getElementById('calcBookingsVal');
+
+        const formatRupees = (amount) => {
+            return '₹' + amount.toLocaleString('en-IN');
+        };
+
+        const formatNumber = (num) => {
+            return num.toLocaleString('en-IN');
+        };
+
+        // 1. Live Lead Counter increment simulation
+        let leadCount = 148;
+        setInterval(() => {
+            const increment = Math.random() > 0.75 ? 2 : 1;
+            leadCount += increment;
+            if (liveLeadCounter) {
+                liveLeadCounter.textContent = leadCount;
+                liveLeadCounter.classList.add('flash-glow');
+                setTimeout(() => {
+                    liveLeadCounter.classList.remove('flash-glow');
+                }, 800);
+            }
+        }, 6000);
+
+        // 2. Lead Activity Feed Generator with Mock Data
+        const mockNames = ["Ananya Roy", "Pranav Joshi", "Neha Reddy", "Siddharth Shah", "Meera Nair", "Karan Verma", "Deepak Rao", "Aditi Sen", "Rohan Gupta", "Shreya Iyer", "Arjun Kapoor", "Priyanka Das"];
+        const mockProperties = [
+            "MVV Housing Blocks - 2 BHK Premium",
+            "GK Zenith Facade - Penthouse Suite",
+            "Estate Plots Layout - Block B Villa",
+            "City Pride brochure - Digital Blueprint",
+            "Availability Tool UI - Custom Integration"
+        ];
+        const mockSources = ["Facebook Ads", "Google Search", "Instagram", "LinkedIn Business", "Direct Link"];
+        const mockIcons = {
+            "MVV Housing Blocks - 2 BHK Premium": "fa-building",
+            "GK Zenith Facade - Penthouse Suite": "fa-building",
+            "Estate Plots Layout - Block B Villa": "fa-tree",
+            "City Pride brochure - Digital Blueprint": "fa-file-pdf",
+            "Availability Tool UI - Custom Integration": "fa-cube"
+        };
+        const mockSourceClasses = {
+            "Facebook Ads": "source-fb",
+            "Google Search": "source-google",
+            "Instagram": "source-insta",
+            "LinkedIn Business": "source-linkedin",
+            "Direct Link": "source-direct"
+        };
+
+        setInterval(() => {
+            if (!crmLeadFeed) return;
+
+            const name = mockNames[Math.floor(Math.random() * mockNames.length)];
+            const property = mockProperties[Math.floor(Math.random() * mockProperties.length)];
+            const source = mockSources[Math.floor(Math.random() * mockSources.length)];
+            const icon = mockIcons[property] || "fa-cube";
+            const srcClass = mockSourceClasses[source] || "source-direct";
+
+            const feedItem = document.createElement('div');
+            feedItem.className = 'crm-feed-item new-item';
+            feedItem.innerHTML = `
+                <div class="feed-item-header">
+                    <span class="feed-lead-name">${name}</span>
+                    <span class="feed-lead-time">Just Now</span>
+                </div>
+                <div class="feed-item-body">
+                    <span class="feed-lead-interest"><i class="fa-solid ${icon}"></i> ${property}</span>
+                    <span class="feed-lead-source ${srcClass}">${source}</span>
+                </div>
+            `;
+
+            crmLeadFeed.insertBefore(feedItem, crmLeadFeed.firstChild);
+
+            setTimeout(() => {
+                feedItem.classList.remove('new-item');
+            }, 100);
+
+            const items = crmLeadFeed.querySelectorAll('.crm-feed-item');
+            if (items.length > 3) {
+                const lastItem = items[items.length - 1];
+                lastItem.classList.add('remove-item');
+                setTimeout(() => {
+                    lastItem.remove();
+                }, 400);
+            }
+        }, 8500);
+
+        // 3. Campaign ROI Calculator logic
+        if (adBudgetSlider) {
+            const updateCalculatorValues = () => {
+                const budget = parseInt(adBudgetSlider.value);
+                const reach = Math.round(budget * 0.8);
+                const leads = Math.round(budget / 600);
+                const bookings = Math.round(leads * 0.028);
+
+                calcBudgetVal.textContent = formatRupees(budget);
+                calcReachVal.textContent = formatNumber(reach);
+                calcLeadsVal.textContent = formatNumber(leads);
+                calcBookingsVal.textContent = formatNumber(bookings);
+            };
+
+            adBudgetSlider.addEventListener('input', updateCalculatorValues);
+            updateCalculatorValues();
+        }
+
+        // 4. Interactive "Launch Campaign" Scroll Link
+        const launchBtn = document.querySelector('.crm-launch-campaign-btn');
+        if (launchBtn) {
+            launchBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const contactEl = document.getElementById('contact');
+                if (contactEl) {
+                    lenis.scrollTo(contactEl, { offset: -80 });
+                }
+                const subjectSelect = document.getElementById('subject');
+                if (subjectSelect) {
+                    subjectSelect.value = 'marketing';
+                }
+            });
+        }
+        // --- Futuristic Text Decode Effect for CRM Section Headings ---
+        const crmHeadings = document.querySelectorAll('#crm-marketing h2, #crm-marketing h3, #crm-marketing h4');
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/[]{}—=+*^?#";
+
+        crmHeadings.forEach(heading => {
+            const originalText = heading.innerText;
+            heading.classList.add('futuristic-cyber-text');
+
+            ScrollTrigger.create({
+                trigger: heading,
+                start: "top 85%",
+                onEnter: () => {
+                    let iterations = 0;
+                    const interval = setInterval(() => {
+                        heading.innerText = originalText.split("")
+                            .map((letter, index) => {
+                                if (index < iterations || letter === " ") {
+                                    return originalText[index];
+                                }
+                                return chars[Math.floor(Math.random() * chars.length)];
+                            })
+                            .join("");
+
+                        if (iterations >= originalText.length) {
+                            clearInterval(interval);
+                            heading.innerText = originalText;
+                            heading.classList.add('decoded');
+                        }
+                        iterations += 1 / 2; // Adjust speed here
+                    }, 35);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
