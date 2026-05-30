@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prizma Brixx | Premium Architectural Visualization & 3D Design Studio</title>
 
+    <!-- Theme Initialization Script to Prevent Flash -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme-preference') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
     <!-- SEO Meta Tags -->
     <meta name="description"
         content="Prizma Brixx is a premier architectural visualization, 3D floor planning, and interactive real estate design studio. Explore our portfolio of exterior renders, master layouts, and custom interactive tools.">
@@ -78,12 +88,23 @@
             <li><a href="#services" class="nav-link">Services</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Launch Project</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="nav-right">
+            <a href="#contact" class="nav-cta">Launch Project</a>
+            <!-- Theme Toggle Switch -->
+            <button id="themeToggleBtn" class="theme-toggle-slider magnetic" aria-label="Toggle theme">
+                <span class="slider-track">
+                    <span class="slider-thumb">
+                        <i class="fa-solid fa-moon moon-icon"></i>
+                        <i class="fa-solid fa-sun sun-icon"></i>
+                    </span>
+                </span>
+            </button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </nav>
 
     <!-- ── HERO SECTION ── -->
@@ -507,71 +528,125 @@
 
     <!-- Service Section 4: Virtual Reality Experience Centers -->
     <section class="service-section" id="vr-experience"
-        style="background-color: var(--bg-secondary); overflow: hidden;">
+        style="background-color: var(--bg-secondary); overflow: hidden; padding-bottom: 9rem;">
         <div class="container">
             <div class="section-header">
                 <h2>Virtual Reality Experience Centers</h2>
                 <p>Immersive, interactive 3D property tours and futuristic VR showrooms designed for premium real estate
                     visualization.</p>
             </div>
-        </div>
 
-        <!-- Widescreen 3D Holographic VR Video Deck -->
-        <!-- 3D VR Video Carousel Ring -->
-        <div class="vr-carousel-container">
-            <div class="vr-3d-scene" id="vrScene">
-                <div class="vr-3d-carousel" id="vrCarousel">
-                    <!-- VR Screen 1 -->
-                    <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 0; --card-rot: 0deg;">
-                        <div class="rc-glass-frame">
-                            <video autoplay loop muted playsinline class="rc-video">
-                                <source src="Videos/walkthorugh.mp4" type="video/mp4">
-                            </video>
-                            <div class="rc-hud-info">
-                                <span class="rc-hud-tag" style="color: #00f3ff;">VR_STREAM_01</span>
-                                <h4 class="rc-hud-title">Immersive VR Showroom</h4>
+            <!-- FUTURISTIC FULL-WIDTH COMMAND DECK -->
+            <div class="vr-command-deck">
+
+
+                <!-- Stream Selector Tabs (Horizontal Grid) -->
+                <div class="vr-stream-tabs">
+                    <button class="vr-tab active" data-stream="0">
+                        <span class="tab-num">01</span>
+                        <div class="tab-details">
+                            <span class="tab-title">Immersive VR Showroom</span>
+                            <span class="tab-meta">Interactive 1:1 Scale Render</span>
+                        </div>
+                    </button>
+                    <button class="vr-tab" data-stream="1">
+                        <span class="tab-num">02</span>
+                        <div class="tab-details">
+                            <span class="tab-title">Property Walkthrough</span>
+                            <span class="tab-meta">Real-time Physics Engine</span>
+                        </div>
+                    </button>
+                    <button class="vr-tab" data-stream="2">
+                        <span class="tab-num">03</span>
+                        <div class="tab-details">
+                            <span class="tab-title">3D Projection Tour</span>
+                            <span class="tab-meta">360° Holo Projection Mapping</span>
+                        </div>
+                    </button>
+                    <button class="vr-tab" data-stream="3">
+                        <span class="tab-num">04</span>
+                        <div class="tab-details">
+                            <span class="tab-title">Horizon Balcony View</span>
+                            <span class="tab-meta">Daylight Exposure Analysis</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- RIGHT COLUMN: THE 3D SCENE VIEWPORT -->
+                <div class="vr-viewport-wrapper" id="vrViewport">
+                    <!-- Glass Viewport border with corner HUD decorators -->
+                    <div class="vr-viewport-corners">
+                        <div class="corner-tl"></div>
+                        <div class="corner-tr"></div>
+                        <div class="corner-bl"></div>
+                        <div class="corner-br"></div>
+                    </div>
+                    <div class="vr-viewport-grid"></div>
+                    <div class="vr-scanlines"></div>
+
+                    <!-- Viewport HUD Overlay Controls -->
+                    <button class="vr-viewport-fullscreen-btn magnetic" id="vr-fullscreen-btn" title="Toggle Fullscreen Mode">
+                        <i class="fa-solid fa-expand"></i>
+                    </button>
+
+                    <!-- Widescreen 3D Holographic VR Video Deck -->
+                    <div class="vr-carousel-container">
+                        <div class="vr-3d-scene" id="vrScene">
+                            <div class="vr-3d-carousel" id="vrCarousel">
+                                <!-- VR Screen 1 -->
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 0; --card-rot: 0deg;">
+                                    <div class="rc-glass-frame">
+                                        <video autoplay loop muted playsinline class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="rc-hud-info">
+                                            <span class="rc-hud-tag">VR_STREAM_01</span>
+                                            <h4 class="rc-hud-title">Immersive VR Showroom</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <!-- VR Screen 2 -->
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 1; --card-rot: 90deg;">
+                                    <div class="rc-glass-frame">
+                                        <video autoplay loop muted playsinline class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="rc-hud-info">
+                                            <span class="rc-hud-tag">VR_STREAM_02</span>
+                                            <h4 class="rc-hud-title">Property Walkthrough</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <!-- VR Screen 3 -->
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 2; --card-rot: 180deg;">
+                                    <div class="rc-glass-frame">
+                                        <video autoplay loop muted playsinline class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="rc-hud-info">
+                                            <span class="rc-hud-tag">VR_STREAM_03</span>
+                                            <h4 class="rc-hud-title">3D Projection Tour</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <!-- VR Screen 4 -->
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 3; --card-rot: 270deg;">
+                                    <div class="rc-glass-frame">
+                                        <video autoplay loop muted playsinline class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        </video>
+                                        <div class="rc-hud-info">
+                                            <span class="rc-hud-tag">VR_STREAM_04</span>
+                                            <h4 class="rc-hud-title">Horizon Balcony View</h4>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </a>
-                    
-                    <!-- VR Screen 2 -->
-                    <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 1; --card-rot: 90deg;">
-                        <div class="rc-glass-frame">
-                            <video autoplay loop muted playsinline class="rc-video">
-                                <source src="Videos/walkthorugh.mp4" type="video/mp4">
-                            </video>
-                            <div class="rc-hud-info">
-                                <span class="rc-hud-tag" style="color: #00f3ff;">VR_STREAM_02</span>
-                                <h4 class="rc-hud-title">Property Walkthrough</h4>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- VR Screen 3 -->
-                    <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 2; --card-rot: 180deg;">
-                        <div class="rc-glass-frame">
-                            <video autoplay loop muted playsinline class="rc-video">
-                                <source src="Videos/walkthorugh.mp4" type="video/mp4">
-                            </video>
-                            <div class="rc-hud-info">
-                                <span class="rc-hud-tag" style="color: #00f3ff;">VR_STREAM_03</span>
-                                <h4 class="rc-hud-title">3D Projection Tour</h4>
-                            </div>
-                        </div>
-                    </a>
-                    
-                    <!-- VR Screen 4 -->
-                    <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 3; --card-rot: 270deg;">
-                        <div class="rc-glass-frame">
-                            <video autoplay loop muted playsinline class="rc-video">
-                                <source src="Videos/walkthorugh.mp4" type="video/mp4">
-                            </video>
-                            <div class="rc-hud-info">
-                                <span class="rc-hud-tag" style="color: #00f3ff;">VR_STREAM_04</span>
-                                <h4 class="rc-hud-title">Horizon Balcony View</h4>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1155,7 +1230,7 @@
             draw() {
                 loaderCtx.save();
                 loaderCtx.globalAlpha = this.alpha;
-                loaderCtx.fillStyle = '#d4af37';
+                loaderCtx.fillStyle = '#f59128';
                 loaderCtx.beginPath();
                 loaderCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 loaderCtx.fill();
@@ -1217,18 +1292,34 @@
 
 
 
-        // Navigation Active State highlights based on scroll position
+        // Navigation Active State highlights based on scroll position (optimized with cached offset targets)
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
+        let sectionOffsets = [];
+
+        function cacheSectionOffsets() {
+            sectionOffsets = Array.from(sections).map(section => ({
+                id: section.getAttribute('id') || '',
+                top: section.offsetTop || 0
+            }));
+        }
+
+        // Cache initially and update on resize
+        cacheSectionOffsets();
+        window.addEventListener('resize', cacheSectionOffsets);
+        
+        // Refresh cache after a delay for DOM rendering / preloader fade-out adjustments
+        setTimeout(cacheSectionOffsets, 1000);
+        setTimeout(cacheSectionOffsets, 3000);
 
         window.addEventListener('scroll', () => {
             let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
+            const scrollY = window.scrollY || window.pageYOffset;
+            for (let i = 0; i < sectionOffsets.length; i++) {
+                if (scrollY >= (sectionOffsets[i].top - 180)) {
+                    current = sectionOffsets[i].id;
                 }
-            });
+            }
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -1236,7 +1327,48 @@
                     link.classList.add('active');
                 }
             });
+
+            // Toggle navbar scrolled state dynamically
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
         });
+
+        // ── DARK/LIGHT THEME SWITCHER ──
+        (() => {
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            if (!themeToggleBtn) return;
+
+            // Check for saved theme preference, otherwise default to light theme
+            const savedTheme = localStorage.getItem('theme-preference') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+                document.body.classList.remove('dark-mode');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark-mode');
+                document.body.classList.toggle('dark-mode', isDark);
+                localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
+                
+                // Add a cool rotate/scale click animation using GSAP
+                const activeIcon = themeToggleBtn.querySelector(isDark ? '.sun-icon' : '.moon-icon');
+                if (activeIcon) {
+                    gsap.fromTo(activeIcon, 
+                        { scale: 0.6, rotate: -45 }, 
+                        { scale: 1, rotate: 0, duration: 0.45, ease: "back.out(1.8)" }
+                    );
+                }
+            });
+        })();
 
         // Mobile Menu Toggle logic
         const menuToggle = document.getElementById('menuToggle');
@@ -1317,15 +1449,17 @@
                 }
                 draw(ctx) {
                     if (this.life <= 0) return;
-                    ctx.save();
-                    ctx.globalAlpha = this.life * 0.35;
-                    ctx.fillStyle = `hsl(${this.hue}, 80%, 60%)`;
-                    ctx.shadowColor = `hsl(${this.hue}, 85%, 55%)`;
-                    ctx.shadowBlur = 4;
+                    const colorStr = this.hue === 170 ? '56, 189, 248' : '245, 145, 40';
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${colorStr}, ${this.life * 0.35})`;
                     ctx.fill();
-                    ctx.restore();
+
+                    // Soft glow overlay (much faster than browser canvas shadowBlur software rendering)
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 2.2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${colorStr}, ${this.life * 0.08})`;
+                    ctx.fill();
                 }
             }
 
@@ -1409,6 +1543,22 @@
         const heroCtx = heroCanvas.getContext('2d');
         let heroPoints = [];
 
+        // Mouse tracking for Hero canvas interaction
+        const heroMouse = { x: null, y: null, radius: 180 };
+        const heroSection = document.getElementById('hero-section');
+
+        if (heroSection) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const rect = heroCanvas.getBoundingClientRect();
+                heroMouse.x = e.clientX - rect.left;
+                heroMouse.y = e.clientY - rect.top;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                heroMouse.x = null;
+                heroMouse.y = null;
+            });
+        }
+
         function resizeHeroCanvas() {
             heroCanvas.width = window.innerWidth;
             heroCanvas.height = window.innerHeight;
@@ -1422,65 +1572,181 @@
                 this.radius = radius;
                 this.speed = speed;
                 this.size = size;
+                this.baseX = 0;
+                this.baseY = 0;
                 this.x = 0;
                 this.y = 0;
+                this.offsetX = 0;
+                this.offsetY = 0;
+                this.activeGlow = 0;
+                this.activeOpacity = 0;
             }
             update() {
                 this.angle += this.speed;
-                // Isometric/tilted circle calculations
                 const centerX = heroCanvas.width / 2;
                 const centerY = heroCanvas.height / 2;
-                this.x = centerX + Math.cos(this.angle) * this.radius;
-                this.y = centerY + Math.sin(this.angle) * (this.radius * 0.45); // flatten y to create isometric ellipse
+
+                // Base orbit position (isometric ellipse)
+                this.baseX = centerX + Math.cos(this.angle) * this.radius;
+                this.baseY = centerY + Math.sin(this.angle) * (this.radius * 0.45);
+
+                // Set coordinates with current offset
+                this.x = this.baseX + this.offsetX;
+                this.y = this.baseY + this.offsetY;
+
+                // Interactive effects
+                this.activeGlow = 0;
+                this.activeOpacity = 0;
+
+                if (heroMouse.x !== null && heroMouse.y !== null) {
+                    let dx = this.x - heroMouse.x;
+                    let dy = this.y - heroMouse.y;
+                    let dist = Math.hypot(dx, dy);
+
+                    if (dist < heroMouse.radius) {
+                        let force = (heroMouse.radius - dist) / heroMouse.radius; // 0 to 1
+
+                        // Glow and scale up near mouse
+                        this.activeGlow = force * 2.5;
+                        this.activeOpacity = force * 0.35;
+
+                        // Repulsion spring physics force
+                        let forceX = (dx / dist) * force * 16;
+                        let forceY = (dy / dist) * force * 16;
+
+                        this.offsetX += forceX;
+                        this.offsetY += forceY;
+                    }
+                }
+
+                // Smooth damp return back to original orbit
+                this.offsetX *= 0.88;
+                this.offsetY *= 0.88;
+
+                // Update final coordinates
+                this.x = this.baseX + this.offsetX;
+                this.y = this.baseY + this.offsetY;
             }
             draw() {
                 heroCtx.beginPath();
-                heroCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                heroCtx.fillStyle = 'rgba(212, 175, 55, 0.4)';
+                heroCtx.arc(this.x, this.y, this.size + this.activeGlow, 0, Math.PI * 2);
+                heroCtx.fillStyle = `rgba(245, 145, 40, ${0.45 + this.activeOpacity})`;
                 heroCtx.fill();
             }
         }
 
-        // Generate concentric orbital rings
-        for (let r = 100; r < 500; r += 80) {
-            const count = Math.floor(r / 15);
-            const speed = (600 - r) * 0.00002;
+        const heroRings = [];
+        // Generate concentric orbital rings covering the full screen
+        for (let r = 80; r < 1600; r += 110) {
+            const count = Math.max(3, Math.floor(r / 20));
+            const speed = (1800 - r) * 0.000002; // Slower velocity on outer rings for cinema drift
+            const ringNodes = [];
             for (let i = 0; i < count; i++) {
                 const angle = (i / count) * Math.PI * 2;
-                heroPoints.push(new OrbitNode(angle, r, speed, Math.random() * 1.5 + 0.5));
+                const size = Math.random() * 1.6 + 0.8;
+                const node = new OrbitNode(angle, r, speed, size);
+                ringNodes.push(node);
+                heroPoints.push(node);
             }
+            heroRings.push(ringNodes);
         }
 
         function animateHeroConstellation() {
             heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
 
-            // Draw background glow grid lines intersecting at center
-            heroCtx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
-            heroCtx.lineWidth = 1;
             const cx = heroCanvas.width / 2;
             const cy = heroCanvas.height / 2;
 
-            heroCtx.beginPath();
-            heroCtx.arc(cx, cy, 320, 0, Math.PI * 2);
-            heroCtx.stroke();
-
-            // Draw particles and faint connect lines
-            heroPoints.forEach(node => {
-                node.update();
-                node.draw();
+            // Draw concentric nested background grid guides
+            heroCtx.strokeStyle = 'rgba(180, 130, 60, 0.05)';
+            heroCtx.lineWidth = 0.8;
+            [180, 360, 560, 780, 1020, 1300].forEach(rad => {
+                heroCtx.beginPath();
+                heroCtx.arc(cx, cy, rad, 0, Math.PI * 2);
+                heroCtx.stroke();
             });
 
-            // Connect neighboring nodes inside the rings occasionally
-            heroCtx.strokeStyle = 'rgba(212, 175, 55, 0.04)';
+            // Update all nodes
+            heroPoints.forEach(node => {
+                node.update();
+            });
+
+            // Connect neighboring nodes within same ring and adjacent rings (optimized spatial sorting)
             heroCtx.lineWidth = 0.5;
-            heroCtx.beginPath();
-            for (let i = 0; i < heroPoints.length; i += 4) {
-                if (i + 1 < heroPoints.length) {
-                    heroCtx.moveTo(heroPoints[i].x, heroPoints[i].y);
-                    heroCtx.lineTo(heroPoints[i + 1].x, heroPoints[i + 1].y);
+            for (let r = 0; r < heroRings.length; r++) {
+                const currentRing = heroRings[r];
+                const nextRing = heroRings[r + 1] || [];
+                
+                // 1. Connect within the same ring
+                for (let i = 0; i < currentRing.length; i++) {
+                    const p1 = currentRing[i];
+                    for (let j = i + 1; j < currentRing.length; j++) {
+                        const p2 = currentRing[j];
+                        const dx = p1.x - p2.x;
+                        if (Math.abs(dx) > 90) continue;
+                        const dy = p1.y - p2.y;
+                        if (Math.abs(dy) > 90) continue;
+
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < 90) {
+                            const alpha = ((90 - dist) / 90) * 0.14;
+                            heroCtx.strokeStyle = `rgba(245, 145, 40, ${alpha})`;
+                            heroCtx.beginPath();
+                            heroCtx.moveTo(p1.x, p1.y);
+                            heroCtx.lineTo(p2.x, p2.y);
+                            heroCtx.stroke();
+                        }
+                    }
+                }
+                
+                // 2. Connect current ring with the next ring
+                for (let i = 0; i < currentRing.length; i++) {
+                    const p1 = currentRing[i];
+                    for (let j = 0; j < nextRing.length; j++) {
+                        const p2 = nextRing[j];
+                        const dx = p1.x - p2.x;
+                        if (Math.abs(dx) > 90) continue;
+                        const dy = p1.y - p2.y;
+                        if (Math.abs(dy) > 90) continue;
+
+                        const dist = Math.hypot(dx, dy);
+                        if (dist < 90) {
+                            const alpha = ((90 - dist) / 90) * 0.14;
+                            heroCtx.strokeStyle = `rgba(245, 145, 40, ${alpha})`;
+                            heroCtx.beginPath();
+                            heroCtx.moveTo(p1.x, p1.y);
+                            heroCtx.lineTo(p2.x, p2.y);
+                            heroCtx.stroke();
+                        }
+                    }
                 }
             }
-            heroCtx.stroke();
+
+            // Draw dynamic spiderweb lines connecting the cursor to nearby particles
+            if (heroMouse.x !== null && heroMouse.y !== null) {
+                heroPoints.forEach(node => {
+                    const dx = node.x - heroMouse.x;
+                    if (Math.abs(dx) > heroMouse.radius) return;
+                    const dy = node.y - heroMouse.y;
+                    if (Math.abs(dy) > heroMouse.radius) return;
+
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < heroMouse.radius) {
+                        const force = (heroMouse.radius - dist) / heroMouse.radius;
+                        heroCtx.strokeStyle = `rgba(245, 145, 40, ${force * 0.22})`;
+                        heroCtx.lineWidth = force * 0.8;
+                        heroCtx.beginPath();
+                        heroCtx.moveTo(heroMouse.x, heroMouse.y);
+                        heroCtx.lineTo(node.x, node.y);
+                        heroCtx.stroke();
+                    }
+                });
+            }
+
+            // Render all particles on top
+            heroPoints.forEach(node => {
+                node.draw();
+            });
 
             requestAnimationFrame(animateHeroConstellation);
         }
@@ -2057,6 +2323,12 @@
             const vrCarousel = document.getElementById('vrCarousel');
             const vrScene = document.getElementById('vrScene');
             const vrRingCards = document.querySelectorAll('.vr-ring-card');
+            const vrTabs = document.querySelectorAll('.vr-tab');
+            const focusValEl = document.getElementById('vr-focus-val');
+            const speedValEl = document.getElementById('vr-speed-val');
+            const rotValEl = document.getElementById('vr-rot-val');
+            const spinToggleBtn = document.getElementById('vr-spin-toggle');
+            const launchBtn = document.getElementById('vr-launch-btn');
 
             const totalCards = 4;
             const stepAngle = 90; // 360 / 4
@@ -2067,24 +2339,67 @@
             let currentActiveIndex = 0;
             let autoRotateTimeout = null;
 
+            // Stream link references
+            const streamLinks = [
+                "https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r",
+                "https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r",
+                "https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r",
+                "https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+            ];
+
             function animateAutoRotate() {
                 if (autoRotateActive) {
                     carouselState.angle += autoRotateSpeed;
                     gsap.set(vrCarousel, { rotateY: carouselState.angle });
+                    updateTelemetryText();
+                    
+                    // Sync active tab based on angle
+                    const activeIndex = Math.round(carouselState.angle / stepAngle) % totalCards;
+                    // convert negative mod to positive
+                    const positiveIndex = (activeIndex + totalCards) % totalCards;
+                    if (positiveIndex !== currentActiveIndex) {
+                        currentActiveIndex = positiveIndex;
+                        syncActiveTab(currentActiveIndex);
+                    }
                 }
                 requestAnimationFrame(animateAutoRotate);
             }
             requestAnimationFrame(animateAutoRotate);
 
+            function updateTelemetryText() {
+                if (rotValEl) {
+                    let normalizedAngle = Math.round(Math.abs(carouselState.angle) % 360);
+                    rotValEl.textContent = `${normalizedAngle}°`;
+                }
+                if (focusValEl) {
+                    const jitter = Math.random() > 0.92 ? (Math.random() * 1.2 + 98.8).toFixed(1) : "100.0";
+                    focusValEl.textContent = `${jitter}%`;
+                }
+            }
+
+            function syncActiveTab(index) {
+                const normIdx = (index + totalCards) % totalCards;
+                vrTabs.forEach((tab, i) => {
+                    if (i === normIdx) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            }
+
             function rotateCarouselToCard(index) {
                 currentActiveIndex = (index + totalCards) % totalCards;
-                autoRotateActive = false;
                 
                 const cardAngle = currentActiveIndex * stepAngle;
                 const currentAngle = carouselState.angle;
-                // find closest angle
                 const targetBase = Math.round((currentAngle + cardAngle) / 360) * 360;
                 const targetAngle = targetBase - cardAngle;
+
+                const wasAutoActive = autoRotateActive;
+                if (autoRotateActive) {
+                    autoRotateActive = false;
+                }
 
                 gsap.to(carouselState, {
                     angle: targetAngle,
@@ -2092,23 +2407,124 @@
                     ease: "power2.out",
                     onUpdate: () => {
                         gsap.set(vrCarousel, { rotateY: carouselState.angle });
+                        updateTelemetryText();
+                    },
+                    onComplete: () => {
+                        if (wasAutoActive) {
+                            clearTimeout(autoRotateTimeout);
+                            autoRotateTimeout = setTimeout(() => {
+                                if (spinToggleBtn && spinToggleBtn.classList.contains('paused')) return;
+                                autoRotateActive = true;
+                                if (speedValEl) speedValEl.textContent = `${autoRotateSpeed} deg/f`;
+                            }, 6000);
+                        }
                     }
                 });
 
-                clearTimeout(autoRotateTimeout);
-                autoRotateTimeout = setTimeout(() => {
-                    autoRotateActive = true;
-                }, 5000); // resumes auto-spin after 5s of inactivity
+                syncActiveTab(currentActiveIndex);
+                if (focusValEl) {
+                    focusValEl.textContent = "LOCKING...";
+                    setTimeout(() => { 
+                        if (focusValEl.textContent === "LOCKING...") {
+                            focusValEl.textContent = "100.0%"; 
+                        }
+                    }, 450);
+                }
             }
 
+            // Click selector tabs
+            vrTabs.forEach((tab, idx) => {
+                tab.addEventListener('click', () => {
+                    rotateCarouselToCard(idx);
+                });
+            });
+
+            // Card hover triggers carousel focus
             vrRingCards.forEach((card, idx) => {
                 card.addEventListener('mouseenter', () => {
                     rotateCarouselToCard(idx);
                 });
             });
 
+            // Auto spin toggle button
+            if (spinToggleBtn) {
+                spinToggleBtn.addEventListener('click', () => {
+                    autoRotateActive = !autoRotateActive;
+                    if (autoRotateActive) {
+                        spinToggleBtn.classList.remove('paused');
+                        spinToggleBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Spin';
+                        if (speedValEl) speedValEl.textContent = `${autoRotateSpeed} deg/f`;
+                    } else {
+                        spinToggleBtn.classList.add('paused');
+                        spinToggleBtn.innerHTML = '<i class="fa-solid fa-play"></i> Auto-Spin';
+                        if (speedValEl) speedValEl.textContent = "PAUSED";
+                    }
+                });
+            }
+
+            // Launch active stream button
+            if (launchBtn) {
+                launchBtn.addEventListener('click', () => {
+                    window.open(streamLinks[currentActiveIndex], "_blank");
+                });
+            }
+
+            // Fullscreen viewport logic
+            const vrViewport = document.getElementById('vrViewport');
+            const fullscreenBtn = document.getElementById('vr-fullscreen-btn');
+
+            if (fullscreenBtn && vrViewport) {
+                fullscreenBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    if (!document.fullscreenElement && 
+                        !document.webkitFullscreenElement && 
+                        !document.msFullscreenElement) {
+                        
+                        // Enter fullscreen
+                        if (vrViewport.requestFullscreen) {
+                            vrViewport.requestFullscreen();
+                        } else if (vrViewport.webkitRequestFullscreen) {
+                            vrViewport.webkitRequestFullscreen();
+                        } else if (vrViewport.msRequestFullscreen) {
+                            vrViewport.msRequestFullscreen();
+                        }
+                    } else {
+                        // Exit fullscreen
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                    }
+                });
+
+                // Update icon/state on fullscreen change event
+                const onFullscreenChange = () => {
+                    const isFs = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.msFullscreenElement;
+                    
+                    const icon = fullscreenBtn.querySelector('i');
+                    if (icon) {
+                        if (isFs) {
+                            icon.className = 'fa-solid fa-compress';
+                        } else {
+                            icon.className = 'fa-solid fa-expand';
+                        }
+                    }
+                };
+
+                document.addEventListener('fullscreenchange', onFullscreenChange);
+                document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+                document.addEventListener('mozfullscreenchange', onFullscreenChange);
+                document.addEventListener('MSFullscreenChange', onFullscreenChange);
+            }
+
             // Parallax tilt on mousemove
-            const vrWrapper = document.querySelector('.vr-carousel-container');
+            const vrWrapper = document.querySelector('.vr-viewport-wrapper');
             if (vrWrapper && vrScene) {
                 vrWrapper.addEventListener('mousemove', (e) => {
                     const rect = vrWrapper.getBoundingClientRect();
