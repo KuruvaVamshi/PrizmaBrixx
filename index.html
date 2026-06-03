@@ -8,7 +8,7 @@
 
     <!-- Theme Initialization Script to Prevent Flash -->
     <script>
-        (function() {
+        (function () {
             const savedTheme = localStorage.getItem('theme-preference') || 'light';
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-mode');
@@ -22,6 +22,19 @@
     <meta name="keywords"
         content="Architectural Visualization, 3D Rendering, Real Estate UI, Floor Plans, Exterior Renders, GK Zenith, MVV Housing, Prizma Brixx">
     <meta name="author" content="Prizma Brixx">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://prizmabrixx.in/">
+    <meta property="og:title" content="Prizma Brixx | Premium Architectural Visualization & 3D Design Studio">
+    <meta property="og:description"
+        content="We build next-generation immersive visualization platforms, cinematic drone storytelling, and custom digital PropTech ecosystems.">
+    <meta property="og:image" content="https://prizmabrixx.in/images/GK-Zenith.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prizma Brixx | Premium Architectural Visualization">
+    <meta name="twitter:description"
+        content="Immersive visualization platforms, cinematic drone storytelling & custom PropTech ecosystems.">
+    <meta name="twitter:image" content="https://prizmabrixx.in/images/GK-Zenith.png">
 
     <!-- CSS Link -->
     <link rel="stylesheet" href="styles.css">
@@ -119,6 +132,37 @@
                 We build next-generation immersive visualization platforms, cinematic drone storytelling, and custom
                 digital PropTech ecosystems.
             </p>
+            <!-- Hero CTA Buttons -->
+            <div class="hero-cta-group">
+                <a href="#portfolio" class="hero-btn-primary magnetic">
+                    <i class="fa-solid fa-play"></i> View Our Work
+                </a>
+                <a href="#contact" class="hero-btn-secondary magnetic">
+                    Get a Quote <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            <!-- Animated Stats Bar -->
+            <div class="hero-stats-bar">
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number" data-target="50" data-suffix="+">0+</span>
+                    <span class="hero-stat-label">Projects Delivered</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number" data-target="3" data-suffix="+">0+</span>
+                    <span class="hero-stat-label">Years Experience</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number" data-target="100" data-suffix="%">0%</span>
+                    <span class="hero-stat-label">Client Satisfaction</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat-item">
+                    <span class="hero-stat-number" data-target="12" data-suffix="+">0+</span>
+                    <span class="hero-stat-label">Cities Served</span>
+                </div>
+            </div>
         </div>
         <div class="hero-scroll-indicator" onclick="lenis.scrollTo('#portfolio')">
             <span>Scroll to explore</span>
@@ -243,7 +287,7 @@
                 <!-- Video Card 1 -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -254,7 +298,7 @@
                 <!-- Video Card 2 -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -265,7 +309,7 @@
                 <!-- Video Card 3 -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -276,7 +320,7 @@
                 <!-- Video Card 4 -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -289,7 +333,7 @@
                 <!-- Video Card 1 Duplicate -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -300,7 +344,7 @@
                 <!-- Video Card 2 Duplicate -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -311,7 +355,7 @@
                 <!-- Video Card 3 Duplicate -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -322,7 +366,7 @@
                 <!-- Video Card 4 Duplicate -->
                 <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank"
                     class="video-grid-card">
-                    <video autoplay loop muted playsinline>
+                    <video loop muted playsinline disableRemotePlayback preload="none">
                         <source src="Videos/drone-shot-demo.mp4" type="video/mp4">
                     </video>
                     <div class="video-card-overlay">
@@ -338,8 +382,10 @@
     <section class="service-section render-grid-section" id="renderings" style="background-color: var(--bg-primary);">
         <div class="container">
             <div class="s03-header">
-                <h2 class="s03-heading">Realistic 3D Renders <span>(Photo & Video)</span><br>& Resort / Villa / Township Planning</h2>
-                <p class="s03-para">Interactive architectural showcases and dynamic walkthrough layers engineered to visualize master planning and rendering details.</p>
+                <h2 class="s03-heading">Realistic 3D Renders <span>(Photo & Video)</span><br>& Resort / Villa / Township
+                    Planning</h2>
+                <p class="s03-para">Interactive architectural showcases and dynamic walkthrough layers engineered to
+                    visualize master planning and rendering details.</p>
             </div>
         </div>
 
@@ -349,11 +395,13 @@
                 <span class="s03-divider-label">03.A &mdash; Photorealistic Renders</span>
                 <span class="s03-divider-line"></span>
             </div>
-            
+
             <div class="ring-scene-wrapper">
                 <!-- Navigation Buttons for 3D Carousel -->
-                <button class="ring-nav-btn prev-btn magnetic" id="photoPrevBtn" title="Previous Render"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="ring-nav-btn next-btn magnetic" id="photoNextBtn" title="Next Render"><i class="fa-solid fa-chevron-right"></i></button>
+                <button class="ring-nav-btn prev-btn magnetic" id="photoPrevBtn" title="Previous Render"><i
+                        class="fa-solid fa-chevron-left"></i></button>
+                <button class="ring-nav-btn next-btn magnetic" id="photoNextBtn" title="Next Render"><i
+                        class="fa-solid fa-chevron-right"></i></button>
 
                 <div class="ring-3d-scene" id="photoScene">
                     <div class="ring-3d-carousel" id="photoCarousel">
@@ -370,7 +418,8 @@
                         <!-- Card 2 -->
                         <div class="ring-card" style="--card-idx: 1; --card-rot: 36deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/villa-interior.png" alt="Luxury Villa Living Room" class="rc-image">
+                                <img src="images/renders-gen/villa-interior.png" alt="Luxury Villa Living Room"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_02 // INTERIOR</span>
                                     <h4 class="rc-hud-title">Villa Living Room</h4>
@@ -380,7 +429,8 @@
                         <!-- Card 3 -->
                         <div class="ring-card" style="--card-idx: 2; --card-rot: 72deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/rendors/1_3 - Photo.jpg" alt="Modern Architectural Concept" class="rc-image">
+                                <img src="images/rendors/1_3 - Photo.jpg" alt="Modern Architectural Concept"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_03 // CONCEPT</span>
                                     <h4 class="rc-hud-title">Modern Concept</h4>
@@ -390,7 +440,8 @@
                         <!-- Card 4 -->
                         <div class="ring-card" style="--card-idx: 3; --card-rot: 108deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/tower-exterior.png" alt="Modern High-Rise Tower" class="rc-image">
+                                <img src="images/renders-gen/tower-exterior.png" alt="Modern High-Rise Tower"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_04 // TOWER</span>
                                     <h4 class="rc-hud-title">High-Rise Tower</h4>
@@ -400,7 +451,8 @@
                         <!-- Card 5 -->
                         <div class="ring-card" style="--card-idx: 4; --card-rot: 144deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/rendors/1_4 - Photo.jpg" alt="Modern Penthouse Exterior" class="rc-image">
+                                <img src="images/rendors/1_4 - Photo.jpg" alt="Modern Penthouse Exterior"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_05 // PENTHOUSE</span>
                                     <h4 class="rc-hud-title">Penthouse Exterior</h4>
@@ -410,7 +462,8 @@
                         <!-- Card 6 -->
                         <div class="ring-card" style="--card-idx: 5; --card-rot: 180deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/resort-pool.png" alt="Infinity Pool & Resort" class="rc-image">
+                                <img src="images/renders-gen/resort-pool.png" alt="Infinity Pool & Resort"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_06 // RESORT</span>
                                     <h4 class="rc-hud-title">Infinity Pool & Resort</h4>
@@ -420,7 +473,8 @@
                         <!-- Card 7 -->
                         <div class="ring-card" style="--card-idx: 6; --card-rot: 216deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/penthouse-terrace.png" alt="Penthouse Terrace" class="rc-image">
+                                <img src="images/renders-gen/penthouse-terrace.png" alt="Penthouse Terrace"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_07 // TERRACE</span>
                                     <h4 class="rc-hud-title">Penthouse Terrace</h4>
@@ -430,7 +484,8 @@
                         <!-- Card 8 -->
                         <div class="ring-card" style="--card-idx: 7; --card-rot: 252deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/township-aerial.png" alt="Township Aerial View" class="rc-image">
+                                <img src="images/renders-gen/township-aerial.png" alt="Township Aerial View"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_08 // TOWNSHIP</span>
                                     <h4 class="rc-hud-title">Township Aerial View</h4>
@@ -440,7 +495,8 @@
                         <!-- Card 9 -->
                         <div class="ring-card" style="--card-idx: 8; --card-rot: 288deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/modern-villa-night.png" alt="Modern Villa Night" class="rc-image">
+                                <img src="images/renders-gen/modern-villa-night.png" alt="Modern Villa Night"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_09 // NIGHT</span>
                                     <h4 class="rc-hud-title">Modern Villa Night</h4>
@@ -450,7 +506,8 @@
                         <!-- Card 10 -->
                         <div class="ring-card" style="--card-idx: 9; --card-rot: 324deg;">
                             <div class="rc-glass-frame">
-                                <img src="images/renders-gen/commercial-glass-facade.png" alt="Commercial Glass Facade" class="rc-image">
+                                <img src="images/renders-gen/commercial-glass-facade.png" alt="Commercial Glass Facade"
+                                    class="rc-image">
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">SEC_10 // COMMERCIAL</span>
                                     <h4 class="rc-hud-title">Commercial Glass Facade</h4>
@@ -468,14 +525,15 @@
                 <span class="s03-divider-label">03.B &mdash; 3D Render Videos</span>
                 <span class="s03-divider-line"></span>
             </div>
-            
+
             <div class="cinematic-deck-window">
                 <div class="video-deck-scene" id="videoScene">
                     <div class="video-deck-wrapper" id="videoConsole">
                         <!-- Video Card 1 (Top Left) -->
-                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="deck-video-card quad-tl" style="--card-idx: 0;">
+                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                            target="_blank" class="deck-video-card quad-tl" style="--card-idx: 0;">
                             <div class="rc-glass-frame">
-                                <video autoplay loop muted playsinline class="rc-video">
+                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
                                     <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
@@ -485,9 +543,10 @@
                             </div>
                         </a>
                         <!-- Video Card 2 (Top Right) -->
-                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="deck-video-card quad-tr" style="--card-idx: 1;">
+                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                            target="_blank" class="deck-video-card quad-tr" style="--card-idx: 1;">
                             <div class="rc-glass-frame">
-                                <video autoplay loop muted playsinline class="rc-video">
+                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
                                     <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
@@ -497,9 +556,10 @@
                             </div>
                         </a>
                         <!-- Video Card 3 (Bottom Left) -->
-                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="deck-video-card quad-bl" style="--card-idx: 2;">
+                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                            target="_blank" class="deck-video-card quad-bl" style="--card-idx: 2;">
                             <div class="rc-glass-frame">
-                                <video autoplay loop muted playsinline class="rc-video">
+                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
                                     <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
@@ -509,9 +569,10 @@
                             </div>
                         </a>
                         <!-- Video Card 4 (Bottom Right) -->
-                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="deck-video-card quad-br" style="--card-idx: 3;">
+                        <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                            target="_blank" class="deck-video-card quad-br" style="--card-idx: 3;">
                             <div class="rc-glass-frame">
-                                <video autoplay loop muted playsinline class="rc-video">
+                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
                                     <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
@@ -585,7 +646,8 @@
                     <div class="vr-scanlines"></div>
 
                     <!-- Viewport HUD Overlay Controls -->
-                    <button class="vr-viewport-fullscreen-btn magnetic" id="vr-fullscreen-btn" title="Toggle Fullscreen Mode">
+                    <button class="vr-viewport-fullscreen-btn magnetic" id="vr-fullscreen-btn"
+                        title="Toggle Fullscreen Mode">
                         <i class="fa-solid fa-expand"></i>
                     </button>
 
@@ -594,10 +656,12 @@
                         <div class="vr-3d-scene" id="vrScene">
                             <div class="vr-3d-carousel" id="vrCarousel">
                                 <!-- VR Screen 1 -->
-                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 0; --card-rot: 0deg;">
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                                    target="_blank" class="vr-ring-card" style="--card-idx: 0; --card-rot: 0deg;">
                                     <div class="rc-glass-frame">
-                                        <video autoplay loop muted playsinline class="rc-video">
-                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4"
+                                                type="video/mp4">
                                         </video>
                                         <div class="rc-hud-info">
                                             <span class="rc-hud-tag">VR_STREAM_01</span>
@@ -605,12 +669,14 @@
                                         </div>
                                     </div>
                                 </a>
-                                
+
                                 <!-- VR Screen 2 -->
-                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 1; --card-rot: 90deg;">
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                                    target="_blank" class="vr-ring-card" style="--card-idx: 1; --card-rot: 90deg;">
                                     <div class="rc-glass-frame">
-                                        <video autoplay loop muted playsinline class="rc-video">
-                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4"
+                                                type="video/mp4">
                                         </video>
                                         <div class="rc-hud-info">
                                             <span class="rc-hud-tag">VR_STREAM_02</span>
@@ -618,12 +684,14 @@
                                         </div>
                                     </div>
                                 </a>
-                                
+
                                 <!-- VR Screen 3 -->
-                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 2; --card-rot: 180deg;">
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                                    target="_blank" class="vr-ring-card" style="--card-idx: 2; --card-rot: 180deg;">
                                     <div class="rc-glass-frame">
-                                        <video autoplay loop muted playsinline class="rc-video">
-                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4"
+                                                type="video/mp4">
                                         </video>
                                         <div class="rc-hud-info">
                                             <span class="rc-hud-tag">VR_STREAM_03</span>
@@ -631,12 +699,14 @@
                                         </div>
                                     </div>
                                 </a>
-                                
+
                                 <!-- VR Screen 4 -->
-                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r" target="_blank" class="vr-ring-card" style="--card-idx: 3; --card-rot: 270deg;">
+                                <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
+                                    target="_blank" class="vr-ring-card" style="--card-idx: 3; --card-rot: 270deg;">
                                     <div class="rc-glass-frame">
-                                        <video autoplay loop muted playsinline class="rc-video">
-                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4" type="video/mp4">
+                                        <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
+                                            <source src="Videos/Screen%20Recording%202026-05-29%20143337.mp4"
+                                                type="video/mp4">
                                         </video>
                                         <div class="rc-hud-info">
                                             <span class="rc-hud-tag">VR_STREAM_04</span>
@@ -758,7 +828,8 @@
     </section>
 
     <!-- Service Section 6: CRM, Digital Marketing & Lead Generation -->
-    <section class="service-section" id="crm-marketing" style="background-color: var(--bg-secondary); overflow: hidden;">
+    <section class="service-section" id="crm-marketing"
+        style="background-color: var(--bg-secondary); overflow: hidden;">
         <div class="container">
             <div class="section-header">
                 <h2>CRM, Digital Marketing & Lead Generation</h2>
@@ -847,8 +918,8 @@
                                     <path id="chartAreaPath" d="M10,80 Q70,40 130,60 T250,20 T330,30 L330,95 L10,95 Z"
                                         fill="url(#chartGlow)" />
                                     <!-- Outline Path -->
-                                    <path id="chartLinePath" d="M10,80 Q70,40 130,60 T250,20 T330,30" fill="none" stroke="var(--accent)"
-                                        stroke-width="2.5" class="chart-line-anim" />
+                                    <path id="chartLinePath" d="M10,80 Q70,40 130,60 T250,20 T330,30" fill="none"
+                                        stroke="var(--accent)" stroke-width="2.5" class="chart-line-anim" />
                                     <!-- Grid Line -->
                                     <line x1="10" y1="95" x2="330" y2="95" stroke="rgba(255,255,255,0.06)"
                                         stroke-width="1" />
@@ -865,7 +936,8 @@
 
                         <!-- Channel Selectors Panel -->
                         <div class="crm-db-channels-box">
-                            <span class="chart-title" style="margin-bottom: 0.4rem;">Target Channels (Toggle to Sync)</span>
+                            <span class="chart-title" style="margin-bottom: 0.4rem;">Target Channels (Toggle to
+                                Sync)</span>
                             <div class="crm-channels-row">
                                 <div class="crm-channel-toggle active" data-channel="meta">
                                     <i class="fa-brands fa-facebook"></i> Meta Ads
@@ -961,81 +1033,276 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="service-section testimonials-section" id="testimonials">
-        <div class="testimonials-backdrop-glow"></div>
+    <!-- ══════════════════════════════════════════
+         TESTIMONIALS — INFINITE CONSTELLATION GALLERY
+    ══════════════════════════════════════════ -->
+    <section class="service-section testi-constellation-section" id="testimonials"
+        style="background: var(--bg-primary); overflow: hidden; position: relative;">
+        <!-- Ambient Particle Canvas -->
+        <canvas id="testi-particles-canvas" class="testi-particles-canvas"></canvas>
+        <!-- Radial glow orbs -->
+        <div class="testi-glow-orb testi-glow-orb--1"></div>
+        <div class="testi-glow-orb testi-glow-orb--2"></div>
+        <div class="testi-glow-orb testi-glow-orb--3"></div>
+
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Client Reviews</span>
+                <span class="section-tag">Voices of Trust</span>
                 <h2>Testimonials Gallery</h2>
-                <p>Real experiences from developers and PropTech innovators who launched with Prizma Brixx.</p>
+                <p>Real experiences from developers, architects, and PropTech innovators who launched with Prizma Brixx.
+                </p>
             </div>
-            
-            <div class="gallery-wall-container">
-                <div class="gallery-wall-scene" id="testimonialsScene">
-                    <div class="gallery-wall-wrapper">
-                        <!-- Frame 1 -->
-                        <div class="gallery-frame" style="--frame-idx: 0;">
-                            <div class="frame-canvas">
-                                <div class="canvas-art-glow"></div>
-                                <div class="canvas-content">
-                                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                                    <p class="quote-text">"Prizma Brixx completely transformed our project launches. Their interactive availability map is a game changer for real-time customer bookings."</p>
-                                    <div class="author-info">
-                                        <h4 class="author-name">K. Kala Varma</h4>
-                                        <span class="author-title">MD, Kala Realty</span>
-                                        <span class="project-tag">MVV Housing & Farms</span>
-                                    </div>
-                                </div>
-                                <div class="canvas-hud">
-                                    <span>EXHIBIT_01 // ACTIVE</span>
-                                    <span>VERIFIED</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Frame 2 -->
-                        <div class="gallery-frame" style="--frame-idx: 1;">
-                            <div class="frame-canvas">
-                                <div class="canvas-art-glow"></div>
-                                <div class="canvas-content">
-                                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                                    <p class="quote-text">"The photorealistic renders and 3D drone storytelling secured our pre-launch investor commitments. Their attention to lighting and detail is unmatched."</p>
-                                    <div class="author-info">
-                                        <h4 class="author-name">G. Srinivas Rao</h4>
-                                        <span class="author-title">CEO, Zenith Developers</span>
-                                        <span class="project-tag">GK Zenith Towers</span>
-                                    </div>
-                                </div>
-                                <div class="canvas-hud">
-                                    <span>EXHIBIT_02 // ACTIVE</span>
-                                    <span>VERIFIED</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Frame 3 -->
-                        <div class="gallery-frame" style="--frame-idx: 2;">
-                            <div class="frame-canvas">
-                                <div class="canvas-art-glow"></div>
-                                <div class="canvas-content">
-                                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-                                    <p class="quote-text">"The Custom CRM integration is flawless. Syncing our digital campaigns with automated WhatsApp notifications reduced our response time by 80%."</p>
-                                    <div class="author-info">
-                                        <h4 class="author-name">Pooja Hegde</h4>
-                                        <span class="author-title">Director of Marketing, Siri Townships</span>
-                                        <span class="project-tag">MAP G-Siri Plots</span>
-                                    </div>
-                                </div>
-                                <div class="canvas-hud">
-                                    <span>EXHIBIT_03 // ACTIVE</span>
-                                    <span>VERIFIED</span>
-                                </div>
-                            </div>
+        </div>
+
+        <!-- ── ROW 1: Scrolls LEFT (6 cards + duplicate for infinite loop) ── -->
+        <div class="testi-marquee-track testi-marquee--left">
+            <div class="testi-marquee-inner">
+                <!-- Card 1 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 28;">KV</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">K. Kala Varma</h4>
+                            <span class="testi-role">MD, Kala Realty</span>
                         </div>
                     </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"Prizma Brixx completely transformed our project launches. Their interactive
+                        availability map is a game changer for real-time customer bookings."</p>
+                    <span class="testi-project"><i class="fa-solid fa-building"></i> MVV Housing & Farms</span>
+                </div>
+                <!-- Card 2 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 210;">SR</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">G. Srinivas Rao</h4>
+                            <span class="testi-role">CEO, Zenith Developers</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"The photorealistic renders and 3D drone storytelling secured our pre-launch
+                        investor commitments. Their attention to lighting is unmatched."</p>
+                    <span class="testi-project"><i class="fa-solid fa-city"></i> GK Zenith Towers</span>
+                </div>
+                <!-- Card 3 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 340;">PH</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Pooja Hegde</h4>
+                            <span class="testi-role">Director of Marketing, Siri Townships</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"Custom CRM integration is flawless. Syncing digital campaigns with automated
+                        WhatsApp notifications reduced our response time by 80%."</p>
+                    <span class="testi-project"><i class="fa-solid fa-map-location-dot"></i> MAP G-Siri Plots</span>
+                </div>
+                <!-- Card 4 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 160;">AK</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Arjun Kapoor</h4>
+                            <span class="testi-role">Founder, Horizon Estates</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="testi-quote">"The VR experience center they built for our township launch left every
+                        visitor speechless. Walk-ins doubled within the first week of deployment."</p>
+                    <span class="testi-project"><i class="fa-solid fa-vr-cardboard"></i> Horizon Grand Township</span>
+                </div>
+                <!-- Card 5 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 50;">RM</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Rajesh Mehra</h4>
+                            <span class="testi-role">VP Sales, Emerald Group</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"Their brochure design elevated our brand presence overnight. The premium
+                        collateral increased foot traffic at the site office by 40%."</p>
+                    <span class="testi-project"><i class="fa-solid fa-palette"></i> Emerald Heights Branding</span>
+                </div>
+                <!-- Card 6 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 270;">ND</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Neha Deshmukh</h4>
+                            <span class="testi-role">CMO, Skyline Properties</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"ROI on the digital campaigns exceeded our projections by 3x. Prizma Brixx
+                        understands PropTech marketing at a level nobody else does."</p>
+                    <span class="testi-project"><i class="fa-solid fa-chart-line"></i> Skyline Digital Campaign</span>
                 </div>
             </div>
+        </div>
+
+        <!-- ── ROW 2: Scrolls RIGHT (6 cards + duplicate for infinite loop) ── -->
+        <div class="testi-marquee-track testi-marquee--right">
+            <div class="testi-marquee-inner">
+                <!-- Card 7 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 190;">VM</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Vikram Malhotra</h4>
+                            <span class="testi-role">Director, Astra Developers</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"From drone shoots to final delivery, they managed the complete visual
+                        narrative. Our project site sold 60% units within the first quarter."</p>
+                    <span class="testi-project"><i class="fa-solid fa-helicopter"></i> Astra Valley Resort</span>
+                </div>
+                <!-- Card 8 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 120;">SD</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Sarah D'Souza</h4>
+                            <span class="testi-role">Architect, Pinnacle Design</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="testi-quote">"As an architect, I'm picky about renders. Prizma Brixx nailed every detail —
+                        the material textures, lighting, and environmental context are simply exquisite."</p>
+                    <span class="testi-project"><i class="fa-solid fa-drafting-compass"></i> Pinnacle Villas
+                        Collection</span>
+                </div>
+                <!-- Card 9 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 0;">RP</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Ravi Prasad</h4>
+                            <span class="testi-role">Managing Partner, Urban Crest</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"The availability tool they built became our primary sales closing tool.
+                        Clients select plots on-screen and book instantly — it's revolutionary."</p>
+                    <span class="testi-project"><i class="fa-solid fa-map"></i> Urban Crest Open Plots</span>
+                </div>
+                <!-- Card 10 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 300;">AS</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Ananya Sharma</h4>
+                            <span class="testi-role">Head of Operations, Zenova Infra</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"Prizma Brixx delivered a full 360° virtual tour that reduced our physical
+                        site visit dependency by 50%. Buyers now shortlist from their phones."</p>
+                    <span class="testi-project"><i class="fa-solid fa-street-view"></i> Zenova Smart Living</span>
+                </div>
+                <!-- Card 11 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 80;">MR</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Mohit Reddy</h4>
+                            <span class="testi-role">CEO, Bhumi Land Corp</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testi-quote">"Our open-plot project needed a master layout that communicated scale and
+                        luxury — Prizma Brixx exceeded all expectations with their precision mapping."</p>
+                    <span class="testi-project"><i class="fa-solid fa-layer-group"></i> Bhumi Greens Phase II</span>
+                </div>
+                <!-- Card 12 -->
+                <div class="testi-card" data-tilt>
+                    <div class="testi-card__glow"></div>
+                    <div class="testi-card__header">
+                        <div class="testi-avatar" style="--av-hue: 40;">DK</div>
+                        <div class="testi-meta">
+                            <h4 class="testi-name">Deepak Kumar</h4>
+                            <span class="testi-role">Founder, NexGen Realty</span>
+                        </div>
+                    </div>
+                    <div class="testi-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="testi-quote">"From CRM to branding to walkthroughs, Prizma Brixx is a one-stop powerhouse.
+                        We've partnered for all three of our upcoming township projects."</p>
+                    <span class="testi-project"><i class="fa-solid fa-handshake"></i> NexGen Township Trilogy</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aggregate rating badge -->
+        <div class="testi-aggregate-badge">
+            <div class="testi-aggregate-stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <span class="testi-aggregate-score">4.9 / 5.0</span>
+            <span class="testi-aggregate-count">Based on 50+ client projects</span>
         </div>
     </section>
 
@@ -1069,8 +1336,18 @@
                 </div>
 
                 <div class="contact-form-wrapper glass-panel">
-                    <form id="contactForm"
-                        onsubmit="event.preventDefault(); alert('Thank you for contacting Prizma Brixx. We will get back to you shortly!'); this.reset();">
+                    <!-- Success Card (hidden by default) -->
+                    <div class="contact-success-card" id="contactSuccessCard">
+                        <div class="success-icon-ring">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h4>Message Sent!</h4>
+                        <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+                        <button class="success-reset-btn" id="successResetBtn">
+                            <i class="fa-solid fa-arrow-left"></i> Send Another Message
+                        </button>
+                    </div>
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" class="form-control" placeholder="John Doe"
@@ -1089,7 +1366,7 @@
                                 <option value="" disabled selected>Select project type...</option>
                                 <option value="exterior">3D Exterior Renders</option>
                                 <option value="floorplans">3D Floor Plans & Layouts</option>
-                                <option value="interactive">Interactive Availibility Tools</option>
+                                <option value="interactive">Interactive Availability Tools</option>
                                 <option value="marketing">CRM & Digital Lead Campaigns</option>
                                 <option value="custom">Other Architectural Solutions</option>
                             </select>
@@ -1101,7 +1378,10 @@
                                 placeholder="Tell us about your blueprints or scope..." required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+                        <button type="submit" class="btn btn-primary submit-btn" id="submitBtn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loader"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1143,12 +1423,14 @@
     <!-- ── RENDER LIGHTBOX MODAL ── -->
     <div id="render-lightbox" class="lightbox-modal">
         <span class="lightbox-close" id="lightboxClose">&times;</span>
-        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" title="Previous Image"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" title="Previous Image"><i
+                class="fa-solid fa-chevron-left"></i></button>
         <div class="lightbox-content">
             <img id="lightboxImg" src="" alt="Zoomed Render">
             <div id="lightboxCaption" class="lightbox-caption"></div>
         </div>
-        <button class="lightbox-nav lightbox-next" id="lightboxNext" title="Next Image"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" title="Next Image"><i
+                class="fa-solid fa-chevron-right"></i></button>
     </div>
 
     <!-- Navigation & Cinematic Interactions Logic -->
@@ -1181,14 +1463,20 @@
 
         // GreenSock ScrollTrigger Registration
         gsap.registerPlugin(ScrollTrigger);
+        ScrollTrigger.config({
+            limitCallbacks: true,
+            syncInterval: 100 // debounce syncs for extreme performance
+        });
 
-        // Lenis Smooth Scroll Initialization
+        // Lenis Smooth Scroll Initialization (Optimized for Performance)
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             smooth: true,
-            mouseMultiplier: 1
+            mouseMultiplier: 1,
+            lerp: 0.1,
+            wheelMultiplier: 0.9
         });
 
         function raf(time) {
@@ -1197,8 +1485,19 @@
         }
         requestAnimationFrame(raf);
 
-        // Synchronize ScrollTrigger with Lenis
-        lenis.on('scroll', ScrollTrigger.update);
+        let scrollTimeout;
+        lenis.on('scroll', (e) => {
+            ScrollTrigger.update();
+            
+            // Add is-scrolling class to body to disable heavy CSS paints (like backdrop-filter)
+            if (!document.body.classList.contains('is-scrolling')) {
+                document.body.classList.add('is-scrolling');
+            }
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                document.body.classList.remove('is-scrolling');
+            }, 150);
+        });
 
         // ── PRELOADER DRIFTING PARTICLES CANVAS ──
         const loaderCanvas = document.getElementById('preloader-canvas');
@@ -1277,8 +1576,8 @@
         let percentageCount = { val: 0 };
         preloaderTL.to(percentageCount, {
             val: 100,
-            duration: 3,
-            ease: 'power2.inOut',
+            duration: 1.2, // Sped up from 3 seconds
+            ease: 'power3.out',
             onUpdate: () => {
                 document.querySelector('.preloader-counter').innerText = Math.floor(percentageCount.val) + '%';
                 document.querySelector('.preloader-progress-fill').style.width = percentageCount.val + '%';
@@ -1286,9 +1585,9 @@
         });
 
         // Setup logo and tags reveal in parallel
-        gsap.to('.preloader-logo-img', { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.8, delay: 0.2 });
-        gsap.to('.preloader-tagline', { opacity: 1, y: 0, duration: 1.2, delay: 0.8 });
-        gsap.to('.preloader-counter', { opacity: 1, duration: 0.8, delay: 0.6 });
+        gsap.to('.preloader-logo-img', { opacity: 1, filter: 'blur(0px)', scale: 1, duration: 1.0, delay: 0.1 });
+        gsap.to('.preloader-tagline', { opacity: 1, y: 0, duration: 0.8, delay: 0.3 });
+        gsap.to('.preloader-counter', { opacity: 1, duration: 0.5, delay: 0.2 });
 
 
 
@@ -1307,7 +1606,7 @@
         // Cache initially and update on resize
         cacheSectionOffsets();
         window.addEventListener('resize', cacheSectionOffsets);
-        
+
         // Refresh cache after a delay for DOM rendering / preloader fade-out adjustments
         setTimeout(cacheSectionOffsets, 1000);
         setTimeout(cacheSectionOffsets, 3000);
@@ -1358,12 +1657,12 @@
                 const isDark = document.documentElement.classList.toggle('dark-mode');
                 document.body.classList.toggle('dark-mode', isDark);
                 localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
-                
+
                 // Add a cool rotate/scale click animation using GSAP
                 const activeIcon = themeToggleBtn.querySelector(isDark ? '.sun-icon' : '.moon-icon');
                 if (activeIcon) {
-                    gsap.fromTo(activeIcon, 
-                        { scale: 0.6, rotate: -45 }, 
+                    gsap.fromTo(activeIcon,
+                        { scale: 0.6, rotate: -45 },
                         { scale: 1, rotate: 0, duration: 0.45, ease: "back.out(1.8)" }
                     );
                 }
@@ -1375,7 +1674,8 @@
         const navMenu = document.querySelector('.nav-menu');
 
         if (menuToggle && navMenu) {
-            menuToggle.addEventListener('click', () => {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
                 menuToggle.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
@@ -1386,6 +1686,14 @@
                     menuToggle.classList.remove('active');
                     navMenu.classList.remove('active');
                 });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
             });
         }
 
@@ -1676,7 +1984,7 @@
             for (let r = 0; r < heroRings.length; r++) {
                 const currentRing = heroRings[r];
                 const nextRing = heroRings[r + 1] || [];
-                
+
                 // 1. Connect within the same ring
                 for (let i = 0; i < currentRing.length; i++) {
                     const p1 = currentRing[i];
@@ -1698,7 +2006,7 @@
                         }
                     }
                 }
-                
+
                 // 2. Connect current ring with the next ring
                 for (let i = 0; i < currentRing.length; i++) {
                     const p1 = currentRing[i];
@@ -2106,7 +2414,7 @@
             if (activeChannels.length === 0) return;
 
             const budget = adBudgetSlider ? parseInt(adBudgetSlider.value) : 150000;
-            
+
             // Calculate weighted metrics
             let totalCPL = 0;
             let totalCloseRate = 0;
@@ -2132,7 +2440,7 @@
             if (calcReachVal) calcReachVal.textContent = formatNumber(reach);
             if (calcLeadsVal) calcLeadsVal.textContent = formatNumber(leads);
             if (calcBookingsVal) calcBookingsVal.textContent = formatNumber(bookings);
-            
+
             if (crmCloseRate) crmCloseRate.textContent = (weightedCloseRate * 100).toFixed(1) + '%';
             if (crmActiveCampaigns) crmActiveCampaigns.textContent = `${activeChannels.length} Active`;
 
@@ -2310,13 +2618,13 @@
                     } catch (err) {
                         console.warn("Could not set VR video offset", err);
                     }
-                    video.play().catch(() => {});
+                    video.play().catch(() => { });
                 };
                 video.addEventListener('loadedmetadata', setOffset);
                 if (video.readyState >= 1) {
                     setOffset();
                 } else {
-                    video.play().catch(() => {});
+                    video.play().catch(() => { });
                 }
             });
 
@@ -2332,7 +2640,7 @@
 
             const totalCards = 4;
             const stepAngle = 90; // 360 / 4
-            
+
             let carouselState = { angle: 0 };
             let autoRotateSpeed = 0.05; // slow drift
             let autoRotateActive = true;
@@ -2352,7 +2660,7 @@
                     carouselState.angle += autoRotateSpeed;
                     gsap.set(vrCarousel, { rotateY: carouselState.angle });
                     updateTelemetryText();
-                    
+
                     // Sync active tab based on angle
                     const activeIndex = Math.round(carouselState.angle / stepAngle) % totalCards;
                     // convert negative mod to positive
@@ -2390,7 +2698,7 @@
 
             function rotateCarouselToCard(index) {
                 currentActiveIndex = (index + totalCards) % totalCards;
-                
+
                 const cardAngle = currentActiveIndex * stepAngle;
                 const currentAngle = carouselState.angle;
                 const targetBase = Math.round((currentAngle + cardAngle) / 360) * 360;
@@ -2424,9 +2732,9 @@
                 syncActiveTab(currentActiveIndex);
                 if (focusValEl) {
                     focusValEl.textContent = "LOCKING...";
-                    setTimeout(() => { 
+                    setTimeout(() => {
                         if (focusValEl.textContent === "LOCKING...") {
-                            focusValEl.textContent = "100.0%"; 
+                            focusValEl.textContent = "100.0%";
                         }
                     }, 450);
                 }
@@ -2476,11 +2784,11 @@
             if (fullscreenBtn && vrViewport) {
                 fullscreenBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    
-                    if (!document.fullscreenElement && 
-                        !document.webkitFullscreenElement && 
+
+                    if (!document.fullscreenElement &&
+                        !document.webkitFullscreenElement &&
                         !document.msFullscreenElement) {
-                        
+
                         // Enter fullscreen
                         if (vrViewport.requestFullscreen) {
                             vrViewport.requestFullscreen();
@@ -2503,10 +2811,10 @@
 
                 // Update icon/state on fullscreen change event
                 const onFullscreenChange = () => {
-                    const isFs = document.fullscreenElement || 
-                                 document.webkitFullscreenElement || 
-                                 document.msFullscreenElement;
-                    
+                    const isFs = document.fullscreenElement ||
+                        document.webkitFullscreenElement ||
+                        document.msFullscreenElement;
+
                     const icon = fullscreenBtn.querySelector('i');
                     if (icon) {
                         if (isFs) {
@@ -2566,20 +2874,20 @@
                     } catch (err) {
                         console.warn("Could not set video offset", err);
                     }
-                    video.play().catch(() => {});
+                    video.play().catch(() => { });
                 };
 
                 video.addEventListener('loadedmetadata', setOffset);
                 if (video.readyState >= 1) {
                     setOffset();
                 } else {
-                    video.play().catch(() => {});
+                    video.play().catch(() => { });
                 }
 
                 // Autoplay recovery
                 video.play().catch(e => {
                     const playOnAction = () => {
-                        video.play().catch(() => {});
+                        video.play().catch(() => { });
                         document.removeEventListener('click', playOnAction);
                         document.removeEventListener('touchstart', playOnAction);
                     };
@@ -2597,7 +2905,7 @@
 
             const totalCards = 10;
             const stepAngle = 360 / totalCards; // 36 degrees
-            
+
             let carouselState = { angle: 0 };
             let autoRotateSpeed = 0.06; // degrees per frame
             let autoRotateActive = true;
@@ -2618,7 +2926,7 @@
             function rotateCarouselToCard(index) {
                 currentActiveIndex = (index + totalCards) % totalCards;
                 autoRotateActive = false;
-                
+
                 const cardAngle = currentActiveIndex * stepAngle;
                 const currentAngle = carouselState.angle;
                 const targetBase = Math.round((currentAngle + cardAngle) / 360) * 360;
@@ -2715,11 +3023,11 @@
             function openLightbox(index) {
                 activeLightboxIndex = (index + totalCards) % totalCards;
                 const imgData = renderImages[activeLightboxIndex];
-                
+
                 lightboxImg.src = imgData.src;
                 lightboxCaption.textContent = imgData.title;
                 lightbox.style.display = "flex";
-                
+
                 // Pause page scrolling
                 document.body.style.overflow = "hidden";
             }
@@ -2825,6 +3133,348 @@
                 }
             }
         })();
+
+        // ── CONTACT FORM: Smooth Success Card Handler ──
+        (() => {
+            const form = document.getElementById('contactForm');
+            const successCard = document.getElementById('contactSuccessCard');
+            const resetBtn = document.getElementById('successResetBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (form && successCard) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    // Show loading state
+                    if (submitBtn) {
+                        submitBtn.classList.add('loading');
+                        submitBtn.disabled = true;
+                    }
+
+                    // Simulate async send (replace with real API call if needed)
+                    setTimeout(() => {
+                        // Hide form, show success card
+                        gsap.to(form, {
+                            opacity: 0, y: -20, duration: 0.4, ease: 'power2.in',
+                            onComplete: () => {
+                                form.style.display = 'none';
+                                successCard.classList.add('visible');
+                                gsap.fromTo(successCard,
+                                    { opacity: 0, y: 30, scale: 0.96 },
+                                    { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.4)' }
+                                );
+                            }
+                        });
+                    }, 1200);
+                });
+
+                // Reset: show form again
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        gsap.to(successCard, {
+                            opacity: 0, y: -20, duration: 0.3, ease: 'power2.in',
+                            onComplete: () => {
+                                successCard.classList.remove('visible');
+                                form.reset();
+                                form.style.display = '';
+                                if (submitBtn) {
+                                    submitBtn.classList.remove('loading');
+                                    submitBtn.disabled = false;
+                                }
+                                gsap.fromTo(form,
+                                    { opacity: 0, y: 20 },
+                                    { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+                                );
+                            }
+                        });
+                    });
+                }
+            }
+        })();
+
+        // ── HERO STATS COUNTER ANIMATION ──
+        (() => {
+            const statNumbers = document.querySelectorAll('.hero-stat-number');
+            if (!statNumbers.length) return;
+
+            let countersStarted = false;
+
+            function animateCounters() {
+                if (countersStarted) return;
+                countersStarted = true;
+
+                statNumbers.forEach(el => {
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    const duration = 2000;
+                    const start = performance.now();
+
+                    function update(now) {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // easeOutExpo
+                        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                        const current = Math.floor(eased * target);
+                        el.textContent = current + suffix;
+                        if (progress < 1) requestAnimationFrame(update);
+                        else el.textContent = target + suffix;
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+
+            // Trigger when hero stats bar enters view
+            const statsBar = document.querySelector('.hero-stats-bar');
+            if (statsBar) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        animateCounters();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.3 });
+                observer.observe(statsBar);
+            }
+        })();
+
+        // ══════════════════════════════════════════════════════════
+        // TESTIMONIALS — CONSTELLATION GALLERY ENGINE
+        // ══════════════════════════════════════════════════════════
+        (() => {
+            // ── 1. Duplicate marquee content for seamless infinite loop ──
+            document.querySelectorAll('.testi-marquee-inner').forEach(inner => {
+                const children = Array.from(inner.children);
+                children.forEach(child => {
+                    const clone = child.cloneNode(true);
+                    inner.appendChild(clone);
+                });
+            });
+
+            // ── 2. Ambient Particle Canvas ──
+            const canvas = document.getElementById('testi-particles-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                let animFrame;
+                const PARTICLE_COUNT = 50;
+                const MAX_DIST = 120;
+
+                function resize() {
+                    const section = canvas.closest('section');
+                    if (!section) return;
+                    canvas.width = section.offsetWidth;
+                    canvas.height = section.offsetHeight;
+                }
+
+                function createParticles() {
+                    particles = [];
+                    for (let i = 0; i < PARTICLE_COUNT; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            vx: (Math.random() - 0.5) * 0.4,
+                            vy: (Math.random() - 0.5) * 0.4,
+                            r: Math.random() * 2 + 0.5,
+                            alpha: Math.random() * 0.4 + 0.1
+                        });
+                    }
+                }
+
+                function drawParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const isDark = document.documentElement.classList.contains('dark-mode');
+                    const baseColor = isDark ? '245, 145, 40' : '180, 120, 50';
+
+                    // Draw connections
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < MAX_DIST) {
+                                const alpha = (1 - dist / MAX_DIST) * 0.08;
+                                ctx.beginPath();
+                                ctx.strokeStyle = `rgba(${baseColor}, ${alpha})`;
+                                ctx.lineWidth = 0.5;
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    // Draw particles
+                    particles.forEach(p => {
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(${baseColor}, ${p.alpha})`;
+                        ctx.fill();
+
+                        // Move
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        // Wrap edges
+                        if (p.x < 0) p.x = canvas.width;
+                        if (p.x > canvas.width) p.x = 0;
+                        if (p.y < 0) p.y = canvas.height;
+                        if (p.y > canvas.height) p.y = 0;
+                    });
+
+                    animFrame = requestAnimationFrame(drawParticles);
+                }
+
+                // Only run when visible
+                const section = canvas.closest('section');
+                if (section) {
+                    const observer = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting) {
+                            resize();
+                            if (!particles.length) createParticles();
+                            drawParticles();
+                        } else {
+                            cancelAnimationFrame(animFrame);
+                        }
+                    }, { threshold: 0.05 });
+                    observer.observe(section);
+                }
+
+                window.addEventListener('resize', () => {
+                    resize();
+                    createParticles();
+                });
+            }
+
+            // ── 3. GSAP ScrollTrigger Reveal ──
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+
+                // Section header reveal
+                const testiSection = document.querySelector('.testi-constellation-section');
+                if (testiSection) {
+                    const header = testiSection.querySelector('.section-header');
+                    if (header) {
+                        gsap.fromTo(header,
+                            { opacity: 0, y: 50 },
+                            {
+                                opacity: 1, y: 0, duration: 1,
+                                ease: 'power3.out',
+                                scrollTrigger: {
+                                    trigger: testiSection,
+                                    start: 'top 80%',
+                                    toggleActions: 'play none none none'
+                                }
+                            }
+                        );
+                    }
+
+                    // Marquee tracks reveal
+                    gsap.utils.toArray('.testi-marquee-track').forEach((track, i) => {
+                        gsap.fromTo(track,
+                            { opacity: 0, y: 40 },
+                            {
+                                opacity: 1, y: 0, duration: 0.9,
+                                delay: 0.2 + i * 0.15,
+                                ease: 'power3.out',
+                                scrollTrigger: {
+                                    trigger: testiSection,
+                                    start: 'top 75%',
+                                    toggleActions: 'play none none none'
+                                }
+                            }
+                        );
+                    });
+
+                    // Aggregate badge reveal
+                    const badge = testiSection.querySelector('.testi-aggregate-badge');
+                    if (badge) {
+                        gsap.fromTo(badge,
+                            { opacity: 0, y: 30, scale: 0.9 },
+                            {
+                                opacity: 1, y: 0, scale: 1, duration: 0.8,
+                                delay: 0.6,
+                                ease: 'back.out(1.4)',
+                                scrollTrigger: {
+                                    trigger: badge,
+                                    start: 'top 90%',
+                                    toggleActions: 'play none none none'
+                                }
+                            }
+                        );
+                    }
+                }
+            }
+        })();
+    </script>
+    
+    <!-- GLOBAL PERFORMANCE & HUMANIZED OPTIMIZATIONS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Image Lazy Loading and Async Decoding for all sections below fold
+            const images = document.querySelectorAll('section:not(#hero-section) img');
+            images.forEach(img => {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+                img.setAttribute('decoding', 'async');
+            });
+
+            // 2. Video Intersection Observer for Extreme Performance Optimization
+            // This prevents the 7+ concurrent videos from crashing mobile browsers
+            const videos = document.querySelectorAll('video');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if ('IntersectionObserver' in window) {
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const video = entry.target;
+                        if (entry.isIntersecting) {
+                            if (!prefersReducedMotion) {
+                                // Only play if it's actually visible
+                                const playPromise = video.play();
+                                if (playPromise !== undefined) {
+                                    playPromise.catch(error => {
+                                        // Auto-play was prevented, which is fine
+                                        console.log("Autoplay prevented by browser policy");
+                                    });
+                                }
+                            }
+                        } else {
+                            // Immediately pause when off-screen to save CPU/GPU
+                            video.pause();
+                        }
+                    });
+                }, { rootMargin: '100px 0px', threshold: 0.1 });
+
+                videos.forEach(video => {
+                    videoObserver.observe(video);
+                });
+            }
+        });
+
+        // 3. Portfolio Panels Stagger Reveal (Right to Left with scale)
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                const panels = document.querySelectorAll('#portfolio .gallery-panel');
+                if (panels.length > 0) {
+                    gsap.fromTo(panels, 
+                        { x: 150, opacity: 0, scale: 0.95 },
+                        {
+                            x: 0,
+                            opacity: 1,
+                            scale: 1,
+                            duration: 1.4,
+                            stagger: 0.25,
+                            ease: 'expo.out',
+                            scrollTrigger: {
+                                trigger: '#portfolio .expanding-gallery',
+                                start: 'top 80%',
+                                toggleActions: 'play none none none'
+                            }
+                        }
+                    );
+                }
+            }
+        });
     </script>
 </body>
 
