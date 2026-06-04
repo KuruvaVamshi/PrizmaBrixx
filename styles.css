@@ -2065,15 +2065,23 @@ body::before {
 }
 
 /* --- Service 04: Brochure & Branding 3D Book styling --- */
+#branding {
+    padding: 3rem 0 4rem 0 !important; /* Reduced padding to fit heading and book in a single screen view */
+}
+
+#branding .section-header {
+    margin-bottom: 2.2rem; /* Reduced margin-bottom to pull the book up */
+}
+
 .book-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 6rem 0;
+    padding: 1.5rem 0; /* Reduced padding to minimize vertical footprint */
     perspective: 2200px;
     position: relative;
     width: 100%;
-    min-height: 680px;
+    min-height: 540px; /* Reduced min-height to fit standard laptop viewports */
     overflow: visible;
 }
 
@@ -3642,40 +3650,57 @@ body:not(.dark-mode) .moon-icon {
 
 .hero-eyebrow {
     font-family: var(--font-mono);
-    font-size: clamp(10px, 1.5vw, 13px);
-    letter-spacing: 0.35em;
+    font-size: clamp(9px, 1.2vw, 11px);
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 24px;
+    background: rgba(245, 145, 40, 0.06);
+    border: 1px solid rgba(245, 145, 40, 0.18);
+    padding: 0.45rem 1.4rem;
+    border-radius: 50px;
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(245, 145, 40, 0.03);
     opacity: 0;
     transform: translateY(20px);
 }
 
 .hero-title {
-    font-size: clamp(48px, 9vw, 120px);
-    font-weight: 500;
+    font-size: clamp(38px, 6.5vw, 72px); /* Reduced from 120px for a classier, more refined and professional look */
+    font-weight: 300; /* Light weight for Prizma for premium minimalist feel */
     text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 0.95;
+    letter-spacing: 0.06em; /* Slightly wider spacing for a futuristic, modern tech aesthetic */
+    line-height: 1.1;
     color: #111318;
     margin-bottom: 24px;
     opacity: 0;
     filter: blur(20px);
     transform: translateY(40px);
+    transition: text-shadow 0.3s ease;
 }
 
 .hero-title span {
-    color: var(--gold);
-    text-shadow: 0 0 40px var(--gold-glow);
-    -webkit-text-stroke: none;
+    font-weight: 800; /* Strong bold contrast for Brixx */
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(245, 145, 40, 0.15);
+    background: linear-gradient(135deg, #f59128 0%, #faac58 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-title:hover {
+    text-shadow: 0 0 25px rgba(245, 145, 40, 0.15);
 }
 
 .hero-subtitle {
-    font-size: clamp(15px, 2vw, 20px);
+    font-size: clamp(14px, 1.8vw, 17px);
     color: #555c6e;
-    max-width: 680px;
+    max-width: 640px;
     line-height: 1.6;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    letter-spacing: 0.01em;
     opacity: 0;
     transform: translateY(20px);
 }
@@ -5401,6 +5426,360 @@ body:not(.dark-mode) .moon-icon {
     color: #111318;
 }
 
+
+
+
+
+/* ══════════════════════════════════════════════════════════
+   VR CINEMATIC SPOTLIGHT PLAYER
+   ══════════════════════════════════════════════════════════ */
+
+.vr-spotlight-deck {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+/* HUD status bar above the main stage */
+.vr-hud-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    backdrop-filter: blur(12px);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.vr-hud-left {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.vr-hud-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: vrDotPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes vrDotPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+    50% { opacity: 0.4; box-shadow: 0 0 3px var(--accent); }
+}
+
+.vr-hud-label {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.vr-hud-right {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.vr-hud-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+}
+
+.vr-hud-stat i {
+    color: #e05050;
+    font-size: 0.6rem;
+    animation: vrLivePulse 1s ease-in-out infinite;
+}
+
+@keyframes vrLivePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Main Stage container */
+.vr-main-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid rgba(245, 145, 40, 0.30);
+    box-shadow:
+        0 0 0 1px rgba(245, 145, 40, 0.12),
+        0 30px 80px rgba(0,0,0,0.18),
+        inset 0 0 60px rgba(245, 145, 40, 0.04);
+    background: #0a0906;
+}
+
+.vr-main-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 60%,
+        rgba(0,0,0,0.7) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* The stage video itself */
+.vr-stage-video-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.vr-stage-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform-origin: center center;
+}
+
+/* Glitch flash overlay for transitions */
+.vr-stage-flash {
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 145, 40, 0.25);
+    display: none;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Bottom info strip inside stage */
+.vr-stage-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1.5rem 1.75rem 1.4rem;
+    gap: 1rem;
+}
+
+.vr-stage-tag-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.vr-stage-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.85;
+}
+
+.vr-stage-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+.vr-stage-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.vr-stage-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background: rgba(245, 145, 40, 0.18);
+    border: 1px solid rgba(245, 145, 40, 0.5);
+    border-radius: 6px;
+    color: var(--accent);
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.vr-stage-cta:hover {
+    background: rgba(245, 145, 40, 0.35);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Film Strip Wrapper */
+.vr-filmstrip-wrap {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(245,145,40,0.3) transparent;
+}
+
+.vr-filmstrip-wrap::-webkit-scrollbar {
+    height: 4px;
+}
+.vr-filmstrip-wrap::-webkit-scrollbar-track { background: transparent; }
+.vr-filmstrip-wrap::-webkit-scrollbar-thumb {
+    background: rgba(245,145,40,0.3);
+    border-radius: 4px;
+}
+
+.vr-filmstrip {
+    display: flex;
+    gap: 0.85rem;
+    padding: 0.2rem 0.1rem 0.6rem;
+    min-width: max-content;
+}
+
+/* Individual thumbnail button */
+.vr-thumb {
+    position: relative;
+    width: 180px;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-primary);
+    cursor: pointer;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.vr-thumb:hover {
+    border-color: rgba(245, 145, 40, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(245, 145, 40, 0.18);
+}
+
+.vr-thumb.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(245, 145, 40, 0.25), 0 8px 28px rgba(245, 145, 40, 0.25);
+}
+
+.vr-thumb-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+.vr-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5rem 0.65rem;
+    gap: 0.1rem;
+    pointer-events: none;
+}
+
+.vr-thumb-num {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+}
+
+.vr-thumb-name {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+/* Active indicator bar at bottom of thumb */
+.vr-thumb-active-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 0 0 10px 10px;
+}
+
+.vr-thumb.active .vr-thumb-active-bar {
+    transform: scaleX(1);
+}
+
+/* Responsive: On smaller screens stack title / make thumbs smaller */
+@media (max-width: 768px) {
+    .vr-stage-info {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1rem 1rem;
+    }
+
+    .vr-stage-title { font-size: 1.1rem; }
+
+    .vr-thumb {
+        width: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vr-thumb {
+        width: 110px;
+    }
+    .vr-stage-title { font-size: 0.95rem; }
+}
+
+/* Dark mode overrides */
+.dark-mode .vr-main-stage {
+    border-color: rgba(245, 145, 40, 0.35);
+    box-shadow:
+        0 0 0 1px rgba(245, 145, 40, 0.15),
+        0 30px 80px rgba(0,0,0,0.45),
+        inset 0 0 60px rgba(245, 145, 40, 0.06);
+}
+
+.dark-mode .vr-thumb {
+    background: var(--bg-secondary);
+    border-color: rgba(255,255,255,0.08);
+}
+
+.dark-mode .vr-hud-bar {
+    background: rgba(10, 9, 8, 0.7);
+    border-color: rgba(245, 145, 40, 0.15);
+}
+
 /* Viewport window container */
 .vr-viewport-wrapper {
     position: relative;
@@ -5892,6 +6271,21 @@ body:not(.dark-mode) .moon-icon {
     background: linear-gradient(160deg, #1b1814 0%, #12100e 100%) !important;
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4) !important;
     border-color: var(--border-color) !important;
+}
+
+.dark-mode .ring-scene-wrapper,
+.dark-mode .cinematic-deck-window {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.dark-mode .section-container,
+.dark-mode section,
+.dark-mode .service-section {
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
 }
 
 .dark-mode .ctrl-circle-inner {
@@ -6867,8 +7261,33 @@ body {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px !important;
+    }
+
+    .nav-logo {
+        flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+        font-size: 15px !important;
+    }
+
+    .nav-logo-img {
+        height: 32px !important;
+    }
+
+    .nav-cta {
+        display: none !important;
+    }
+
+    .theme-toggle-slider {
+        flex-shrink: 0;
+    }
+
     .menu-toggle {
         display: flex;
+        flex-shrink: 0;
     }
 
     .nav-menu {
