@@ -5111,7 +5111,10 @@ body:not(.dark-mode) .moon-icon {
     position: absolute;
     width: 50%;
     height: 50%;
-    transition: opacity 0.6s ease, filter 0.6s ease, z-index 0.5s ease;
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                z-index 0.5s ease,
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1;
     padding: 8px;
     box-sizing: border-box;
@@ -5158,43 +5161,54 @@ body:not(.dark-mode) .moon-icon {
     }
 }
 
-.deck-video-card .rc-glass-frame {
+.deck-video-float-wrap {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
     animation: floatQuadCard 9s ease-in-out infinite;
     animation-delay: calc(var(--card-idx) * -2.2s);
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.deck-video-card.js-hover .deck-video-float-wrap {
+    animation-play-state: paused;
+}
+
+.deck-video-card .rc-glass-frame {
     transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* Elevate the hovered card container z-index, but keep its coordinates static to avoid flicker loops */
-.deck-video-card:hover {
+.deck-video-card.js-hover {
     z-index: 100 !important;
 }
 
 /* Center-Zoom Hover State applied to the inner frame to avoid edge trigger hover loops */
-.deck-video-card.quad-tl:hover .rc-glass-frame {
+.deck-video-card.quad-tl.js-hover .rc-glass-frame {
     transform: translate(50%, 50%) scale(1.6);
 }
 
-.deck-video-card.quad-tr:hover .rc-glass-frame {
+.deck-video-card.quad-tr.js-hover .rc-glass-frame {
     transform: translate(-50%, 50%) scale(1.6);
 }
 
-.deck-video-card.quad-bl:hover .rc-glass-frame {
+.deck-video-card.quad-bl.js-hover .rc-glass-frame {
     transform: translate(50%, -50%) scale(1.6);
 }
 
-.deck-video-card.quad-br:hover .rc-glass-frame {
+.deck-video-card.quad-br.js-hover .rc-glass-frame {
     transform: translate(-50%, -50%) scale(1.6);
 }
 
 /* Sibling Dimming & Scaling: shrink and fade non-hovered sibling videos in the deck */
-.video-deck-wrapper:has(.deck-video-card:hover) .deck-video-card:not(:hover) {
+.video-deck-wrapper:has(.deck-video-card.js-hover) .deck-video-card:not(.js-hover) {
     opacity: 0.18;
     filter: brightness(0.3) blur(6px) grayscale(0.4);
     transform: scale(0.85);
 }
 
-.deck-video-card:hover .rc-glass-frame {
-    animation: none;
+.deck-video-card.js-hover .rc-glass-frame {
     border-color: var(--accent);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 25px rgba(245, 145, 40, 0.4), inset 0 0 15px rgba(245, 145, 40, 0.15);
 }
@@ -5218,7 +5232,7 @@ body:not(.dark-mode) .moon-icon {
     z-index: 6;
 }
 
-.deck-video-card:hover .rc-glass-frame::after {
+.deck-video-card.js-hover .rc-glass-frame::after {
     transform: rotate(-45deg) translate(100%, 100%);
     transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -5234,7 +5248,7 @@ body:not(.dark-mode) .moon-icon {
     transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.deck-video-card:hover .rc-glass-frame::before {
+.deck-video-card.js-hover .rc-glass-frame::before {
     border-color: rgba(245, 145, 40, 0.45);
     inset: 6px;
     box-shadow: 0 0 12px rgba(245, 145, 40, 0.25);
@@ -5265,7 +5279,7 @@ body:not(.dark-mode) .moon-icon {
     transition: filter 0.5s ease, transform 0.5s ease;
 }
 
-.deck-video-card:hover .rc-video {
+.deck-video-card.js-hover .rc-video {
     filter: brightness(1) saturate(1.1);
     transform: scale(1.02);
 }

@@ -532,52 +532,60 @@
                         <!-- Video Card 1 (Top Left) -->
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-tl" style="--card-idx: 0;">
-                            <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
-                                    <source src="Videos/drone1.mp4" type="video/mp4">
-                                </video>
-                                <div class="rc-hud-info">
-                                    <span class="rc-hud-tag">FEED_01 // RESORT</span>
-                                    <h4 class="rc-hud-title">Resort Flyby View</h4>
+                            <div class="deck-video-float-wrap">
+                                <div class="rc-glass-frame">
+                                    <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                        <source src="Videos/drone1.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="rc-hud-info">
+                                        <span class="rc-hud-tag">FEED_01 // RESORT</span>
+                                        <h4 class="rc-hud-title">Resort Flyby View</h4>
+                                    </div>
                                 </div>
                             </div>
                         </a>
                         <!-- Video Card 2 (Top Right) -->
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-tr" style="--card-idx: 1;">
-                            <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
-                                    <source src="Videos/drone2.mp4" type="video/mp4">
-                                </video>
-                                <div class="rc-hud-info">
-                                    <span class="rc-hud-tag">FEED_02 // ROUTE</span>
-                                    <h4 class="rc-hud-title">Cinematic Site Survey</h4>
+                            <div class="deck-video-float-wrap">
+                                <div class="rc-glass-frame">
+                                    <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                        <source src="Videos/drone2.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="rc-hud-info">
+                                        <span class="rc-hud-tag">FEED_02 // ROUTE</span>
+                                        <h4 class="rc-hud-title">Cinematic Site Survey</h4>
+                                    </div>
                                 </div>
                             </div>
                         </a>
                         <!-- Video Card 3 (Bottom Left) -->
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-bl" style="--card-idx: 2;">
-                            <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
-                                    <source src="Videos/drone3.mp4" type="video/mp4">
-                                </video>
-                                <div class="rc-hud-info">
-                                    <span class="rc-hud-tag">FEED_03 // TOWER</span>
-                                    <h4 class="rc-hud-title">High-Rise Structure</h4>
+                            <div class="deck-video-float-wrap">
+                                <div class="rc-glass-frame">
+                                    <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                        <source src="Videos/drone3.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="rc-hud-info">
+                                        <span class="rc-hud-tag">FEED_03 // TOWER</span>
+                                        <h4 class="rc-hud-title">High-Rise Structure</h4>
+                                    </div>
                                 </div>
                             </div>
                         </a>
                         <!-- Video Card 4 (Bottom Right) -->
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-br" style="--card-idx: 3;">
-                            <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
-                                    <source src="Videos/vidssave.com%204K%20Cinematic%20Drone%20view%20village%20Highway%20l%20Free%20%20Drone%20Video%20l%20Free%20stock%20footage%20l%20Copyright%20free%20480P.mp4" type="video/mp4">
-                                </video>
-                                <div class="rc-hud-info">
-                                    <span class="rc-hud-tag">FEED_04 // TOWNSHIP</span>
-                                    <h4 class="rc-hud-title">Aerial Layout Flyby</h4>
+                            <div class="deck-video-float-wrap">
+                                <div class="rc-glass-frame">
+                                    <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                        <source src="Videos/vidssave.com%204K%20Cinematic%20Drone%20view%20village%20Highway%20l%20Free%20%20Drone%20Video%20l%20Free%20stock%20footage%20l%20Copyright%20free%20480P.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="rc-hud-info">
+                                        <span class="rc-hud-tag">FEED_04 // TOWNSHIP</span>
+                                        <h4 class="rc-hud-title">Aerial Layout Flyby</h4>
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -3575,7 +3583,42 @@
                 }
             });
 
-            // 4. Parallax mouse hover tilt for the cinematic video deck window scene disabled by user request
+            // 4. Parallax mouse hover tilt for the cinematic video deck window scene disabled by user request.
+            // Coordinate-based hover tracking for 2x2 video grid to prevent overlapping / flickering hover states.
+            const videoConsole = document.getElementById('videoConsole');
+            const videoCards = document.querySelectorAll('.deck-video-card');
+
+            if (videoConsole) {
+                videoConsole.addEventListener('mousemove', (e) => {
+                    const rect = videoConsole.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Determine which quadrant the mouse cursor is physically inside
+                    const isRight = x >= rect.width / 2;
+                    const isBottom = y >= rect.height / 2;
+                    
+                    let activeIndex = -1;
+                    if (!isRight && !isBottom) activeIndex = 0;      // Top-Left (quad-tl)
+                    else if (isRight && !isBottom) activeIndex = 1;  // Top-Right (quad-tr)
+                    else if (!isRight && isBottom) activeIndex = 2;  // Bottom-Left (quad-bl)
+                    else if (isRight && isBottom) activeIndex = 3;   // Bottom-Right (quad-br)
+                    
+                    videoCards.forEach((card, idx) => {
+                        if (idx === activeIndex) {
+                            card.classList.add('js-hover');
+                        } else {
+                            card.classList.remove('js-hover');
+                        }
+                    });
+                });
+
+                videoConsole.addEventListener('mouseleave', () => {
+                    videoCards.forEach(card => {
+                        card.classList.remove('js-hover');
+                    });
+                });
+            }
 
             // 5. Testimonials Gallery Wall Parallax Tilt
             const wallContainer = document.querySelector('.gallery-wall-container');
