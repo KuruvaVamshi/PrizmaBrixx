@@ -3899,7 +3899,7 @@ h6 {
 /* ── Outer Ring — Clean solid circle ── */
 .reticle-ring-outer {
     fill: none;
-    stroke: rgba(245, 145, 40, 0.45);
+    stroke: #f89632;
     stroke-width: 1.2;
     transition: stroke 0.3s ease, stroke-width 0.3s ease;
 }
@@ -3912,9 +3912,9 @@ h6 {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: #f59128;
+    background: #f89632;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 6px 1.5px rgba(245, 145, 40, 0.4);
+    box-shadow: 0 0 6px 1.5px rgba(248, 150, 50, 0.4);
     transition: background 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
@@ -3929,8 +3929,8 @@ h6 {
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #64ffda;
-    text-shadow: 0 0 6px rgba(100, 255, 218, 0.35);
+    color: #71272c;
+    text-shadow: 0 0 6px rgba(113, 39, 44, 0.35);
     opacity: 0;
     pointer-events: none;
     white-space: nowrap;
@@ -3944,15 +3944,15 @@ h6 {
 }
 
 #cursor-reticle.reticle-hover .reticle-ring-outer {
-    stroke: #64ffda;
-    stroke-width: 1.5;
+    stroke: #71272c;
+    stroke-width: 1.8;
 }
 
 #cursor-reticle.reticle-hover .reticle-core {
     width: 6px;
     height: 6px;
-    background: #64ffda;
-    box-shadow: 0 0 8px 2px rgba(100, 255, 218, 0.55);
+    background: #71272c;
+    box-shadow: 0 0 8px 2px rgba(113, 39, 44, 0.55);
 }
 
 #cursor-reticle.reticle-hover .reticle-label {
@@ -3969,12 +3969,13 @@ h6 {
 #cursor-reticle.reticle-click .reticle-core {
     width: 5px;
     height: 5px;
-    box-shadow: 0 0 8px 3px rgba(245, 145, 40, 0.7);
+    background: #71272c;
+    box-shadow: 0 0 8px 3px rgba(113, 39, 44, 0.7);
 }
 
 #cursor-reticle.reticle-click .reticle-ring-outer {
-    stroke: rgba(245, 145, 40, 0.7);
-    stroke-width: 1.8;
+    stroke: #71272c;
+    stroke-width: 2.2;
 }
 
 /* ═══════════════ KEYFRAMES ═══════════════ */

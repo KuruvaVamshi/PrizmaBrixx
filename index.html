@@ -2048,7 +2048,7 @@
                     this.life = 0.7;
                     this.decay = 0.025 + Math.random() * 0.035;
                     this.size = 0.8 + Math.random() * 0.7;
-                    this.hue = isHovering ? 170 : 35;
+                    this.hue = isHovering ? 'maroon' : 'orange';
                 }
                 update() {
                     this.x += this.vx;
@@ -2060,7 +2060,7 @@
                 }
                 draw(ctx) {
                     if (this.life <= 0) return;
-                    const colorStr = this.hue === 170 ? '56, 189, 248' : '245, 145, 40';
+                    const colorStr = this.hue === 'maroon' ? '113, 39, 44' : '248, 150, 50';
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(${colorStr}, ${this.life * 0.35})`;
