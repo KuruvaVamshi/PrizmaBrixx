@@ -5105,42 +5105,38 @@ body:not(.dark-mode) .moon-icon {
 .video-deck-wrapper {
     position: absolute;
     inset: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0px;
-    transition: grid-template-columns 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                grid-template-rows 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Dynamic Grid Expansion on Hover */
-.video-deck-wrapper:has(.quad-tl:hover) {
-    grid-template-columns: 1.35fr 0.65fr;
-    grid-template-rows: 1.35fr 0.65fr;
-}
-.video-deck-wrapper:has(.quad-tr:hover) {
-    grid-template-columns: 0.65fr 1.35fr;
-    grid-template-rows: 1.35fr 0.65fr;
-}
-.video-deck-wrapper:has(.quad-bl:hover) {
-    grid-template-columns: 1.35fr 0.65fr;
-    grid-template-rows: 0.65fr 1.35fr;
-}
-.video-deck-wrapper:has(.quad-br:hover) {
-    grid-template-columns: 0.65fr 1.35fr;
-    grid-template-rows: 0.65fr 1.35fr;
 }
 
 .deck-video-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.75s ease;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.5s ease;
     z-index: 1;
     padding: 8px;
     box-sizing: border-box;
     text-decoration: none;
     color: inherit;
+}
+
+.deck-video-card.quad-tl {
+    top: 0;
+    left: 0;
+}
+
+.deck-video-card.quad-tr {
+    top: 0;
+    left: 50%;
+}
+
+.deck-video-card.quad-bl {
+    top: 50%;
+    left: 0;
+}
+
+.deck-video-card.quad-br {
+    top: 50%;
+    left: 50%;
 }
 
 /* Staggered slow float animation for quadrants inside their bounds (2D only, no tilting) */
@@ -5167,9 +5163,9 @@ body:not(.dark-mode) .moon-icon {
     animation-delay: calc(var(--card-idx) * -2.2s);
 }
 
-/* Subtle card lift on hover */
+/* Card scale zoom on hover: grows slightly in place without deforming neighboring cells */
 .deck-video-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.22);
     z-index: 10 !important;
 }
 
