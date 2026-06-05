@@ -3575,38 +3575,7 @@
                 }
             });
 
-            // 4. Parallax mouse hover tilt for the cinematic video deck window scene
-            const consoleWrapper = document.querySelector('.cinematic-deck-window');
-            if (consoleWrapper) {
-                const consoleScene = consoleWrapper.querySelector('.video-deck-scene');
-                if (consoleScene) {
-                    consoleWrapper.addEventListener('mousemove', (e) => {
-                        const rect = consoleWrapper.getBoundingClientRect();
-                        const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-                        const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-
-                        // Tilt video deck plane
-                        gsap.to(consoleScene, {
-                            rotateX: -normY * 12 - 5,
-                            rotateY: normX * 12,
-                            duration: 0.5,
-                            ease: 'power2.out',
-                            overwrite: 'auto'
-                        });
-                    });
-
-                    consoleWrapper.addEventListener('mouseleave', () => {
-                        // Reset to default -5deg rotateX
-                        gsap.to(consoleScene, {
-                            rotateX: -5,
-                            rotateY: 0,
-                            duration: 0.8,
-                            ease: 'power3.out',
-                            overwrite: 'auto'
-                        });
-                    });
-                }
-            }
+            // 4. Parallax mouse hover tilt for the cinematic video deck window scene disabled by user request
 
             // 5. Testimonials Gallery Wall Parallax Tilt
             const wallContainer = document.querySelector('.gallery-wall-container');

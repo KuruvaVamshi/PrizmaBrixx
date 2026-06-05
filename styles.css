@@ -5099,22 +5099,18 @@ body:not(.dark-mode) .moon-icon {
     width: 100%;
     height: 100%;
     position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(-5deg);
     transition: transform 0.5s ease;
 }
 
 .video-deck-wrapper {
     position: absolute;
     inset: 0;
-    transform-style: preserve-3d;
 }
 
 .deck-video-card {
     position: absolute;
     width: 50%;
     height: 50%;
-    transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.8s ease;
     z-index: 1;
     padding: 8px;
@@ -5145,22 +5141,22 @@ body:not(.dark-mode) .moon-icon {
     left: 50%;
 }
 
-/* Staggered slow float animation for quadrants inside their bounds */
+/* Staggered slow float animation for quadrants inside their bounds (2D only, no tilting) */
 @keyframes floatQuadCard {
     0% {
-        transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);
+        transform: translate(0px, 0px);
     }
 
     33% {
-        transform: translate3d(-5px, 6px, 3px) rotateX(0.8deg) rotateY(-0.8deg);
+        transform: translate(-3px, 4px);
     }
 
     66% {
-        transform: translate3d(4px, -5px, -3px) rotateX(-0.5deg) rotateY(0.8deg);
+        transform: translate(3px, -3px);
     }
 
     100% {
-        transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);
+        transform: translate(0px, 0px);
     }
 }
 
@@ -5169,24 +5165,24 @@ body:not(.dark-mode) .moon-icon {
     animation-delay: calc(var(--card-idx) * -2.2s);
 }
 
-/* Hover Zoom & Centering: Scales up by 1.15 in place to focus on hover without covering the entire deck window */
+/* Hover Zoom & Centering: Scales up by 1.7 (a 70% increase) in place to focus on hover */
 .deck-video-card.quad-tl:hover {
-    transform: translate3d(0, 0, 80px) scale(1.15);
+    transform: scale(1.7);
     z-index: 100 !important;
 }
 
 .deck-video-card.quad-tr:hover {
-    transform: translate3d(0, 0, 80px) scale(1.15);
+    transform: scale(1.7);
     z-index: 100 !important;
 }
 
 .deck-video-card.quad-bl:hover {
-    transform: translate3d(0, 0, 80px) scale(1.15);
+    transform: scale(1.7);
     z-index: 100 !important;
 }
 
 .deck-video-card.quad-br:hover {
-    transform: translate3d(0, 0, 80px) scale(1.15);
+    transform: scale(1.7);
     z-index: 100 !important;
 }
 
