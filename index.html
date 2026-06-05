@@ -183,7 +183,7 @@
         <div class="expanding-gallery">
             <!-- Panel 1: MVV Housing Blocks -->
             <div class="gallery-panel active">
-                <a href="https://www.kalarealty.in/" target="_blank" class="panel-link-wrapper">
+                <div class="panel-link-wrapper">
                     <img src="images/Mvv-housing-blocks.png" alt="MVV Housing Blocks Walkthrough" class="panel-bg">
                     <div class="panel-title-vertical">MVV Housing</div>
                     <div class="panel-content">
@@ -195,17 +195,17 @@
                             <h3 class="panel-title">MVV Housing Blocks</h3>
                             <p class="panel-desc">Detailed 3D rendering and exterior walkthrough for a luxury
                                 multi-residential tower.</p>
-                            <span class="panel-btn">
+                            <a href="https://www.kalarealty.in/" target="_blank" class="panel-btn">
                                 View Walkthrough <i class="fa-solid fa-arrow-right"></i>
-                            </span>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
 
             <!-- Panel 2: Estate Plots -->
             <div class="gallery-panel">
-                <a href="https://vatsalvarma.github.io/MAP-GSIRI/" target="_blank" class="panel-link-wrapper">
+                <div class="panel-link-wrapper">
                     <img src="images/Farm-Plots.png" alt="Farm Plots Layout Map" class="panel-bg">
                     <div class="panel-title-vertical">Estate Plots</div>
                     <div class="panel-content">
@@ -217,17 +217,17 @@
                             <h3 class="panel-title">Estate Plots Layout</h3>
                             <p class="panel-desc">Strategic parcel mapping and agricultural land dividing with premium
                                 master planning layout.</p>
-                            <span class="panel-btn">
+                            <a href="https://vatsalvarma.github.io/MAP-GSIRI/" target="_blank" class="panel-btn">
                                 Explore Map <i class="fa-solid fa-arrow-right"></i>
-                            </span>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
 
             <!-- Panel 3: GK Zenith -->
             <div class="gallery-panel">
-                <a href="https://gkzenith.virtualsimulationcompany.com/" target="_blank" class="panel-link-wrapper">
+                <div class="panel-link-wrapper">
                     <img src="images/GK-Zenith.png" alt="GK Zenith Facade Rendering" class="panel-bg">
                     <div class="panel-title-vertical">GK Zenith</div>
                     <div class="panel-content">
@@ -239,17 +239,17 @@
                             <h3 class="panel-title">GK Zenith Facade</h3>
                             <p class="panel-desc">High-rise facade rendering with reflections and environmental
                                 landscape mapping.</p>
-                            <span class="panel-btn">
+                            <a href="https://gkzenith.virtualsimulationcompany.com/" target="_blank" class="panel-btn">
                                 View Facade <i class="fa-solid fa-arrow-right"></i>
-                            </span>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
 
             <!-- Panel 4: Availability Tool UI -->
             <div class="gallery-panel">
-                <a href="https://prizmabrixx.in/openplots/home.html" target="_blank" class="panel-link-wrapper">
+                <div class="panel-link-wrapper">
                     <img src="images/avialblity tool.png" alt="Availability Tool Dashboard" class="panel-bg">
                     <div class="panel-title-vertical">Availability Tool</div>
                     <div class="panel-content">
@@ -261,12 +261,12 @@
                             <h3 class="panel-title">Availability Tool UI</h3>
                             <p class="panel-desc">Interactive dashboard layout visualizing unit-by-unit availability,
                                 booking progress, and status metrics.</p>
-                            <span class="panel-btn">
+                            <a href="https://prizmabrixx.in/openplots/home.html" target="_blank" class="panel-btn">
                                 Launch Live Tool <i class="fa-solid fa-arrow-right"></i>
-                            </span>
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -2109,14 +2109,23 @@
             // Hover detection for interactive elements
             document.querySelectorAll('a, button, .dash-plot, .township-sector, .gallery-panel, .video-grid-card, .ring-card, .deck-video-card, .magnetic, input[type=range]').forEach(el => {
                 el.addEventListener('mouseenter', () => {
-                    if (el.classList.contains('ring-card') && !el.classList.contains('middle-card')) {
-                        return;
-                    }
                     isHovering = true;
                     reticle.classList.add('reticle-hover');
                     // Set label text based on element type
                     const label = reticle.querySelector('.reticle-label');
-                    if (el.tagName === 'A' || el.classList.contains('gallery-panel') || el.classList.contains('ring-card') || el.classList.contains('deck-video-card')) {
+                    if (el.classList.contains('ring-card')) {
+                        if (el.classList.contains('middle-card')) {
+                            label.textContent = 'VIEW';
+                        } else {
+                            label.textContent = 'FOCUS';
+                        }
+                    } else if (el.classList.contains('gallery-panel')) {
+                        if (el.classList.contains('active')) {
+                            label.textContent = 'VIEW';
+                        } else {
+                            label.textContent = 'EXPAND';
+                        }
+                    } else if (el.tagName === 'A' || el.classList.contains('deck-video-card')) {
                         label.textContent = 'VIEW';
                     } else if (el.tagName === 'BUTTON' || el.classList.contains('magnetic')) {
                         label.textContent = 'CLICK';
@@ -2127,9 +2136,6 @@
                     }
                 });
                 el.addEventListener('mouseleave', () => {
-                    if (el.classList.contains('ring-card') && !el.classList.contains('middle-card')) {
-                        return;
-                    }
                     isHovering = false;
                     reticle.classList.remove('reticle-hover');
                 });
@@ -2402,23 +2408,44 @@
 
         if (panels.length > 0) {
             panels.forEach(panel => {
+                // Initialize active panel timestamp
+                if (panel.classList.contains('active')) {
+                    panel.dataset.activatedAt = Date.now();
+                }
+
                 // Desktop Mouse Enter interaction
                 panel.addEventListener('mouseenter', () => {
-                    panels.forEach(p => p.classList.remove('active'));
-                    panel.classList.add('active');
+                    if (!panel.classList.contains('active')) {
+                        panels.forEach(p => p.classList.remove('active'));
+                        panel.classList.add('active');
+                        panel.dataset.activatedAt = Date.now();
+                    }
                 });
 
-                // Touch & Click handler: requires two taps to navigate collapsed panels on mobile
-                const linkWrapper = panel.querySelector('.panel-link-wrapper');
-                if (linkWrapper) {
-                    linkWrapper.addEventListener('click', (e) => {
-                        if (!panel.classList.contains('active')) {
-                            e.preventDefault(); // Stop link navigation
-                            panels.forEach(p => p.classList.remove('active'));
-                            panel.classList.add('active');
+                // Touch & Click handler: Click to expand/open up the panel, or go to URL if already active
+                panel.addEventListener('click', (e) => {
+                    // Let link/button clicks work naturally (don't intercept panel-btn clicks)
+                    if (e.target.closest('.panel-btn')) {
+                        return;
+                    }
+
+                    const isActive = panel.classList.contains('active');
+                    const activatedAt = parseInt(panel.dataset.activatedAt || '0', 10);
+                    const timeSinceActivation = Date.now() - activatedAt;
+
+                    if (!isActive) {
+                        e.preventDefault();
+                        panels.forEach(p => p.classList.remove('active'));
+                        panel.classList.add('active');
+                        panel.dataset.activatedAt = Date.now();
+                    } else if (timeSinceActivation > 350) { // 350ms buffer to prevent touch simulated clicks
+                        // If already active/big, clicking it goes to the URL
+                        const btn = panel.querySelector('.panel-btn');
+                        if (btn && btn.href) {
+                            window.open(btn.href, '_blank');
                         }
-                    });
-                }
+                    }
+                });
             });
         }
 
@@ -3466,11 +3493,13 @@
                 openLightbox(activeLightboxIndex + dir);
             }
 
-            // Add click listeners to ring cards to trigger Lightbox
+            // Add click listeners to ring cards to trigger Lightbox or rotate to them
             ringCards.forEach((card, idx) => {
                 card.addEventListener('click', (e) => {
                     if (card.classList.contains('middle-card')) {
                         openLightbox(idx);
+                    } else {
+                        rotateCarouselToCard(idx);
                     }
                 });
             });
