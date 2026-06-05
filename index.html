@@ -533,8 +533,8 @@
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-tl" style="--card-idx: 0;">
                             <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
-                                    <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
+                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                    <source src="Videos/drone1.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">FEED_01 // RESORT</span>
@@ -546,8 +546,8 @@
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-tr" style="--card-idx: 1;">
                             <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
-                                    <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
+                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                    <source src="Videos/drone2.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">FEED_02 // ROUTE</span>
@@ -559,8 +559,8 @@
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-bl" style="--card-idx: 2;">
                             <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
-                                    <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
+                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                    <source src="Videos/drone3.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">FEED_03 // TOWER</span>
@@ -572,8 +572,8 @@
                         <a href="https://drive.google.com/drive/u/0/folders/12f91mvgTYSkpWvFogJXRXlt2x3wIf-9r"
                             target="_blank" class="deck-video-card quad-br" style="--card-idx: 3;">
                             <div class="rc-glass-frame">
-                                <video loop muted playsinline disableRemotePlayback preload="none" class="rc-video">
-                                    <source src="Videos/Recording%202026-05-29%20143745.mp4" type="video/mp4">
+                                <video loop muted playsinline disableRemotePlayback preload="metadata" class="rc-video">
+                                    <source src="Videos/vidssave.com%204K%20Cinematic%20Drone%20view%20village%20Highway%20l%20Free%20%20Drone%20Video%20l%20Free%20stock%20footage%20l%20Copyright%20free%20480P.mp4" type="video/mp4">
                                 </video>
                                 <div class="rc-hud-info">
                                     <span class="rc-hud-tag">FEED_04 // TOWNSHIP</span>
@@ -3331,26 +3331,17 @@
 
         // ── Service 03: Realistic 3D Renders & Telemetry Console JavaScript ──
         (() => {
-            // 1. Sync playbacks for videos in Section 03.B
+            // 1. Playback initialization for lightweight videos in Section 03.B
             const rcVideos = document.querySelectorAll('.deck-video-card .rc-video');
-            rcVideos.forEach((video, idx) => {
-                const setOffset = () => {
-                    try {
-                        const duration = video.duration || 10;
-                        if (window.location.protocol.startsWith('http')) {
-                            video.currentTime = (idx * (duration / 4)) % duration;
-                        }
-                    } catch (err) {
-                        console.warn("Could not set video offset", err);
-                    }
+            rcVideos.forEach((video) => {
+                const startPlay = () => {
                     video.play().catch(() => { });
                 };
 
-                video.addEventListener('loadedmetadata', setOffset);
                 if (video.readyState >= 1) {
-                    setOffset();
+                    startPlay();
                 } else {
-                    video.play().catch(() => { });
+                    video.addEventListener('loadedmetadata', startPlay);
                 }
 
                 // Autoplay recovery

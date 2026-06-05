@@ -3868,7 +3868,7 @@ h6 {
 #cursor-trail-canvas {
     position: fixed;
     inset: 0;
-    z-index: 9998;
+    z-index: 100019; /* Render above lightbox backdrop */
     pointer-events: none;
     opacity: 0.5;
 }
@@ -3883,7 +3883,7 @@ h6 {
     left: 0;
     width: 24px;
     height: 24px;
-    z-index: 9999;
+    z-index: 100020; /* Render above lightbox elements */
     pointer-events: none;
     will-change: transform;
     transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
