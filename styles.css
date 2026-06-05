@@ -4310,7 +4310,7 @@ body:not(.dark-mode) .moon-icon {
     letter-spacing: 0.06em;
     /* Slightly wider spacing for a futuristic, modern tech aesthetic */
     line-height: 1.1;
-    color: #111318;
+    color: #71272c;
     margin-bottom: 24px;
     opacity: 0;
     filter: blur(20px);
@@ -4321,9 +4321,9 @@ body:not(.dark-mode) .moon-icon {
 .hero-title span {
     font-weight: 800;
     /* Strong bold contrast for Brixx */
-    color: var(--accent);
-    text-shadow: 0 0 20px rgba(245, 145, 40, 0.15);
-    background: linear-gradient(135deg, #f59128 0%, #faac58 100%);
+    color: #f89632;
+    text-shadow: 0 0 20px rgba(248, 150, 50, 0.15);
+    background: linear-gradient(135deg, #f89632 0%, #ffca2b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -6956,7 +6956,6 @@ body:not(.dark-mode) .moon-icon {
 .dark-mode .logo-text,
 .dark-mode .nav-logo-text,
 .dark-mode .footer-logo-text,
-.dark-mode .hero-title,
 .dark-mode .section-header h2,
 .dark-mode .about-content h3,
 .dark-mode .service-card h3,
@@ -8243,4 +8242,9 @@ body.is-scrolling .vr-cell-inner {
 /* Stop SVG repaints on non-interactive states */
 svg {
     transform: translateZ(0);
+}
+
+/* Dark mode glow enhancement for hero title brand color */
+.dark-mode .hero-title {
+    text-shadow: 0 0 30px rgba(113, 39, 44, 0.25);
 }
