@@ -1684,12 +1684,16 @@
 
     <!-- ── RENDER LIGHTBOX MODAL ── -->
     <div id="render-lightbox" class="lightbox-modal">
-        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-close" id="lightboxClose" title="Close"><i class="fa-solid fa-xmark"></i></span>
         <button class="lightbox-nav lightbox-prev" id="lightboxPrev" title="Previous Image"><i
                 class="fa-solid fa-chevron-left"></i></button>
         <div class="lightbox-content">
             <img id="lightboxImg" src="" alt="Zoomed Render">
-            <div id="lightboxCaption" class="lightbox-caption"></div>
+            <div class="lightbox-caption-wrapper">
+                <span class="lightbox-meta-tag" id="lightboxMeta">RENDER // SEC.01</span>
+                <div id="lightboxCaption" class="lightbox-caption"></div>
+                <span class="lightbox-counter" id="lightboxCounter">1 / 10</span>
+            </div>
         </div>
         <button class="lightbox-nav lightbox-next" id="lightboxNext" title="Next Image"><i
                 class="fa-solid fa-chevron-right"></i></button>
@@ -2107,7 +2111,7 @@
             animateCursor();
 
             // Hover detection for interactive elements
-            document.querySelectorAll('a, button, .dash-plot, .township-sector, .gallery-panel, .video-grid-card, .ring-card, .deck-video-card, .magnetic, input[type=range]').forEach(el => {
+            document.querySelectorAll('a, button, .dash-plot, .township-sector, .gallery-panel, .video-grid-card, .ring-card, .deck-video-card, .magnetic, input[type=range], .lightbox-close, .lightbox-nav').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     isHovering = true;
                     reticle.classList.add('reticle-hover');
@@ -2127,7 +2131,7 @@
                         }
                     } else if (el.tagName === 'A' || el.classList.contains('deck-video-card')) {
                         label.textContent = 'VIEW';
-                    } else if (el.tagName === 'BUTTON' || el.classList.contains('magnetic')) {
+                    } else if (el.tagName === 'BUTTON' || el.classList.contains('magnetic') || el.classList.contains('lightbox-close') || el.classList.contains('lightbox-nav')) {
                         label.textContent = 'CLICK';
                     } else if (el.tagName === 'INPUT') {
                         label.textContent = 'DRAG';
@@ -3477,20 +3481,76 @@
                 const imgData = renderImages[activeLightboxIndex];
 
                 lightboxImg.src = imgData.src;
-                lightboxCaption.textContent = imgData.title;
-                lightbox.style.display = "flex";
+                document.getElementById('lightboxCaption').textContent = imgData.title;
+                
+                const secNum = String(activeLightboxIndex + 1).padStart(2, '0');
+                document.getElementById('lightboxMeta').textContent = `RENDER // SEC.${secNum}`;
+                document.getElementById('lightboxCounter').textContent = `${activeLightboxIndex + 1} / ${totalCards}`;
+
+                // Set initial animated states
+                gsap.set(lightbox, { display: "flex", opacity: 0 });
+                gsap.set(lightboxImg, { scale: 0.92, opacity: 0 });
+                gsap.set('.lightbox-caption-wrapper', { y: 15, opacity: 0 });
+                gsap.set([lightboxClose, lightboxPrev, lightboxNext], { opacity: 0, scale: 0.8 });
+
+                // GSAP smooth entrance timeline
+                const tl = gsap.timeline();
+                tl.to(lightbox, { opacity: 1, duration: 0.4, ease: "power2.out" })
+                  .to(lightboxImg, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.2)" }, "-=0.2")
+                  .to('.lightbox-caption-wrapper', { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, "-=0.3")
+                  .to([lightboxClose, lightboxPrev, lightboxNext], { opacity: 1, scale: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" }, "-=0.3");
 
                 // Pause page scrolling
                 document.body.style.overflow = "hidden";
             }
 
             function closeLightbox() {
-                lightbox.style.display = "none";
-                document.body.style.overflow = "";
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        lightbox.style.display = "none";
+                        document.body.style.overflow = "";
+                    }
+                });
+                tl.to([lightboxClose, lightboxPrev, lightboxNext], { opacity: 0, scale: 0.8, duration: 0.25, ease: "power2.in" })
+                  .to('.lightbox-caption-wrapper', { y: 15, opacity: 0, duration: 0.25, ease: "power2.in" }, "-=0.2")
+                  .to(lightboxImg, { scale: 0.92, opacity: 0, duration: 0.3, ease: "power2.in" }, "-=0.25")
+                  .to(lightbox, { opacity: 0, duration: 0.35, ease: "power2.inOut" }, "-=0.2");
             }
 
             function navigateLightbox(dir) {
-                openLightbox(activeLightboxIndex + dir);
+                const nextIndex = (activeLightboxIndex + dir + totalCards) % totalCards;
+                const imgData = renderImages[nextIndex];
+
+                // Smooth slide-out / fade-out transition based on direction
+                const slideDist = 35;
+                gsap.to([lightboxImg, '.lightbox-caption-wrapper'], {
+                    opacity: 0,
+                    x: dir > 0 ? -slideDist : slideDist,
+                    duration: 0.25,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        activeLightboxIndex = nextIndex;
+                        lightboxImg.src = imgData.src;
+                        document.getElementById('lightboxCaption').textContent = imgData.title;
+                        
+                        const secNum = String(nextIndex + 1).padStart(2, '0');
+                        document.getElementById('lightboxMeta').textContent = `RENDER // SEC.${secNum}`;
+                        document.getElementById('lightboxCounter').textContent = `${nextIndex + 1} / ${totalCards}`;
+
+                        // Set start position of slide-in animation
+                        gsap.set([lightboxImg, '.lightbox-caption-wrapper'], { 
+                            x: dir > 0 ? slideDist : -slideDist 
+                        });
+
+                        // Animate in
+                        gsap.to([lightboxImg, '.lightbox-caption-wrapper'], {
+                            opacity: 1,
+                            x: 0,
+                            duration: 0.45,
+                            ease: "power2.out"
+                        });
+                    }
+                });
             }
 
             // Add click listeners to ring cards to trigger Lightbox or rotate to them
