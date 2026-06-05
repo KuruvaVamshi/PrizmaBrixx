@@ -5111,7 +5111,7 @@ body:not(.dark-mode) .moon-icon {
     position: absolute;
     width: 50%;
     height: 50%;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.5s ease;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease, z-index 0.5s ease;
     z-index: 1;
     padding: 8px;
     box-sizing: border-box;
@@ -5163,10 +5163,25 @@ body:not(.dark-mode) .moon-icon {
     animation-delay: calc(var(--card-idx) * -2.2s);
 }
 
-/* Card scale zoom on hover: grows slightly in place without deforming neighboring cells */
-.deck-video-card:hover {
-    transform: scale(1.22);
-    z-index: 10 !important;
+/* Center-Zoom Hover State: flies to the center and scales to 80% size (1.6x of its 50% size) */
+.deck-video-card.quad-tl:hover {
+    transform: translate(50%, 50%) scale(1.6);
+    z-index: 100 !important;
+}
+
+.deck-video-card.quad-tr:hover {
+    transform: translate(-50%, 50%) scale(1.6);
+    z-index: 100 !important;
+}
+
+.deck-video-card.quad-bl:hover {
+    transform: translate(50%, -50%) scale(1.6);
+    z-index: 100 !important;
+}
+
+.deck-video-card.quad-br:hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    z-index: 100 !important;
 }
 
 /* Sibling Dimming & Scaling: shrink and fade non-hovered sibling videos in the deck */
