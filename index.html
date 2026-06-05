@@ -39,15 +39,6 @@
     <!-- CSS Link -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Prevent FOUC Flash of Navbar during page load -->
-    <style>
-        body.loading .navbar {
-            opacity: 0 !important;
-            transform: translateY(-100px) !important;
-            pointer-events: none !important;
-        }
-    </style>
-
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -100,7 +91,7 @@
     </div>
 
     <!-- ── FLOATING GLASS NAVIGATION ── -->
-    <nav class="navbar">
+    <nav class="navbar" style="opacity: 0; transform: translateY(-100px); pointer-events: none;">
         <a href="#hero-section" class="nav-logo">
             <img src="logo.png" alt="PrizmaBrixx" class="nav-logo-img">
             <span class="nav-logo-text">Prizma<span>Brixx</span></span>
@@ -2390,7 +2381,7 @@
             tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out' })
                 .to('.hero-title', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.4, ease: 'power4.out' }, '-=0.9')
                 .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=1.0')
-                .from('.navbar', { y: -100, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.2')
+                .to('.navbar', { y: 0, opacity: 1, pointerEvents: 'auto', duration: 1.2, ease: 'power4.out' }, '-=1.2')
                 .to('.hero-cta-group, .hero-stats-bar', { opacity: 1, y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.15 }, '-=0.8');
         }
 
