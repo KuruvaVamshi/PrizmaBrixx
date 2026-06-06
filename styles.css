@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Space+Grotesk:wght@300;500;700&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;800&display=swap');
 
 /* --- Theme Variables (Premium Warm Light Theme) --- */
 :root {
@@ -762,9 +763,27 @@ body.loaded .scroll-down {
 
 /* --- Section Headers --- */
 .section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(245, 145, 40, 0.2);
+}
+.section-header > *:first-child {
+    flex: 1 1 400px;
+    margin-bottom: 0 !important;
+}
+.section-header > p {
+    flex: 1 1 400px;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
 }
 
 .section-tag {
@@ -812,7 +831,7 @@ body.loaded .scroll-down {
     background-color: var(--bg-secondary);
 }
 
-/* Warm left accent border for service sections — disabled for seamless look */
+/* Warm left accent border for service sections â€” disabled for seamless look */
 /*
 .service-section::before {
     content: '';
@@ -841,7 +860,7 @@ body.loaded .scroll-down {
     position: relative;
     flex: 1;
     height: 100%;
-    border-radius: 0;
+    border-radius: 6px;
     overflow: hidden;
     border: none;
     background-color: var(--bg-tertiary);
@@ -967,7 +986,8 @@ body.loaded .scroll-down {
 
 .panel-category {
     font-family: var(--font-heading);
-    color: var(--text-secondary);
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -1210,7 +1230,7 @@ body.loaded .scroll-down {
 }
 
 .service-list li::before {
-    content: '→';
+    content: 'â†’';
     position: absolute;
     left: 0;
     color: var(--accent);
@@ -1604,7 +1624,8 @@ body::before {
         display: block;
         font-size: 1.1rem;
         font-weight: 700;
-        color: #f0f0f0;
+        color: #ffffff;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
         font-family: var(--font-heading);
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -2330,7 +2351,7 @@ body::before {
 }
 
 .book-page-content ul li::before {
-    content: '✓';
+    content: 'âœ“';
     position: absolute;
     left: 0;
     color: var(--accent);
@@ -3468,7 +3489,7 @@ body::before {
 }
 
 /* ==========================================================================
-   SERVICE SECTION 5.B: BRANDING & LOGO IDENTITY SHOWCASE — UNBOX REVEAL
+   SERVICE SECTION 5.B: BRANDING & LOGO IDENTITY SHOWCASE â€” UNBOX REVEAL
    ========================================================================== */
 .logo-grid-container {
     display: grid;
@@ -3738,7 +3759,7 @@ body::before {
 
 
 
-/* ── SYSTEM DESIGN TOKENS (PREMIUM WARM LIGHT) ── */
+/* â”€â”€ SYSTEM DESIGN TOKENS (PREMIUM WARM LIGHT) â”€â”€ */
 :root {
     --bg: #f9f7f3;
     --surface: #ffffff;
@@ -3783,7 +3804,7 @@ h6 {
     text-shadow: 0 0 20px var(--cyan-glow);
 }
 
-/* ── PRELOADER ── */
+/* â”€â”€ PRELOADER â”€â”€ */
 #preloader {
     position: fixed;
     inset: 0;
@@ -3860,11 +3881,11 @@ h6 {
     box-shadow: 0 0 10px var(--gold-glow);
 }
 
-/* ══════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
            FUTURISTIC RETICLE CURSOR SYSTEM
-           ══════════════════════════════════════════════════ */
+           â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* Trail Canvas — full viewport overlay */
+/* Trail Canvas â€” full viewport overlay */
 #cursor-trail-canvas {
     position: fixed;
     inset: 0;
@@ -3873,10 +3894,10 @@ h6 {
     opacity: 0.5;
 }
 
-/* Keep native cursor visible — reticle is a companion, not a replacement */
+/* Keep native cursor visible â€” reticle is a companion, not a replacement */
 
-/* ── Reticle Container ── */
-/* ── Reticle Container ── */
+/* â”€â”€ Reticle Container â”€â”€ */
+/* â”€â”€ Reticle Container â”€â”€ */
 #cursor-reticle {
     position: fixed;
     top: 0;
@@ -3896,7 +3917,7 @@ h6 {
     overflow: visible;
 }
 
-/* ── Outer Ring — Clean solid circle ── */
+/* â”€â”€ Outer Ring â€” Clean solid circle â”€â”€ */
 .reticle-ring-outer {
     fill: none;
     stroke: #f89632;
@@ -3904,7 +3925,7 @@ h6 {
     transition: stroke 0.3s ease, stroke-width 0.3s ease;
 }
 
-/* ── Core Dot — center dot ── */
+/* â”€â”€ Core Dot â€” center dot â”€â”€ */
 .reticle-core {
     position: absolute;
     top: 50%;
@@ -3918,7 +3939,7 @@ h6 {
     transition: background 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
-/* ── Hover Label ── */
+/* â”€â”€ Hover Label â”€â”€ */
 .reticle-label {
     position: absolute;
     bottom: -16px;
@@ -3937,7 +3958,7 @@ h6 {
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* ═══════════════ HOVER STATE ═══════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HOVER STATE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #cursor-reticle.reticle-hover {
     width: 40px;
     height: 40px;
@@ -3960,7 +3981,7 @@ h6 {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ═══════════════ CLICK STATE ═══════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CLICK STATE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #cursor-reticle.reticle-click {
     width: 18px;
     height: 18px;
@@ -3978,7 +3999,7 @@ h6 {
     stroke-width: 2.2;
 }
 
-/* ═══════════════ KEYFRAMES ═══════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• KEYFRAMES â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @keyframes reticleSpinCW {
     from {
         transform: rotate(0deg);
@@ -4011,7 +4032,7 @@ h6 {
     }
 }
 
-/* ═══════════════ MOBILE — HIDE ═══════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MOBILE â€” HIDE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 @media (max-width: 992px) {
 
     #cursor-reticle,
@@ -4020,7 +4041,7 @@ h6 {
     }
 }
 
-/* ── NAVIGATION BAR ── */
+/* â”€â”€ NAVIGATION BAR â”€â”€ */
 .navbar {
     position: fixed;
     top: 0;
@@ -4244,7 +4265,7 @@ body:not(.dark-mode) .moon-icon {
     background: rgba(245, 145, 40, 0.1);
 }
 
-/* ── LAYOUT & SECTIONS ── */
+/* â”€â”€ LAYOUT & SECTIONS â”€â”€ */
 .section-container {
     position: relative;
     min-height: 100vh;
@@ -4259,7 +4280,7 @@ body:not(.dark-mode) .moon-icon {
     background-color: var(--bg-primary);
 }
 
-/* ── HERO SECTION ── */
+/* â”€â”€ HERO SECTION â”€â”€ */
 #hero-section {
     background: radial-gradient(ellipse at 50% -10%, rgba(245, 145, 40, 0.13) 0%, var(--bg-primary) 55%);
     flex-direction: column;
@@ -4821,13 +4842,31 @@ body:not(.dark-mode) .moon-icon {
 }
 
 /* ==========================================================================
-   SERVICE 03 — SECTION HEADER & DIVIDERS
+   SERVICE 03 â€” SECTION HEADER & DIVIDERS
    ========================================================================== */
 
 .s03-header {
-    text-align: center;
-    max-width: 750px;
-    margin: 0 auto 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    gap: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(245, 145, 40, 0.2);
+}
+.s03-header > *:first-child {
+    flex: 1 1 400px;
+    margin-bottom: 0 !important;
+}
+.s03-header > p {
+    flex: 1 1 400px;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
 }
 
 .s03-tag {
@@ -4876,7 +4915,7 @@ body:not(.dark-mode) .moon-icon {
     margin: 0 auto;
 }
 
-/* ── Sub-section dividers (03.A, 03.B) ── */
+/* â”€â”€ Sub-section dividers (03.A, 03.B) â”€â”€ */
 .s03-divider {
     display: flex;
     align-items: center;
@@ -5257,7 +5296,7 @@ body:not(.dark-mode) .moon-icon {
 
 /* Muted indicator light next to HUD tag */
 .deck-video-card .rc-hud-tag::before {
-    content: '●';
+    content: 'â—';
     color: var(--accent);
     display: inline-block;
     margin-right: 6px;
@@ -6108,9 +6147,9 @@ body:not(.dark-mode) .moon-icon {
 
 
 
-/* ══════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    VR CINEMATIC SPOTLIGHT PLAYER
-   ══════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .vr-spotlight-deck {
     display: flex;
@@ -7091,9 +7130,9 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HERO CTA BUTTONS
-══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .hero-cta-group {
     display: flex;
     justify-content: center;
@@ -7197,9 +7236,9 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HERO STATS BAR
-══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .hero-stats-bar {
     display: flex;
     justify-content: center;
@@ -7303,9 +7342,9 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CONTACT FORM SUCCESS CARD
-══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .contact-success-card {
     display: none;
     flex-direction: column;
@@ -7393,9 +7432,9 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ══════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SUBMIT BUTTON LOADING STATE
-══════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 .submit-btn .btn-loader {
     display: none;
 }
@@ -7414,11 +7453,11 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ══════════════════════════════════════════════════════════════
-   TESTIMONIALS — INFINITE CONSTELLATION GALLERY
-   ══════════════════════════════════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TESTIMONIALS â€” INFINITE CONSTELLATION GALLERY
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ── Section Wrapper ── */
+/* â”€â”€ Section Wrapper â”€â”€ */
 .testi-constellation-section {
     padding: 3rem 0 2rem;
     position: relative;
@@ -7439,7 +7478,7 @@ body:not(.dark-mode) .moon-icon {
     font-size: 1rem;
 }
 
-/* ── Ambient Particle Canvas ── */
+/* â”€â”€ Ambient Particle Canvas â”€â”€ */
 .testi-particles-canvas {
     position: absolute;
     inset: 0;
@@ -7450,7 +7489,7 @@ body:not(.dark-mode) .moon-icon {
     opacity: 0.5;
 }
 
-/* ── Glow Orbs ── */
+/* â”€â”€ Glow Orbs â”€â”€ */
 .testi-glow-orb {
     position: absolute;
     border-radius: 50%;
@@ -7527,7 +7566,7 @@ body:not(.dark-mode) .moon-icon {
     }
 }
 
-/* ── Marquee Track Container ── */
+/* â”€â”€ Marquee Track Container â”€â”€ */
 .testi-marquee-track {
     width: 100%;
     overflow: hidden;
@@ -7543,7 +7582,7 @@ body:not(.dark-mode) .moon-icon {
     margin-top: 1rem;
 }
 
-/* ── Marquee Inner (JS duplicates children for seamless loop) ── */
+/* â”€â”€ Marquee Inner (JS duplicates children for seamless loop) â”€â”€ */
 .testi-marquee-inner {
     display: flex;
     gap: 1.2rem;
@@ -7551,7 +7590,7 @@ body:not(.dark-mode) .moon-icon {
     will-change: transform;
 }
 
-/* ── Marquee Animation Directions ── */
+/* â”€â”€ Marquee Animation Directions â”€â”€ */
 .testi-marquee--left .testi-marquee-inner {
     animation: testiScrollLeft 55s linear infinite;
 }
@@ -7585,7 +7624,7 @@ body:not(.dark-mode) .moon-icon {
     animation-play-state: paused;
 }
 
-/* ── Testimonial Card ── */
+/* â”€â”€ Testimonial Card â”€â”€ */
 .testi-card {
     flex-shrink: 0;
     width: 320px;
@@ -7667,7 +7706,7 @@ body:not(.dark-mode) .moon-icon {
     opacity: 1;
 }
 
-/* ── Card Header (Avatar + Meta) ── */
+/* â”€â”€ Card Header (Avatar + Meta) â”€â”€ */
 .testi-card__header {
     display: flex;
     align-items: center;
@@ -7722,7 +7761,7 @@ body:not(.dark-mode) .moon-icon {
     line-height: 1.2;
 }
 
-/* ── Star Rating ── */
+/* â”€â”€ Star Rating â”€â”€ */
 .testi-stars {
     display: flex;
     gap: 2px;
@@ -7773,7 +7812,7 @@ body:not(.dark-mode) .moon-icon {
     }
 }
 
-/* ── Quote Text ── */
+/* â”€â”€ Quote Text â”€â”€ */
 .testi-quote {
     font-size: 0.82rem;
     color: var(--text-secondary);
@@ -7796,7 +7835,7 @@ body:not(.dark-mode) .moon-icon {
     pointer-events: none;
 }
 
-/* ── Project Tag ── */
+/* â”€â”€ Project Tag â”€â”€ */
 .testi-project {
     display: inline-flex;
     align-items: center;
@@ -7820,7 +7859,7 @@ body:not(.dark-mode) .moon-icon {
     transform: translateX(3px);
 }
 
-/* ── Aggregate Badge ── */
+/* â”€â”€ Aggregate Badge â”€â”€ */
 .testi-aggregate-badge {
     display: flex;
     flex-direction: column;
@@ -7907,7 +7946,7 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ── Dark Mode Adjustments ── */
+/* â”€â”€ Dark Mode Adjustments â”€â”€ */
 .dark-mode .testi-card {
     background: rgba(18, 16, 14, 0.7);
     border-color: rgba(245, 145, 40, 0.12);
@@ -7937,7 +7976,7 @@ body:not(.dark-mode) .moon-icon {
 }
 
 
-/* ── Responsive: Tablet ── */
+/* â”€â”€ Responsive: Tablet â”€â”€ */
 @media (max-width: 1024px) {
     .testi-card {
         width: 340px;
@@ -7949,7 +7988,7 @@ body:not(.dark-mode) .moon-icon {
     }
 }
 
-/* ── Responsive: Mobile ── */
+/* â”€â”€ Responsive: Mobile â”€â”€ */
 @media (max-width: 768px) {
     .testi-card {
         width: 300px;
@@ -8005,9 +8044,9 @@ body:not(.dark-mode) .moon-icon {
     }
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    MOBILE NAV & OVERFLOW FIXES
-   ══════════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 html,
 body {
     overflow-x: hidden !important;
@@ -8077,9 +8116,9 @@ body {
     }
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════
    GLOBAL HUMANIZED & ORGANIC AESTHETIC OVERRIDES
-   ══════════════════════════════════════════════════════════════ */
+   ══════════════════════════════════════════════════════════════════ */
 
 /* Soft Geometry: Organic curves instead of harsh tech squares */
 .service-card,
@@ -8089,12 +8128,13 @@ body {
 .testi-card,
 .form-control,
 .btn-secondary,
+.btn-primary,
 .hero-btn-primary,
 .hero-btn-secondary,
 .vr-ring-card,
 .vr-tab,
-.gallery-panel,
-.contact-card {
+.contact-card,
+.nav-cta {
     border-radius: 20px !important;
 }
 
@@ -8211,9 +8251,9 @@ body {
 
 /* Cleaned up old CRM restore overrides */
 
-/* ══════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════
    STRICT PERFORMANCE & HARDWARE ACCELERATION (GPU OFFLOADING)
-   ══════════════════════════════════════════════════════════════ */
+   ══════════════════════════════════════════════════════════════════ */
 
 /* Force GPU rendering for elements that are heavily animated via GSAP/CSS */
 .service-card,
@@ -8248,4 +8288,164 @@ svg {
 /* Dark mode glow enhancement for hero title brand color */
 .dark-mode .hero-title {
     text-shadow: 0 0 30px rgba(113, 39, 44, 0.25);
+}
+
+/* --- AI TYPOGRAPHY REFACTOR STYLES --- */
+
+/* Style 01 — Wide Condensed Caps */
+.section-heading {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 42px !important;
+    letter-spacing: -0.02em !important;
+    color: var(--text-primary) !important;
+    text-transform: uppercase !important;
+    margin-bottom: 8px !important;
+    text-shadow: 0 0 15px rgba(245, 145, 40, 0.3) !important;
+}
+.section-subheading {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-size: 13px !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+}
+
+/* Style 02 — Editorial Serif with Ruled Label */
+.project-label {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.18em !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+    border-left: 2px solid var(--text-primary) !important;
+    padding-left: 10px !important;
+    margin-bottom: 12px !important;
+    display: inline-block !important;
+}
+.project-heading {
+    font-family: "DM Serif Display", serif !important;
+    font-weight: 300 !important;
+    font-style: italic !important;
+    font-size: 48px !important;
+    color: #ffffff !important;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Style 03 — Ghost Number + Bold Text */
+.numbered-heading-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+.ghost-number {
+    font-family: "Bebas Neue", sans-serif !important;
+    font-size: 64px !important;
+    color: var(--text-primary) !important;
+    opacity: 0.12 !important;
+    line-height: 0.8 !important;
+}
+.numbered-heading {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 38px !important;
+    letter-spacing: -0.02em !important;
+    color: var(--text-primary) !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 0 15px rgba(245, 145, 40, 0.3) !important;
+}
+
+/* Style 04 — Outline Ghost + Solid Stack */
+.ghost-stack-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+.ghost-layer {
+    font-family: "DM Serif Display", serif !important;
+    font-style: italic !important;
+    font-weight: 800 !important;
+    font-size: 54px !important;
+    color: transparent !important;
+    -webkit-text-stroke: 1px var(--text-primary) !important;
+    opacity: 0.15 !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    position: absolute;
+    top: -20px;
+    z-index: 0;
+}
+.solid-layer {
+    font-family: "DM Serif Display", serif !important;
+    font-style: italic !important;
+    font-weight: 800 !important;
+    font-size: 38px !important;
+    color: var(--text-primary) !important;
+    line-height: 1.1 !important;
+    margin-top: 0px !important;
+    z-index: 1;
+    position: relative;
+}
+
+/* Style 05 — Serif Italic with Ruled Footer Tag */
+.creative-heading {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 40px !important;
+    letter-spacing: -0.02em !important;
+    color: var(--text-primary) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 0 15px rgba(245, 145, 40, 0.3) !important;
+}
+.creative-tagline {
+    border-top: 0.5px solid var(--border-color) !important;
+    padding-top: 8px !important;
+    font-family: "Space Grotesk", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+    display: inline-block !important;
+}
+
+/* Style 06 — Index Rule + Heavy Grotesque */
+.tech-index {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    font-family: "Space Grotesk", sans-serif !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 4px !important;
+}
+.tech-index::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 32px !important;
+    height: 2px !important;
+    background-color: var(--text-primary) !important;
+}
+.tech-heading {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 40px !important;
+    letter-spacing: -0.02em !important;
+    color: var(--text-primary) !important;
+    line-height: 1 !important;
+    margin-top: 4px !important;
+    text-transform: uppercase !important;
+    text-shadow: 0 0 15px rgba(245, 145, 40, 0.3) !important;
+    margin-bottom: 0.5rem !important;
 }
